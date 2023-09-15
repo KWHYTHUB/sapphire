@@ -1,14 +1,14 @@
 ﻿#pragma once
 
-#include <Geode/binding/TableViewCell.hpp>
-#include <Geode/binding/FLAlertLayerProtocol.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/ModMetadata.hpp>
-#include <Geode/loader/Index.hpp>
+#include <Sapphire/binding/TableViewCell.hpp>
+#include <Sapphire/binding/FLAlertLayerProtocol.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/ModMetadata.hpp>
+#include <Sapphire/loader/Index.hpp>
 
 #include "../info/TagNode.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class InstallListPopup;
 

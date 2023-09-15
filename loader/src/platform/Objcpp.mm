@@ -1,7 +1,7 @@
 // Only a single objc++ file is used because since pch doesnt work, each file adds a lot to the compile times
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #if defined(GEODE_IS_MACOS)
 

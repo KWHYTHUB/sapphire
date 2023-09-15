@@ -1,4 +1,4 @@
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #if defined(GEODE_IS_IOS)
 
@@ -9,7 +9,7 @@
 
 #include <thread>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 std::length_error::~length_error() _NOEXCEPT {} // do not ask...
 
@@ -18,23 +18,23 @@ std::length_error::~length_error() _NOEXCEPT {} // do not ask...
 // this is what old versions does to a silly girl
 
 void dynamicEntry() {
-    auto dylib = dlopen("GeodeBootstrapper.dylib", RTLD_NOLOAD);
+    auto dylib = dlopen("SapphireBootstrapper.dylib", RTLD_NOLOAD);
     dlclose(dylib);
 
     auto workingDir = dirs::getGameDir();
     auto libDir = workingDir / "Frameworks";
-    auto updatesDir = workingDir / "geode" / "update";
+    auto updatesDir = workingDir / "sapphire" / "update";
 
     auto error = std::error_code();
 
-    if (ghc::filesystem::exists(updatesDir / "GeodeBootstrapper.dylib", error) && !error) {
+    if (ghc::filesystem::exists(updatesDir / "SapphireBootstrapper.dylib", error) && !error) {
         ghc::filesystem::rename(
-            updatesDir / "GeodeBootstrapper.dylib", libDir / "GeodeBootstrapper.dylib", error
+            updatesDir / "SapphireBootstrapper.dylib", libDir / "SapphireBootstrapper.dylib", error
         );
         if (error) return;
     }
 
-    geodeEntry(nullptr);
+    sapphireEntry(nullptr);
 }
 
 extern "C" __attribute__((visibility("default"))) void dynamicTrigger() {

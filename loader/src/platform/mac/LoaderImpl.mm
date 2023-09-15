@@ -1,11 +1,11 @@
-#include <Geode/loader/IPC.hpp>
-#include <Geode/loader/Log.hpp>
+#include <Sapphire/loader/IPC.hpp>
+#include <Sapphire/loader/Log.hpp>
 #include <iostream>
 #include <loader/LoaderImpl.hpp>
 #include <loader/ModImpl.hpp>
 #import <Foundation/Foundation.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 void Loader::Impl::platformMessageBox(char const* title, std::string const& info) {
     CFStringRef cfTitle = CFStringCreateWithCString(NULL, title, kCFStringEncodingUTF8);

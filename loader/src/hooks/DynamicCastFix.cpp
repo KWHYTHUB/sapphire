@@ -1,11 +1,11 @@
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_MACOS
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-    #include <Geode/loader/Mod.hpp>
-    #include <Geode/modify/Modify.hpp>
+    #include <Sapphire/loader/Mod.hpp>
+    #include <Sapphire/modify/Modify.hpp>
 
 $execute {
     // this replaces the call to __dynamic_cast with a call to our own

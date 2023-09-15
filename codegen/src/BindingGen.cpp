@@ -9,18 +9,18 @@ namespace { namespace format_strings {
 
     char const* class_includes = R"GEN(#pragma once
 #include <stdexcept>
-#include <Geode/platform/platform.hpp>
-#include <Geode/c++stl/gdstdlib.hpp>
+#include <Sapphire/platform/platform.hpp>
+#include <Sapphire/c++stl/gdstdlib.hpp>
 #include <cocos2d.h>
 #include <cocos-ext.h>
-#include <Geode/GeneratedPredeclare.hpp>
-#include <Geode/Enums.hpp>
-#include <Geode/utils/SeedValue.hpp>
+#include <Sapphire/GeneratedPredeclare.hpp>
+#include <Sapphire/Enums.hpp>
+#include <Sapphire/utils/SeedValue.hpp>
 
 )GEN";
 
     char const* class_no_includes = R"GEN(#pragma once
-#include <Geode/platform/platform.hpp>
+#include <Sapphire/platform/platform.hpp>
 #include <stdexcept>
 
 )GEN";

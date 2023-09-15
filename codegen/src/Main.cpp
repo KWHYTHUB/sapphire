@@ -21,7 +21,7 @@ int main(int argc, char** argv) try {
     auto rootDir = ghc::filesystem::path(argv[2]);
     ghc::filesystem::current_path(rootDir);
 
-    auto writeDir = ghc::filesystem::path(argv[3]) / "Geode";
+    auto writeDir = ghc::filesystem::path(argv[3]) / "Sapphire";
     ghc::filesystem::create_directories(writeDir);
     ghc::filesystem::create_directories(writeDir / "modify");
     ghc::filesystem::create_directories(writeDir / "binding");

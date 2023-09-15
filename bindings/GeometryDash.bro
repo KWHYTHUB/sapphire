@@ -1,4 +1,4 @@
-// geode additions to make stl containers easier
+// sapphire additions to make stl containers easier
 // clang-format off
 class GDString {
     void winDtor() = win 0xf6e0;
@@ -7,7 +7,7 @@ class GDString {
     GDString& winAssign(char const*, size_t) = win 0xf840;
 
     static uintptr_t macEmptyContainer() {
-        return geode::base::get() + 0x6030d0;
+        return sapphire::base::get() + 0x6030d0;
     }
     void macCtor(char const*) = mac 0x489fc0;
     void macCtor(GDString const&) = mac 0x489fcc;
@@ -1995,9 +1995,9 @@ class GJChallengeDelegate {}
 class GJChallengeItem : cocos2d::CCObject {
 
     GJChallengeType m_challengeType;
-    geode::SeedValueSRV m_count;
-    geode::SeedValueSRV m_reward;
-    geode::SeedValueSRV m_goal;
+    sapphire::SeedValueSRV m_count;
+    sapphire::SeedValueSRV m_reward;
+    sapphire::SeedValueSRV m_goal;
     int m_timeLeft;
     bool m_canClaim;
     int m_position;
@@ -2296,7 +2296,7 @@ class GJGameLevel : cocos2d::CCNode {
     }
 
     cocos2d::CCDictionary* m_lastBuildSave;
-    geode::SeedValueRSV m_levelID;
+    sapphire::SeedValueRSV m_levelID;
     gd::string m_levelName;
     gd::string m_levelDesc;
     gd::string m_levelString;
@@ -2304,14 +2304,14 @@ class GJGameLevel : cocos2d::CCNode {
     gd::string m_recordString;
     gd::string m_uploadDate;
     gd::string m_updateDate;
-    geode::SeedValueRSV m_userID;
-    geode::SeedValueRSV m_accountID;
+    sapphire::SeedValueRSV m_userID;
+    sapphire::SeedValueRSV m_accountID;
     GJDifficulty m_difficulty;
     int m_audioTrack;
     int m_songID;
     int m_levelRev;
     bool m_unlisted;
-    geode::SeedValueRSV m_objectCount;
+    sapphire::SeedValueRSV m_objectCount;
     int m_levelIndex;
     int m_ratings;
     int m_ratingsSum;
@@ -2323,22 +2323,22 @@ class GJGameLevel : cocos2d::CCNode {
     int m_workingTime2;
     bool m_lowDetailMode;
     bool m_lowDetailModeToggled;
-    geode::SeedValueRS m_isVerified;
+    sapphire::SeedValueRS m_isVerified;
     bool m_isVerifiedRaw; // honestly i dont think this is need to be used
     bool m_isUploaded;
     bool m_hasBeenModified;
     int m_levelVersion;
     int m_gameVersion;
-    geode::SeedValueRSV m_attempts;
-    geode::SeedValueRSV m_jumps;
-    geode::SeedValueRSV m_clicks;
-    geode::SeedValueRSV m_attemptTime;
+    sapphire::SeedValueRSV m_attempts;
+    sapphire::SeedValueRSV m_jumps;
+    sapphire::SeedValueRSV m_clicks;
+    sapphire::SeedValueRSV m_attemptTime;
     int m_chk;
     bool m_isChkValid;
     bool m_isCompletionLegitimate;
-    geode::SeedValueVSR m_normalPercent;
-    geode::SeedValueRSV m_orbCompletion;
-    geode::SeedValueRSV m_newNormalPercent2;
+    sapphire::SeedValueVSR m_normalPercent;
+    sapphire::SeedValueRSV m_orbCompletion;
+    sapphire::SeedValueRSV m_newNormalPercent2;
     int m_practicePercent;
     int m_likes;
     int m_dislikes;
@@ -2347,20 +2347,20 @@ class GJGameLevel : cocos2d::CCNode {
     bool m_isEpic;
     bool m_levelFavorited;
     int m_levelFolder;
-    geode::SeedValueRSV m_dailyID;
-    geode::SeedValueRSV m_demon;
+    sapphire::SeedValueRSV m_dailyID;
+    sapphire::SeedValueRSV m_demon;
     int m_demonDifficulty;
-    geode::SeedValueRSV m_stars;
+    sapphire::SeedValueRSV m_stars;
     bool m_autoLevel;
     int m_coins;
-    geode::SeedValueRSV m_coinsVerified;
-    geode::SeedValueRS m_password;
-    geode::SeedValueRSV m_originalLevel;
+    sapphire::SeedValueRSV m_coinsVerified;
+    sapphire::SeedValueRS m_password;
+    sapphire::SeedValueRSV m_originalLevel;
     bool m_twoPlayerMode;
     int m_failedPasswordAttempts;
-    geode::SeedValueRSV m_firstCoinVerified;
-    geode::SeedValueRSV m_secondCoinVerified;
-    geode::SeedValueRSV m_thirdCoinVerified;
+    sapphire::SeedValueRSV m_firstCoinVerified;
+    sapphire::SeedValueRSV m_secondCoinVerified;
+    sapphire::SeedValueRSV m_thirdCoinVerified;
     int m_starsRequested;
     bool m_showedSongWarning;
     int m_starRatings;
@@ -3095,7 +3095,7 @@ class GameManager : GManager {
     gd::string m_playerUDID;
     gd::string m_playerName;
     bool m_commentsEnabled;
-    geode::SeedValueRSV m_playerUserID;
+    sapphire::SeedValueRSV m_playerUserID;
     float m_backgroundMusicVolume;
     float m_effectsVolume;
     float m_timeOffset;
@@ -3113,19 +3113,19 @@ class GameManager : GManager {
     int m_sceneEnum;
     int m_searchObjectType;
     bool m_unknownBool6;
-    geode::SeedValueRSV m_playerFrame;
-    geode::SeedValueRSV m_playerShip;
-    geode::SeedValueRSV m_playerBall;
-    geode::SeedValueRSV m_playerBird;
-    geode::SeedValueRSV m_playerDart;
-    geode::SeedValueRSV m_playerRobot;
-    geode::SeedValueRSV m_playerSpider;
-    geode::SeedValueRSV m_playerColor;
-    geode::SeedValueRSV m_playerColor2;
-    geode::SeedValueRSV m_playerStreak;
-    geode::SeedValueRSV m_playerDeathEffect;
-    geode::SeedValueSR m_chk;
-    geode::SeedValueSR m_secretNumber;
+    sapphire::SeedValueRSV m_playerFrame;
+    sapphire::SeedValueRSV m_playerShip;
+    sapphire::SeedValueRSV m_playerBall;
+    sapphire::SeedValueRSV m_playerBird;
+    sapphire::SeedValueRSV m_playerDart;
+    sapphire::SeedValueRSV m_playerRobot;
+    sapphire::SeedValueRSV m_playerSpider;
+    sapphire::SeedValueRSV m_playerColor;
+    sapphire::SeedValueRSV m_playerColor2;
+    sapphire::SeedValueRSV m_playerStreak;
+    sapphire::SeedValueRSV m_playerDeathEffect;
+    sapphire::SeedValueSR m_chk;
+    sapphire::SeedValueSR m_secretNumber;
     bool m_playerGlow;
     IconType m_playerIconType;
     bool m_everyPlaySetup;
@@ -3150,7 +3150,7 @@ class GameManager : GManager {
     bool m_unk2;
     bool m_gameCenterEnabled;
     bool m_smoothFix;
-    geode::SeedValueSRV m_ratePower;
+    sapphire::SeedValueSRV m_ratePower;
     bool m_canGetLevelSaveData;
     int m_resolution;
     cocos2d::TextureQuality m_quality;
@@ -3585,7 +3585,7 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_completedMappacks;
     cocos2d::CCDictionary* m_weeklyChest;
     cocos2d::CCDictionary* m_treasureRoomChests;
-    geode::SeedValueSRV m_bonusKey;
+    sapphire::SeedValueSRV m_bonusKey;
     cocos2d::CCDictionary* m_miscChests;
 }
 
@@ -3949,7 +3949,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* m_unkArray12;
     bool field_14;
     bool field_31D;
-    geode::SeedValueRSV m_coinCount;
+    sapphire::SeedValueRSV m_coinCount;
     bool m_moveTrigger;
     bool m_colorTrigger;
     bool m_pulseTrigger;
@@ -3980,7 +3980,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* m_undoObjects;
     cocos2d::CCArray* m_redoObjects;
     cocos2d::CCPoint m_unkPoint1;
-    geode::SeedValueRSV m_objectCount;
+    sapphire::SeedValueRSV m_objectCount;
     DrawGridLayer* m_drawGridLayer;
     GJGameLevel* m_level;
     PlaybackMode m_playbackMode;
@@ -4491,7 +4491,7 @@ class PlatformToolbox {
             return cocos2d::CCApplication::sharedApplication()->getControllerConnected();
         #elif defined(GEODE_IS_MACOS)
             // this is just gd.h
-            return reinterpret_cast<bool(*)()>(geode::base::get() + 0x27d1b0)();
+            return reinterpret_cast<bool(*)()>(sapphire::base::get() + 0x27d1b0)();
         #else
             return false;
         #endif
@@ -4672,7 +4672,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     float unused4c8;
     bool unused4cc;
     bool m_hasCheated;
-    geode::SeedValueRS m_dontSave;
+    sapphire::SeedValueRS m_dontSave;
     int unknown4d8;
     bool m_debugPauseOff;
     bool m_shouldSmoothCamera;

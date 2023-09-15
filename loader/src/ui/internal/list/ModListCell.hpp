@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Geode/binding/TableViewCell.hpp>
-#include <Geode/binding/FLAlertLayerProtocol.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/ModMetadata.hpp>
-#include <Geode/loader/Index.hpp>
+#include <Sapphire/binding/TableViewCell.hpp>
+#include <Sapphire/binding/FLAlertLayerProtocol.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/ModMetadata.hpp>
+#include <Sapphire/loader/Index.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class ModListLayer;
 enum class ModListDisplay;
@@ -103,14 +103,14 @@ public:
 };
 
 /**
- * Mod list item for an invalid Geode package
+ * Mod list item for an invalid Sapphire package
  */
-class InvalidGeodeFileCell : public ModListCell, public FLAlertLayerProtocol {
+class InvalidSapphireFileCell : public ModListCell, public FLAlertLayerProtocol {
 protected:
-    InvalidGeodeFile m_info;
+    InvalidSapphireFile m_info;
 
     bool init(
-        InvalidGeodeFile const& file,
+        InvalidSapphireFile const& file,
         ModListLayer* list,
         ModListDisplay display,
         CCSize const& size
@@ -120,8 +120,8 @@ protected:
     void FLAlert_Clicked(FLAlertLayer*, bool btn2) override;
 
 public:
-    static InvalidGeodeFileCell* create(
-        InvalidGeodeFile const& file,
+    static InvalidSapphireFileCell* create(
+        InvalidSapphireFile const& file,
         ModListLayer* list,
         ModListDisplay display,
         CCSize const& size
@@ -133,7 +133,7 @@ public:
 };
 
 /**
- * Mod list item for an invalid Geode package
+ * Mod list item for an invalid Sapphire package
  */
 class ProblemsCell : public ModListCell {
 protected:

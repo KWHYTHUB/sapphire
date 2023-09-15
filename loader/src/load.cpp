@@ -1,16 +1,16 @@
 #include "loader/LoaderImpl.hpp"
 
-#include <Geode/loader/IPC.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Log.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/loader/SettingEvent.hpp>
-#include <Geode/loader/ModJsonTest.hpp>
-#include <Geode/utils/JsonValidation.hpp>
+#include <Sapphire/loader/IPC.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Log.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/loader/SettingEvent.hpp>
+#include <Sapphire/loader/ModJsonTest.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
 
 #include <array>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #include "load.hpp"
 
@@ -25,7 +25,7 @@ $execute {
     });
     
     listenForIPC("ipc-test", [](IPCEvent* event) -> json::Value {
-        return "Hello from Geode!";
+        return "Hello from Sapphire!";
     });
 
     listenForIPC("loader-info", [](IPCEvent* event) -> json::Value {
@@ -57,14 +57,14 @@ $execute {
     });
 }
 
-int geodeEntry(void* platformData) {
+int sapphireEntry(void* platformData) {
     // set up internal mod, settings and data
     auto internalSetupRes = LoaderImpl::get()->setupInternalMod();
     if (!internalSetupRes) {
         LoaderImpl::get()->platformMessageBox(
-            "Unable to Load Geode!",
+            "Unable to Load Sapphire!",
             "There was a fatal error setting up "
-            "the internal mod and Geode can not be loaded: " + internalSetupRes.unwrapErr()
+            "the internal mod and Sapphire can not be loaded: " + internalSetupRes.unwrapErr()
         );
         LoaderImpl::get()->forceReset();
         return 1;
@@ -79,9 +79,9 @@ int geodeEntry(void* platformData) {
     auto setupRes = LoaderImpl::get()->setup();
     if (!setupRes) {
         LoaderImpl::get()->platformMessageBox(
-            "Unable to Load Geode!",
+            "Unable to Load Sapphire!",
             "There was an unknown fatal error setting up "
-            "the loader and Geode can not be loaded. " 
+            "the loader and Sapphire can not be loaded. " 
             "(" + setupRes.unwrapErr() + ")"
         );
         LoaderImpl::get()->forceReset();

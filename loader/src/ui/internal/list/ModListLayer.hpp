@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Geode/binding/TextInputDelegate.hpp>
-#include <Geode/loader/Index.hpp>
+#include <Sapphire/binding/TextInputDelegate.hpp>
+#include <Sapphire/loader/Index.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class SearchFilterPopup;
 class ModListCell;

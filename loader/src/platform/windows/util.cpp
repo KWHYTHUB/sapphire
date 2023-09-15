@@ -1,10 +1,10 @@
 
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_WINDOWS
 
-using namespace geode::prelude;
-#include <Geode/loader/Dirs.hpp>
+using namespace sapphire::prelude;
+#include <Sapphire/loader/Dirs.hpp>
 #include "nfdwin.hpp"
 #include <ghc/fs_fwd.hpp>
 #include <Windows.h>
@@ -13,8 +13,8 @@ using namespace geode::prelude;
 #include <shlwapi.h>
 #include <shobjidl.h>
 #include <sstream>
-#include <Geode/utils/web.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/utils/web.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
 #include <filesystem>
 
@@ -158,7 +158,7 @@ ghc::filesystem::path dirs::getSaveDir() {
     return path;
 }
 
-void geode::utils::game::restart() {
+void sapphire::utils::game::restart() {
     if (CCApplication::sharedApplication() &&
         (GameManager::get()->m_playLayer || GameManager::get()->m_levelEditorLayer)) {
         log::error("Cannot restart in PlayLayer or LevelEditorLayer!");
@@ -172,7 +172,7 @@ void geode::utils::game::restart() {
     const auto gdName = ghc::filesystem::path(buffer).filename().string();
 
     // launch updater
-    const auto updaterPath = (workingDir / "GeodeUpdater.exe").string();
+    const auto updaterPath = (workingDir / "SapphireUpdater.exe").string();
     ShellExecuteA(nullptr, "open", updaterPath.c_str(), gdName.c_str(), workingDir.string().c_str(), false);
 
     if (CCApplication::sharedApplication())
@@ -184,10 +184,10 @@ void geode::utils::game::restart() {
         exit(0);
 }
 
-Result<> geode::hook::addObjcMethod(std::string const& className, std::string const& selectorName, void* imp) {
+Result<> sapphire::hook::addObjcMethod(std::string const& className, std::string const& selectorName, void* imp) {
     return Err("Wrong platform");
 }
-Result<void*> geode::hook::getObjcMethodImp(std::string const& className, std::string const& selectorName) {
+Result<void*> sapphire::hook::getObjcMethodImp(std::string const& className, std::string const& selectorName) {
     return Err("Wrong platform");
 }
 

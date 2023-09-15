@@ -1,7 +1,7 @@
-#include <Geode/loader/Hook.hpp>
+#include <Sapphire/loader/Hook.hpp>
 #include <json.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 bool Patch::apply() {
     bool res = bool(tulip::hook::writeMemory(m_address, m_patch.data(), m_patch.size()));

@@ -1,11 +1,11 @@
 ﻿#include "ProblemsListCell.hpp"
 #include "ProblemsListPopup.hpp"
-#include <Geode/binding/ButtonSprite.hpp>
-#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
-#include <Geode/binding/CCMenuItemToggler.hpp>
-#include <Geode/binding/FLAlertLayer.hpp>
-#include <Geode/binding/StatsCell.hpp>
-#include <Geode/ui/GeodeUI.hpp>
+#include <Sapphire/binding/ButtonSprite.hpp>
+#include <Sapphire/binding/CCMenuItemSpriteExtra.hpp>
+#include <Sapphire/binding/CCMenuItemToggler.hpp>
+#include <Sapphire/binding/FLAlertLayer.hpp>
+#include <Sapphire/binding/StatsCell.hpp>
+#include <Sapphire/ui/SapphireUI.hpp>
 #include <loader/LoaderImpl.hpp>
 #include <utility>
 
@@ -56,7 +56,7 @@ bool ProblemsListCell::init(LoadProblem problem, ProblemsListPopup* list, CCSize
             break;
         case LoadProblem::Type::InvalidFile:
             icon = "info-alert.png"_spr;
-            message = fmt::format("{} is an invalid .geode file", cause);
+            message = fmt::format("{} is an invalid .sapphire file", cause);
             m_longMessage = problem.message;
             break;
         case LoadProblem::Type::Duplicate:

@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/utils/JsonValidation.hpp>
-#include <Geode/utils/VersionInfo.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
+#include <Sapphire/utils/VersionInfo.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-namespace geode {
+namespace sapphire {
     class ModMetadata::Impl {
     public:
         ghc::filesystem::path m_path;
@@ -31,8 +31,8 @@ namespace geode {
 
         ModJson m_rawJSON;
 
-        static Result<ModMetadata> createFromGeodeZip(utils::file::Unzip& zip);
-        static Result<ModMetadata> createFromGeodeFile(ghc::filesystem::path const& path);
+        static Result<ModMetadata> createFromSapphireZip(utils::file::Unzip& zip);
+        static Result<ModMetadata> createFromSapphireFile(ghc::filesystem::path const& path);
         static Result<ModMetadata> createFromFile(ghc::filesystem::path const& path);
         static Result<ModMetadata> create(ModJson const& json);
 

@@ -1,11 +1,11 @@
 {
-    "geode": "@PROJECT_VERSION@@PROJECT_VERSION_SUFFIX@",
-    "id": "geode.loader",
+    "sapphire": "@PROJECT_VERSION@@PROJECT_VERSION_SUFFIX@",
+    "id": "sapphire.loader",
     "version": "@PROJECT_VERSION@@PROJECT_VERSION_SUFFIX@",
-    "name": "Geode",
-    "developer": "Geode Team",
-    "description": "The Geode mod loader",
-    "repository": "https://github.com/geode-sdk/geode",
+    "name": "Sapphire",
+    "developer": "Sapphire Team",
+    "description": "The Sapphire mod loader",
+    "repository": "https://github.com/KWHYTHUB/sapphire",
     "resources": {
         "fonts": {
             "mdFont": {
@@ -63,7 +63,7 @@
             "type": "bool",
             "default": true,
             "name": "Check For Updates",
-            "description": "Automatically check for <cy>Geode</c> updates on startup"
+            "description": "Automatically check for <cy>Sapphire</c> updates on startup"
         },
         "auto-update-mods": {
             "type": "bool",
@@ -79,7 +79,7 @@
         }
     },
     "issues": {
-        "info": "Post your issues on the <cp>Geode Github Repository</c>. <cy>Please follow the standard issue format</c>.",
-        "url": "https://github.com/geode-sdk/geode/issues/new"
+        "info": "Post your issues on the <cp>Sapphire Github Repository</c>. <cy>Please follow the standard issue format</c>.",
+        "url": "https://github.com/KWHYTHUB/sapphire/issues/new"
     }
 }

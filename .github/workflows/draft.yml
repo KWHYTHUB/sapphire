@@ -20,14 +20,14 @@ jobs:
       - name: Declare Version Variable
         id: ref
         shell: bash
-        run: echo "version=$(unzip -p ${{ github.workspace }}/dev/geode-nightly.zip geode-sdk-geode-*/VERSION | xargs)" >> $GITHUB_OUTPUT
+        run: echo "version=$(unzip -p ${{ github.workspace }}/dev/sapphire-nightly.zip sapphire-sapphire-*/VERSION | xargs)" >> $GITHUB_OUTPUT
 
       - name: Move Files
         run: |
-          mv dev/geode-installer-*-mac.pkg geode-installer-v${{ steps.ref.outputs.version }}-mac.pkg
-          mv dev/geode-installer-*-win.exe geode-installer-v${{ steps.ref.outputs.version }}-win.exe
-          mv dev/geode-*-mac.zip geode-v${{ steps.ref.outputs.version }}-mac.zip
-          mv dev/geode-*-win.zip geode-v${{ steps.ref.outputs.version }}-win.zip
+          mv dev/sapphire-installer-*-mac.pkg sapphire-installer-v${{ steps.ref.outputs.version }}-mac.pkg
+          mv dev/sapphire-installer-*-win.exe sapphire-installer-v${{ steps.ref.outputs.version }}-win.exe
+          mv dev/sapphire-*-mac.zip sapphire-v${{ steps.ref.outputs.version }}-mac.zip
+          mv dev/sapphire-*-win.zip sapphire-v${{ steps.ref.outputs.version }}-win.zip
           mv dev/resources-win.zip resources-win.zip
           mv dev/resources-mac.zip resources-mac.zip
 
@@ -37,7 +37,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.ref.outputs.version }}
-          name: Geode v${{ steps.ref.outputs.version }}
+          name: Sapphire v${{ steps.ref.outputs.version }}
           body: |
             TODO before publishing:
              - mark if pre-release
@@ -45,9 +45,9 @@ jobs:
              - remove this
           draft: true
           files: |
-            ./geode-installer-v${{ steps.ref.outputs.version }}-mac.pkg
-            ./geode-installer-v${{ steps.ref.outputs.version }}-win.exe
-            ./geode-v${{ steps.ref.outputs.version }}-mac.zip
-            ./geode-v${{ steps.ref.outputs.version }}-win.zip
+            ./sapphire-installer-v${{ steps.ref.outputs.version }}-mac.pkg
+            ./sapphire-installer-v${{ steps.ref.outputs.version }}-win.exe
+            ./sapphire-v${{ steps.ref.outputs.version }}-mac.zip
+            ./sapphire-v${{ steps.ref.outputs.version }}-win.zip
             ./resources-win.zip
             ./resources-mac.zip

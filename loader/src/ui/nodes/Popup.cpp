@@ -1,6 +1,6 @@
-#include <Geode/ui/Popup.hpp>
+#include <Sapphire/ui/Popup.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class QuickPopup : public FLAlertLayer, public FLAlertLayerProtocol {
 protected:
@@ -39,7 +39,7 @@ public:
     }
 };
 
-FLAlertLayer* geode::createQuickPopup(
+FLAlertLayer* sapphire::createQuickPopup(
     char const* title, std::string const& content, char const* btn1, char const* btn2, float width,
     MiniFunction<void(FLAlertLayer*, bool)> selected, bool doShow
 ) {
@@ -50,14 +50,14 @@ FLAlertLayer* geode::createQuickPopup(
     return ret;
 }
 
-FLAlertLayer* geode::createQuickPopup(
+FLAlertLayer* sapphire::createQuickPopup(
     char const* title, std::string const& content, char const* btn1, char const* btn2,
     MiniFunction<void(FLAlertLayer*, bool)> selected, bool doShow
 ) {
     return createQuickPopup(title, content, btn1, btn2, 350.f, selected, doShow);
 }
 
-FLAlertLayer* geode::createQuickPopup(
+FLAlertLayer* sapphire::createQuickPopup(
     char const* title, std::string const& content, char const* btn1, char const* btn2, float width,
     MiniFunction<void(FLAlertLayer*, bool)> selected, bool doShow, bool cancelledByEscape
 ) {
@@ -68,7 +68,7 @@ FLAlertLayer* geode::createQuickPopup(
     return ret;
 }
 
-FLAlertLayer* geode::createQuickPopup(
+FLAlertLayer* sapphire::createQuickPopup(
     char const* title, std::string const& content, char const* btn1, char const* btn2,
     MiniFunction<void(FLAlertLayer*, bool)> selected, bool doShow, bool cancelledByEscape
 ) {

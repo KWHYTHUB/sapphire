@@ -2,8 +2,8 @@
  * Adapted from https://gist.github.com/altalk23/29b97969e9f0624f783b673f6c1cd279
  */
 
-#include <Geode/DefaultInclude.hpp>
-#include <Geode/utils/addresser.hpp>
+#include <Sapphire/DefaultInclude.hpp>
+#include <Sapphire/utils/addresser.hpp>
 #include <cstdlib>
 #include <stddef.h>
 
@@ -40,7 +40,7 @@
 #define GEODE_ADDRESSER_THUNK0_SET() GEODE_ADDRESSER_NEST2(GEODE_ADDRESSER_THUNK0_DEFINE, 0x)
 #define GEODE_ADDRESSER_TABLE_SET() GEODE_ADDRESSER_NEST2(GEODE_ADDRESSER_TABLE_DEFINE, 0x)
 
-using namespace geode::addresser;
+using namespace sapphire::addresser;
 
 namespace {
     template <ptrdiff_t index>
@@ -56,7 +56,7 @@ namespace {
     };
 
     class GEODE_HIDDEN TableTable {
-        friend class geode::addresser::Addresser;
+        friend class sapphire::addresser::Addresser;
 
         static inline table_table_t table = {GEODE_ADDRESSER_TABLE_SET()};
     };

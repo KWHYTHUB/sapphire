@@ -1,8 +1,8 @@
-#include <Geode/loader/Event.hpp>
-#include <Geode/utils/ranges.hpp>
+#include <Sapphire/loader/Event.hpp>
+#include <Sapphire/utils/ranges.hpp>
 #include <mutex>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 bool DefaultEventListenerPool::add(EventListenerProtocol* listener) {
     if (m_locked) {

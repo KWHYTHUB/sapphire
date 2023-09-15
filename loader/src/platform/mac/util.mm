@@ -1,14 +1,14 @@
 
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_MACOS
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-#include <Geode/loader/Dirs.hpp>
+#include <Sapphire/loader/Dirs.hpp>
 #import <AppKit/AppKit.h>
-#include <Geode/Utils.hpp>
-#include <Geode/binding/GameManager.hpp>
+#include <Sapphire/Utils.hpp>
+#include <Sapphire/binding/GameManager.hpp>
 #include <objc/runtime.h>
 
 bool utils::clipboard::write(std::string const& data) {
@@ -200,7 +200,7 @@ ghc::filesystem::path dirs::getSaveDir() {
     return path;
 }
 
-void geode::utils::game::restart() {
+void sapphire::utils::game::restart() {
     if (CCApplication::sharedApplication() &&
         (GameManager::get()->m_playLayer || GameManager::get()->m_levelEditorLayer)) {
         log::error("Cannot restart in PlayLayer or LevelEditorLayer!");
@@ -234,7 +234,7 @@ void geode::utils::game::restart() {
     ), CCDirector::get()->getRunningScene(), false);
 }
 
-Result<> geode::hook::addObjcMethod(std::string const& className, std::string const& selectorName, void* imp) {
+Result<> sapphire::hook::addObjcMethod(std::string const& className, std::string const& selectorName, void* imp) {
     auto cls = objc_getClass(className.c_str());
     if (!cls)
         return Err("Class not found");
@@ -245,7 +245,7 @@ Result<> geode::hook::addObjcMethod(std::string const& className, std::string co
 
     return Ok();
 }
-Result<void*> geode::hook::getObjcMethodImp(std::string const& className, std::string const& selectorName) {
+Result<void*> sapphire::hook::getObjcMethodImp(std::string const& className, std::string const& selectorName) {
     auto cls = objc_getClass(className.c_str());
     if (!cls)
         return Err("Class not found");

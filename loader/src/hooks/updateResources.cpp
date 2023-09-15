@@ -1,8 +1,8 @@
-#include <Geode/loader/Loader.hpp>
-#include <Geode/modify/LoadingLayer.hpp>
-#include <Geode/modify/GameManager.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/modify/LoadingLayer.hpp>
+#include <Sapphire/modify/GameManager.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 struct ResourcesUpdate : Modify<ResourcesUpdate, LoadingLayer> {
     void loadAssets() {

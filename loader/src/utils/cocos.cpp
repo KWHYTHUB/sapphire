@@ -1,8 +1,8 @@
-#include <Geode/modify/LoadingLayer.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/modify/LoadingLayer.hpp>
+#include <Sapphire/utils/cocos.hpp>
 #include <json.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 json::Value json::Serialize<ccColor3B>::to_json(ccColor3B const& color) {
     return json::Object {
@@ -105,7 +105,7 @@ ccColor4B json::Serialize<ccColor4B>::from_json(json::Value const& json) {
     return color;
 }
 
-Result<ccColor3B> geode::cocos::cc3bFromHexString(std::string const& hexValue) {
+Result<ccColor3B> sapphire::cocos::cc3bFromHexString(std::string const& hexValue) {
     if (hexValue.empty()) {
         return Ok(ccc3(255, 255, 255));
     }
@@ -148,7 +148,7 @@ Result<ccColor3B> geode::cocos::cc3bFromHexString(std::string const& hexValue) {
     }
 }
 
-Result<ccColor4B> geode::cocos::cc4bFromHexString(std::string const& hexValue) {
+Result<ccColor4B> sapphire::cocos::cc4bFromHexString(std::string const& hexValue) {
     if (hexValue.empty()) {
         return Ok(ccc4(255, 255, 255, 255));
     }
@@ -207,7 +207,7 @@ Result<ccColor4B> geode::cocos::cc4bFromHexString(std::string const& hexValue) {
     }
 }
 
-std::string geode::cocos::cc3bToHexString(ccColor3B const& color) {
+std::string sapphire::cocos::cc3bToHexString(ccColor3B const& color) {
     static constexpr auto digits = "0123456789ABCDEF";
     std::string output;
     output += digits[color.r >> 4 & 0xF];
@@ -219,7 +219,7 @@ std::string geode::cocos::cc3bToHexString(ccColor3B const& color) {
     return output;
 }
 
-std::string geode::cocos::cc4bToHexString(ccColor4B const& color) {
+std::string sapphire::cocos::cc4bToHexString(ccColor4B const& color) {
     static constexpr auto digits = "0123456789ABCDEF";
     std::string output;
     output += digits[color.r >> 4 & 0xF];
@@ -279,7 +279,7 @@ std::shared_ptr<WeakRefController> WeakRefPool::manage(CCObject* obj) {
     return m_pool.at(obj);
 }
 
-CCRect geode::cocos::calculateNodeCoverage(std::vector<CCNode*> const& nodes) {
+CCRect sapphire::cocos::calculateNodeCoverage(std::vector<CCNode*> const& nodes) {
     CCRect coverage;
     for (auto child : nodes) {
         auto pos = child->getPosition() - child->getScaledContentSize() * child->getAnchorPoint();
@@ -301,7 +301,7 @@ CCRect geode::cocos::calculateNodeCoverage(std::vector<CCNode*> const& nodes) {
     return coverage;
 }
 
-CCRect geode::cocos::calculateNodeCoverage(CCArray* nodes) {
+CCRect sapphire::cocos::calculateNodeCoverage(CCArray* nodes) {
     CCRect coverage;
     for (auto child : CCArrayExt<CCNode>(nodes)) {
         auto pos = child->getPosition() - child->getScaledContentSize() * child->getAnchorPoint();
@@ -323,11 +323,11 @@ CCRect geode::cocos::calculateNodeCoverage(CCArray* nodes) {
     return coverage;
 }
 
-CCRect geode::cocos::calculateChildCoverage(CCNode* parent) {
+CCRect sapphire::cocos::calculateChildCoverage(CCNode* parent) {
     return calculateNodeCoverage(parent->getChildren());
 }
 
-void geode::cocos::limitNodeSize(cocos2d::CCNode* spr, cocos2d::CCSize const& size, float def, float min) {
+void sapphire::cocos::limitNodeSize(cocos2d::CCNode* spr, cocos2d::CCSize const& size, float def, float min) {
     spr->setScale(1.f);
     auto [cwidth, cheight] = spr->getContentSize();
 
@@ -347,7 +347,7 @@ void geode::cocos::limitNodeSize(cocos2d::CCNode* spr, cocos2d::CCSize const& si
     spr->setScale(scale);
 }
 
-bool geode::cocos::nodeIsVisible(cocos2d::CCNode* node) {
+bool sapphire::cocos::nodeIsVisible(cocos2d::CCNode* node) {
     if (!node->isVisible()) {
         return false;
     }
@@ -357,7 +357,7 @@ bool geode::cocos::nodeIsVisible(cocos2d::CCNode* node) {
     return true;
 }
 
-CCNode* geode::cocos::getChildByTagRecursive(cocos2d::CCNode* node, int tag) {
+CCNode* sapphire::cocos::getChildByTagRecursive(cocos2d::CCNode* node, int tag) {
     if (node->getTag() == tag) return node;
     auto children = node->getChildren();
     for (int i = 0; i < children->count(); ++i) {
@@ -368,12 +368,12 @@ CCNode* geode::cocos::getChildByTagRecursive(cocos2d::CCNode* node, int tag) {
     return nullptr;
 }
 
-bool geode::cocos::fileExistsInSearchPaths(char const* filename) {
+bool sapphire::cocos::fileExistsInSearchPaths(char const* filename) {
     auto utils = CCFileUtils::sharedFileUtils();
     return utils->isFileExist(utils->fullPathForFilename(filename, false));
 }
 
-CCScene* geode::cocos::switchToScene(CCLayer* layer) {
+CCScene* sapphire::cocos::switchToScene(CCLayer* layer) {
     auto scene = CCScene::create();
     scene->addChild(layer);
     CCDirector::get()->replaceScene(CCTransitionFade::create(.5f, scene));
@@ -382,7 +382,7 @@ CCScene* geode::cocos::switchToScene(CCLayer* layer) {
 
 static CreateLayerFunc LOADING_FINISHED_SCENE = nullptr;
 
-void geode::cocos::reloadTextures(CreateLayerFunc returnTo) {
+void sapphire::cocos::reloadTextures(CreateLayerFunc returnTo) {
     LOADING_FINISHED_SCENE = returnTo;
     GameManager::get()->reloadAll(false, false, true);
 }

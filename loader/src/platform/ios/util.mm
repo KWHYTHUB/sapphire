@@ -1,14 +1,14 @@
 
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_IOS
 
-using namespace geode::prelude;
-#include <Geode/loader/Dirs.hpp>
+using namespace sapphire::prelude;
+#include <Sapphire/loader/Dirs.hpp>
 #include <UIKit/UIKit.h>
 #include <iostream>
 #include <sstream>
-#include <Geode/utils/web.hpp>
+#include <Sapphire/utils/web.hpp>
 
 bool utils::clipboard::write(std::string const& data) {
     [UIPasteboard generalPasteboard].string = [NSString stringWithUTF8String:data.c_str()];
@@ -24,8 +24,8 @@ void utils::web::openLinkInBrowser(std::string const& url) {
         openURL:[NSURL URLWithString:[NSString stringWithUTF8String:url.c_str()]]];
 }
 
-void geode_nslog(uintptr_t x) {
-    NSLog(@"geode %lx", x);
+void sapphire_nslog(uintptr_t x) {
+    NSLog(@"sapphire %lx", x);
 }
 
 

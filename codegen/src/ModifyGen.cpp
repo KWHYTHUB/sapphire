@@ -7,12 +7,12 @@ namespace {
     namespace format_strings {
         // requires: class_name, class_include
         char const* modify_start = R"GEN(#pragma once
-#include <Geode/modify/Modify.hpp>
-#include <Geode/modify/Field.hpp>
-#include <Geode/modify/Addresses.hpp>
+#include <Sapphire/modify/Modify.hpp>
+#include <Sapphire/modify/Field.hpp>
+#include <Sapphire/modify/Addresses.hpp>
 {class_include}
-using namespace geode::modifier;
-namespace geode::modifier {{
+using namespace sapphire::modifier;
+namespace sapphire::modifier {{
     {statics}
 
 	template<class Der>
@@ -22,7 +22,7 @@ namespace geode::modifier {{
 		using Base = {class_name};
         using Derived = Der;
 		void apply() override {{
-			using namespace geode::core::meta;
+			using namespace sapphire::core::meta;
 
 )GEN";
 
@@ -75,7 +75,7 @@ std::string generateModifyHeader(Root const& root, ghc::filesystem::path const& 
         }
         else {
             class_include = fmt::format(
-                "#include <Geode/binding/{class_name}.hpp>",
+                "#include <Sapphire/binding/{class_name}.hpp>",
                 fmt::arg("class_name", codegen::getUnqualifiedClassName(c.name))
             );
         }

@@ -1,14 +1,14 @@
 #include "LoaderImpl.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 Loader::Loader() : m_impl(new Impl) {}
 
 Loader::~Loader() {}
 
 Loader* Loader::get() {
-    static auto g_geode = new Loader;
-    return g_geode;
+    static auto g_sapphire = new Loader;
+    return g_sapphire;
 }
 
 void Loader::createDirectories() {
@@ -95,7 +95,7 @@ void Loader::updateAllDependencies() {
     return m_impl->updateAllDependencies();
 }
 
-std::vector<InvalidGeodeFile> Loader::getFailedMods() const {
+std::vector<InvalidSapphireFile> Loader::getFailedMods() const {
     return m_impl->getFailedMods();
 }
 

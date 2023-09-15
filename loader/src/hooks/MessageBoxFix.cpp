@@ -1,12 +1,12 @@
 
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_WINDOWS
 
-    #include <Geode/loader/Mod.hpp>
-    #include <Geode/modify/Modify.hpp>
+    #include <Sapphire/loader/Mod.hpp>
+    #include <Sapphire/modify/Modify.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 // for some reason RobTop uses MessageBoxW in his GLFW error handler.
 // no one knows how this is possible (he passes char* to wchar_t*).
@@ -18,7 +18,7 @@ static void __cdecl fixedErrorHandler(int code, char const* description) {
         nullptr,
         fmt::format(
             "GLFWError #{}: {}\nPlease contact the "
-            "Geode Development Team for more information.",
+            "Sapphire Development Team for more information.",
             code,
             description
         )
@@ -30,7 +30,7 @@ static void __cdecl fixedErrorHandler(int code, char const* description) {
 
 $execute {
     (void)Mod::get()->patch(
-        reinterpret_cast<void*>(geode::base::getCocos() + 0x19feec), toByteArray(&fixedErrorHandler)
+        reinterpret_cast<void*>(sapphire::base::getCocos() + 0x19feec), toByteArray(&fixedErrorHandler)
     );
 }
 

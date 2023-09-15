@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Geode/loader/SettingNode.hpp>
-#include <Geode/ui/Popup.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/loader/SettingNode.hpp>
+#include <Sapphire/ui/Popup.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class ModSettingsPopup : public Popup<Mod*>, public SettingNodeDelegate {
 protected:

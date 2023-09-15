@@ -1,10 +1,10 @@
 #include "AddIDs.hpp"
 
-#include <Geode/Bindings.hpp>
-#include <Geode/modify/CustomSongWidget.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/Bindings.hpp>
+#include <Sapphire/modify/CustomSongWidget.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 $register_ids(CustomSongWidget) {
     setIDSafe<CCScale9Sprite>(this, 0, "bg");

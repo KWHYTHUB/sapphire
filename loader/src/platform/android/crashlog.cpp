@@ -3,7 +3,7 @@
 #ifdef GEODE_IS_ANDROID
 
 ghc::filesystem::path crashlog::getCrashLogDirectory() {
-    return geode::dirs::getSaveDir();
+    return sapphire::dirs::getSaveDir();
 }
 
 bool crashlog::setupPlatformHandler() {

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Geode/binding/CustomListView.hpp>
-#include <Geode/binding/TableViewCell.hpp>
+#include <Sapphire/binding/CustomListView.hpp>
+#include <Sapphire/binding/TableViewCell.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 static constexpr const BoomListType kBoomListType_Hooks = static_cast<BoomListType>(0x358);
 

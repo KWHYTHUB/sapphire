@@ -1,10 +1,10 @@
 #include "AddIDs.hpp"
 
-#include <Geode/Bindings.hpp>
-#include <Geode/modify/CreatorLayer.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/Bindings.hpp>
+#include <Sapphire/modify/CreatorLayer.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 template<class... Args>
 static void reorderButtons(Args... args) {

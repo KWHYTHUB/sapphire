@@ -1,10 +1,10 @@
 #include "AddIDs.hpp"
 
-#include <Geode/Bindings.hpp>
-#include <Geode/modify/LevelBrowserLayer.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/Bindings.hpp>
+#include <Sapphire/modify/LevelBrowserLayer.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 $register_ids(LevelBrowserLayer) {
     auto winSize = CCDirector::get()->getWinSize();

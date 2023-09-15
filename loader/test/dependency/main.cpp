@@ -1,12 +1,12 @@
-#include <Geode/Loader.hpp>
-#include <Geode/modify/MenuLayer.hpp>
-#include <Geode/loader/SettingNode.hpp>
-#include <Geode/loader/ModJsonTest.hpp>
-#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
-#include <Geode/binding/FLAlertLayer.hpp>
+#include <Sapphire/Loader.hpp>
+#include <Sapphire/modify/MenuLayer.hpp>
+#include <Sapphire/loader/SettingNode.hpp>
+#include <Sapphire/loader/ModJsonTest.hpp>
+#include <Sapphire/binding/CCMenuItemSpriteExtra.hpp>
+#include <Sapphire/binding/FLAlertLayer.hpp>
 #include "main.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 std::string TestEvent::getData() const {
     return data;

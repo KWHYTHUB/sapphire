@@ -3,8 +3,8 @@
 #include "../info/TagNode.hpp"
 #include "ModListLayer.hpp"
 
-#include <Geode/binding/GameToolbox.hpp>
-#include <Geode/binding/CCMenuItemToggler.hpp>
+#include <Sapphire/binding/GameToolbox.hpp>
+#include <Sapphire/binding/CCMenuItemToggler.hpp>
 
 // re-add when we actually add the platforms
 const float iosAndAndroidSize = 45.f;

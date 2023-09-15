@@ -3,15 +3,15 @@
 #include "FileWatcher.hpp"
 
 #include <json.hpp>
-#include <Geode/loader/Dirs.hpp>
-#include <Geode/loader/Index.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Log.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/utils/Result.hpp>
-#include <Geode/utils/map.hpp>
-#include <Geode/utils/ranges.hpp>
-#include <Geode/utils/MiniFunction.hpp>
+#include <Sapphire/loader/Dirs.hpp>
+#include <Sapphire/loader/Index.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Log.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/utils/Result.hpp>
+#include <Sapphire/utils/map.hpp>
+#include <Sapphire/utils/ranges.hpp>
+#include <Sapphire/utils/MiniFunction.hpp>
 #include "ModImpl.hpp"
 #include <about.hpp>
 #include <crashlog.hpp>
@@ -25,7 +25,7 @@
 #include <tulip/TulipHook.hpp>
 
 // TODO: Find a file convention for impl headers
-namespace geode {
+namespace sapphire {
     struct ResourceDownloadEvent : public Event {
         const UpdateStatus status;
         ResourceDownloadEvent(UpdateStatus const& status);
@@ -113,7 +113,7 @@ namespace geode {
         void updateModResources(Mod* mod);
         void addSearchPaths();
 
-        friend void GEODE_CALL ::geode_implicit_load(Mod*);
+        friend void GEODE_CALL ::sapphire_implicit_load(Mod*);
 
         [[deprecated]] Result<Mod*> loadModFromInfo(ModInfo const& info);
 
@@ -146,7 +146,7 @@ namespace geode {
         std::vector<Mod*> getAllMods();
         [[deprecated]] Mod* getModImpl();
         [[deprecated]] void updateAllDependencies();
-        [[deprecated]] std::vector<InvalidGeodeFile> getFailedMods() const;
+        [[deprecated]] std::vector<InvalidSapphireFile> getFailedMods() const;
         std::vector<LoadProblem> getProblems() const;
 
         void updateResources();

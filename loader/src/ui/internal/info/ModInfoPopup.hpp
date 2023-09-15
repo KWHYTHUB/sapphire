@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Geode/binding/FLAlertLayer.hpp>
-#include <Geode/binding/FLAlertLayerProtocol.hpp>
-#include <Geode/ui/MDTextArea.hpp>
-#include <Geode/ui/Scrollbar.hpp>
-#include <Geode/ui/IconButtonSprite.hpp>
-#include <Geode/loader/Index.hpp>
+#include <Sapphire/binding/FLAlertLayer.hpp>
+#include <Sapphire/binding/FLAlertLayerProtocol.hpp>
+#include <Sapphire/ui/MDTextArea.hpp>
+#include <Sapphire/ui/Scrollbar.hpp>
+#include <Sapphire/ui/IconButtonSprite.hpp>
+#include <Sapphire/loader/Index.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class ModListLayer;
 class ModObject;

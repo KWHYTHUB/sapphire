@@ -1,13 +1,13 @@
 {
-    "geode":        "1.0.0",
+    "sapphire":        "1.0.0",
 	"version":      "1.0.0",
-	"id":           "geode.test",
-    "name":         "Geode Test",
-    "developer":    "Geode Team",
-    "description":  "unit test for geode",
+	"id":           "sapphire.test",
+    "name":         "Sapphire Test",
+    "developer":    "Sapphire Team",
+    "description":  "unit test for sapphire",
     "dependencies": [
         {
-            "id": "geode.testdep",
+            "id": "sapphire.testdep",
             "version": ">=1.0.0",
             "required": true
         }

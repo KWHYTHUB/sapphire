@@ -10,9 +10,9 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 target_include_directories(${PROJECT_NAME} PRIVATE
 	${GEODE_CODEGEN_PATH}
 	${GEODE_LOADER_PATH}/include
-	${GEODE_LOADER_PATH}/include/Geode/cocos/include
-	${GEODE_LOADER_PATH}/include/Geode/cocos/extensions
-	${GEODE_LOADER_PATH}/include/Geode/fmod
+	${GEODE_LOADER_PATH}/include/Sapphire/cocos/include
+	${GEODE_LOADER_PATH}/include/Sapphire/cocos/extensions
+	${GEODE_LOADER_PATH}/include/Sapphire/fmod
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE -DGEODE_DONT_WARN_INCORRECT_MEMBERS)

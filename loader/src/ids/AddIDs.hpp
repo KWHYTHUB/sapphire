@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Geode/Bindings.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/Bindings.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 static constexpr int32_t GEODE_ID_PRIORITY = 0x100000;
 

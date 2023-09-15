@@ -1,8 +1,8 @@
 #include "AddIDs.hpp"
 
-#include <Geode/modify/CustomizeObjectLayer.hpp>
+#include <Sapphire/modify/CustomizeObjectLayer.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 $register_ids(CustomizeObjectLayer) {
     auto winSize = CCDirector::get()->getWinSize();

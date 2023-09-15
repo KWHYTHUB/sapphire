@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Geode/utils/VersionInfo.hpp>
+#include <Sapphire/utils/VersionInfo.hpp>
 
 static constexpr const char* LOADER_VERSION_STR = "@PROJECT_VERSION@@PROJECT_VERSION_SUFFIX@";
 static constexpr int LOADER_VERSION_MAJOR = @PROJECT_VERSION_MAJOR@;
 static constexpr int LOADER_VERSION_MINOR = @PROJECT_VERSION_MINOR@;
 static constexpr int LOADER_VERSION_PATCH = @PROJECT_VERSION_PATCH@;
 static constexpr const char* LOADER_COMMIT_HASH = "@GEODE_COMMIT_HASH@";
-static constexpr geode::VersionInfo LOADER_VERSION = {
+static constexpr sapphire::VersionInfo LOADER_VERSION = {
     @PROJECT_VERSION_MAJOR@,
     @PROJECT_VERSION_MINOR@,
     @PROJECT_VERSION_PATCH@,

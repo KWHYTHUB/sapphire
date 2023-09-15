@@ -1,11 +1,11 @@
 
-#include <Geode/modify/LoadingLayer.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/modify/LoadingLayer.hpp>
+#include <Sapphire/utils/cocos.hpp>
 #include <array>
 #include <fmt/format.h>
 #include <loader/LoaderImpl.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 struct CustomLoadingLayer : Modify<CustomLoadingLayer, LoadingLayer> {
     CCLabelBMFont* m_loadedModsLabel;
@@ -18,7 +18,7 @@ struct CustomLoadingLayer : Modify<CustomLoadingLayer, LoadingLayer> {
         auto count = std::count_if(allMods.begin(), allMods.end(), [&](auto& item) {
             return item->isEnabled();
         });
-        auto str = fmt::format("Geode: Loaded {}/{} mods", count, allMods.size());
+        auto str = fmt::format("Sapphire: Loaded {}/{} mods", count, allMods.size());
         m_fields->m_loadedModsLabel->setCString(str.c_str());
     }
 
@@ -31,10 +31,10 @@ struct CustomLoadingLayer : Modify<CustomLoadingLayer, LoadingLayer> {
 
         auto winSize = CCDirector::sharedDirector()->getWinSize();
 
-        m_fields->m_loadedModsLabel = CCLabelBMFont::create("Geode: Loaded 0/0 mods", "goldFont.fnt");
+        m_fields->m_loadedModsLabel = CCLabelBMFont::create("Sapphire: Loaded 0/0 mods", "goldFont.fnt");
         m_fields->m_loadedModsLabel->setPosition(winSize.width / 2, 30.f);
         m_fields->m_loadedModsLabel->setScale(.45f);
-        m_fields->m_loadedModsLabel->setID("geode-loaded-info");
+        m_fields->m_loadedModsLabel->setID("sapphire-loaded-info");
         this->addChild(m_fields->m_loadedModsLabel);
         this->updateLoadedModsLabel();
 
@@ -77,7 +77,7 @@ struct CustomLoadingLayer : Modify<CustomLoadingLayer, LoadingLayer> {
                     error + ".\n"
                     "You will have to install resources manually by downloading resources.zip "
                     "from the latest release on GitHub: "
-                    "https://github.com/geode-sdk/geode/releases/latest.\n"
+                    "https://github.com/KWHYTHUB/sapphire/releases/latest.\n"
                     "The game will be loaded as normal, but please be aware "
                     "that it is very likely to crash. "
                 );

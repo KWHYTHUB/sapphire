@@ -1,8 +1,8 @@
 #include "AddIDs.hpp"
 
-#include <Geode/modify/EditorPauseLayer.hpp>
+#include <Sapphire/modify/EditorPauseLayer.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 // special class for this because making it a CCMenuItemToggler would be very UB 
 // (not gonna reinterpret_cast that into the members)

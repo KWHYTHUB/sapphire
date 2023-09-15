@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Geode/loader/Event.hpp>
+#include <Sapphire/loader/Event.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #ifdef GEODE_IS_WINDOWS
     #ifdef EXPORTING_MOD

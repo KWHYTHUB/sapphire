@@ -1,8 +1,8 @@
 
-#include <Geode/platform/platform.hpp>
-#include <Geode/utils/general.hpp>
+#include <Sapphire/platform/platform.hpp>
+#include <Sapphire/utils/general.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 PlatformID PlatformID::from(const char* str) {
     switch (hash(str)) {

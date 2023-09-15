@@ -1,9 +1,9 @@
-#include <Geode/ui/General.hpp>
+#include <Sapphire/ui/General.hpp>
 #include <cocos-ext.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-CCSprite* geode::createLayerBG() {
+CCSprite* sapphire::createLayerBG() {
     auto winSize = CCDirector::get()->getWinSize();
 
     auto bg = CCSprite::create("GJ_gradientBG.png");
@@ -18,7 +18,7 @@ CCSprite* geode::createLayerBG() {
     return bg;
 }
 
-void geode::addListBorders(CCNode* to, CCPoint const& center, CCSize const& size) {
+void sapphire::addListBorders(CCNode* to, CCPoint const& center, CCSize const& size) {
     // if the size is 346.f, the top aligns perfectly by default :3
     if (size.width == 346.f) {
         auto layerTopSpr = CCSprite::createWithSpriteFrameName("GJ_commentTop_001.png");

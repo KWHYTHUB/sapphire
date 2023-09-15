@@ -1,8 +1,8 @@
 
-#include <Geode/loader/Log.hpp>
-#include <Geode/utils/file.hpp>
-#include <Geode/utils/map.hpp>
-#include <Geode/utils/string.hpp>
+#include <Sapphire/loader/Log.hpp>
+#include <Sapphire/utils/file.hpp>
+#include <Sapphire/utils/map.hpp>
+#include <Sapphire/utils/string.hpp>
 #include <json.hpp>
 #include <fstream>
 #include <mz.h>
@@ -17,8 +17,8 @@
 #include <filesystem>
 #endif
 
-using namespace geode::prelude;
-using namespace geode::utils::file;
+using namespace sapphire::prelude;
+using namespace sapphire::utils::file;
 
 Result<std::string> utils::file::readString(ghc::filesystem::path const& path) {
     if (!ghc::filesystem::exists(path))

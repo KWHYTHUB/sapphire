@@ -1,12 +1,12 @@
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_MACOS
 
-#include <Geode/loader/Mod.hpp>
+#include <Sapphire/loader/Mod.hpp>
 #include <loader/ModImpl.hpp>
 #include <dlfcn.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 template <typename T>
 T findSymbolOrMangled(void* dylib, char const* name, char const* mangled) {

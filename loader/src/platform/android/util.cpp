@@ -1,12 +1,12 @@
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_ANDROID
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-#include <Geode/utils/cocos.hpp>
-#include <Geode/loader/Dirs.hpp>
-#include <Geode/utils/web.hpp>
+#include <Sapphire/utils/cocos.hpp>
+#include <Sapphire/loader/Dirs.hpp>
+#include <Sapphire/utils/web.hpp>
 #include <ghc/filesystem.hpp>
 
 ghc::filesystem::path dirs::getGameDir() {
@@ -25,9 +25,9 @@ bool utils::file::openFolder(ghc::filesystem::path const&) {
     return false;
 }
 
-geode::Result<ghc::filesystem::path> utils::file::
-    pickFile(geode::utils::file::PickMode, geode::utils::file::FilePickOptions const&) {
-    return geode::Err("This function is currently unimplemented");
+sapphire::Result<ghc::filesystem::path> utils::file::
+    pickFile(sapphire::utils::file::PickMode, sapphire::utils::file::FilePickOptions const&) {
+    return sapphire::Err("This function is currently unimplemented");
 }
 
 #endif

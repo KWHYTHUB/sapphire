@@ -1,15 +1,15 @@
-#include "../ui/internal/settings/GeodeSettingNode.hpp"
+#include "../ui/internal/settings/SapphireSettingNode.hpp"
 
-#include <Geode/loader/Mod.hpp>
-#include <Geode/loader/Setting.hpp>
-#include <Geode/loader/SettingEvent.hpp>
-#include <Geode/loader/SettingNode.hpp>
-#include <Geode/loader/SettingJsonTest.hpp>
-#include <Geode/utils/general.hpp>
-#include <Geode/utils/JsonValidation.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/loader/Setting.hpp>
+#include <Sapphire/loader/SettingEvent.hpp>
+#include <Sapphire/loader/SettingNode.hpp>
+#include <Sapphire/loader/SettingJsonTest.hpp>
+#include <Sapphire/utils/general.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
 #include <re2/re2.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 template<class T>
 static void parseCommon(T& sett, JsonMaybeObject& obj) {
@@ -245,24 +245,24 @@ void SettingValue::valueChanged() {
     }
 }
 
-// GeodeSettingValue & SettingValueSetter specializations
+// SapphireSettingValue & SettingValueSetter specializations
 
 #define IMPL_NODE_AND_SETTERS(type_) \
     template<>                                                          \
-    SettingNode* GeodeSettingValue<                                     \
+    SettingNode* SapphireSettingValue<                                     \
         type_##Setting                                                  \
     >::createNode(float width) {                                        \
         return type_##SettingNode::create(this, width);                 \
     }                                                                   \
     template<>                                                          \
-    void GeodeSettingValue<                                             \
+    void SapphireSettingValue<                                             \
         type_##Setting                                                  \
     >::setValue(ValueType const& value) {                               \
         m_value = this->toValid(value).first;                           \
         this->valueChanged();                                           \
     }                                                                   \
     template<>                                                          \
-    Result<> GeodeSettingValue<                                         \
+    Result<> SapphireSettingValue<                                         \
         type_##Setting                                                  \
     >::validate(ValueType const& value) const {                         \
         auto reason = this->toValid(value).second;                      \
@@ -294,21 +294,21 @@ void SettingValue::valueChanged() {
 
 #define IMPL_TO_VALID(type_) \
     template<>                                          \
-    typename GeodeSettingValue<type_##Setting>::Valid   \
-    GeodeSettingValue<type_##Setting>::toValid(         \
+    typename SapphireSettingValue<type_##Setting>::Valid   \
+    SapphireSettingValue<type_##Setting>::toValid(         \
         typename type_##Setting::ValueType const& value \
     ) const
 
 // instantiate values
 
-namespace geode {
-    template class GeodeSettingValue<BoolSetting>;
-    template class GeodeSettingValue<IntSetting>;
-    template class GeodeSettingValue<FloatSetting>;
-    template class GeodeSettingValue<StringSetting>;
-    template class GeodeSettingValue<FileSetting>;
-    template class GeodeSettingValue<ColorSetting>;
-    template class GeodeSettingValue<ColorAlphaSetting>;
+namespace sapphire {
+    template class SapphireSettingValue<BoolSetting>;
+    template class SapphireSettingValue<IntSetting>;
+    template class SapphireSettingValue<FloatSetting>;
+    template class SapphireSettingValue<StringSetting>;
+    template class SapphireSettingValue<FileSetting>;
+    template class SapphireSettingValue<ColorSetting>;
+    template class SapphireSettingValue<ColorAlphaSetting>;
 }
 
 IMPL_TO_VALID(Bool) {
@@ -384,7 +384,7 @@ IMPL_NODE_AND_SETTERS(ColorAlpha);
 
 // instantiate value setters
 
-namespace geode {
+namespace sapphire {
     template struct SettingValueSetter<typename BoolSetting::ValueType>;
     template struct SettingValueSetter<typename IntSetting::ValueType>;
     template struct SettingValueSetter<typename FloatSetting::ValueType>;

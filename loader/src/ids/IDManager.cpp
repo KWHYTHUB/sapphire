@@ -1,6 +1,6 @@
-#include <Geode/modify/IDManager.hpp>
+#include <Sapphire/modify/IDManager.hpp>
 
-using namespace geode;
+using namespace sapphire;
 
 NodeIDs* NodeIDs::get() {
     static auto inst = new NodeIDs;

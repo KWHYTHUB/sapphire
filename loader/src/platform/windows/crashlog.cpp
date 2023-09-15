@@ -1,16 +1,16 @@
 #define WIN32_LEAN_AND_MEAN
 
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_WINDOWS
 
 #include <crashlog.hpp>
-#include <Geode/loader/Dirs.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Mod.hpp>
+#include <Sapphire/loader/Dirs.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Mod.hpp>
 #include <DbgHelp.h>
-#include <Geode/utils/casts.hpp>
-#include <Geode/utils/file.hpp>
+#include <Sapphire/utils/casts.hpp>
+#include <Sapphire/utils/file.hpp>
 #include <Windows.h>
 #include <chrono>
 #include <ctime>
@@ -21,7 +21,7 @@
 #include <string>
 #include <fmt/core.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 static bool g_lastLaunchCrashed = false;
 static bool g_symbolsInitialized = false;
@@ -228,7 +228,7 @@ static LONG WINAPI exceptionHandler(LPEXCEPTION_POINTERS info) {
     
     // show message box on debug mode
     #ifdef GEODE_DEBUG
-    MessageBoxA(nullptr, text.c_str(), "Geode Crashed", MB_ICONERROR);
+    MessageBoxA(nullptr, text.c_str(), "Sapphire Crashed", MB_ICONERROR);
     #endif
 
     return EXCEPTION_CONTINUE_SEARCH;
@@ -253,7 +253,7 @@ bool crashlog::didLastLaunchCrash() {
 }
 
 ghc::filesystem::path crashlog::getCrashLogDirectory() {
-    return dirs::getGeodeDir() / "crashlogs";
+    return dirs::getSapphireDir() / "crashlogs";
 }
 
 #endif

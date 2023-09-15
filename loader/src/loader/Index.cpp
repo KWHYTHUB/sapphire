@@ -1,12 +1,12 @@
-#include <Geode/loader/Index.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Dirs.hpp>
-#include <Geode/utils/ranges.hpp>
-#include <Geode/utils/web.hpp>
-#include <Geode/utils/string.hpp>
-#include <Geode/utils/map.hpp>
+#include <Sapphire/loader/Index.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Dirs.hpp>
+#include <Sapphire/utils/ranges.hpp>
+#include <Sapphire/utils/web.hpp>
+#include <Sapphire/utils/string.hpp>
+#include <Sapphire/utils/map.hpp>
 #include <hash/hash.hpp>
-#include <Geode/utils/JsonValidation.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
 
 #include <thread>
 
@@ -14,7 +14,7 @@
 #include <filesystem>
 #endif
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 // ModInstallEvent
 
@@ -305,7 +305,7 @@ void Index::Impl::downloadIndex() {
 
     web::AsyncWebRequest()
         .join("index-download")
-        .fetch("https://github.com/geode-sdk/mods/zipball/main")
+        .fetch("https://github.com/KWHYTHUB/mods/zipball/main")
         .into(targetFile)
         .then([this, targetFile](auto) {
             auto targetDir = dirs::getIndexDir() / "v0";
@@ -372,7 +372,7 @@ void Index::Impl::checkForUpdates() {
         .userAgent("github_api/1.0")
         .header(fmt::format("If-None-Match: \"{}\"", oldSHA))
         .header("Accept: application/vnd.github.sha")
-        .fetch("https://api.github.com/repos/geode-sdk/mods/commits/main")
+        .fetch("https://api.github.com/repos/KWHYTHUB/mods/commits/main")
         .text()
         .then([this, checksum, oldSHA](std::string const& newSHA) {
             // check if should just be updated from local cache
@@ -697,7 +697,7 @@ void Index::Impl::installNext(size_t index, IndexInstallList const& list) {
         m_runningInstallations.erase(list.target);
         // Move all downloaded files
         for (auto& item : list.list) {
-            // If the mod is already installed, delete the old .geode file
+            // If the mod is already installed, delete the old .sapphire file
             if (auto mod = Loader::get()->getInstalledMod(item->getMetadata().getID())) {
                 auto res = mod->uninstall();
                 if (!res) {
@@ -712,7 +712,7 @@ void Index::Impl::installNext(size_t index, IndexInstallList const& list) {
             try {
                 ghc::filesystem::rename(
                     dirs::getTempDir() / (item->getMetadata().getID() + ".index"),
-                    dirs::getModsDir() / (item->getMetadata().getID() + ".geode")
+                    dirs::getModsDir() / (item->getMetadata().getID() + ".sapphire")
                 );
             } catch(std::exception& e) {
                 return postError(fmt::format(
@@ -748,7 +748,7 @@ void Index::Impl::installNext(size_t index, IndexInstallList const& list) {
             if (notFound && notFound.unwrap() == "Not Found") {
                 return postError(fmt::format(
                     "Binary file download for {} returned \"404 Not found\". "
-                    "Report this to the Geode development team.",
+                    "Report this to the Sapphire development team.",
                     item->getMetadata().getID()
                 ));
             }
@@ -766,7 +766,7 @@ void Index::Impl::installNext(size_t index, IndexInstallList const& list) {
                 return postError(fmt::format(
                     "Checksum mismatch with {}! (Downloaded file did not match what "
                     "was expected. Try again, and if the download fails another time, "
-                    "report this to the Geode development team.)",
+                    "report this to the Sapphire development team.)",
                     item->getMetadata().getID()
                 ));
             }

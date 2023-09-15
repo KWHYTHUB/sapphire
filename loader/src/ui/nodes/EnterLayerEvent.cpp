@@ -1,6 +1,6 @@
-#include <Geode/ui/EnterLayerEvent.hpp>
+#include <Sapphire/ui/EnterLayerEvent.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 AEnterLayerEvent::AEnterLayerEvent(
     std::string const& layerID,

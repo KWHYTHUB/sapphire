@@ -1,11 +1,11 @@
 ﻿#include "InstallListCell.hpp"
 #include "InstallListPopup.hpp"
-#include <Geode/binding/ButtonSprite.hpp>
-#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
-#include <Geode/binding/CCMenuItemToggler.hpp>
-#include <Geode/binding/FLAlertLayer.hpp>
-#include <Geode/binding/StatsCell.hpp>
-#include <Geode/ui/GeodeUI.hpp>
+#include <Sapphire/binding/ButtonSprite.hpp>
+#include <Sapphire/binding/CCMenuItemSpriteExtra.hpp>
+#include <Sapphire/binding/CCMenuItemToggler.hpp>
+#include <Sapphire/binding/FLAlertLayer.hpp>
+#include <Sapphire/binding/StatsCell.hpp>
+#include <Sapphire/ui/SapphireUI.hpp>
 #include <loader/LoaderImpl.hpp>
 #include <utility>
 #include "../info/DevProfilePopup.hpp"
@@ -166,7 +166,7 @@ ModInstallListCell* ModInstallListCell::create(Mod* mod, InstallListPopup* list,
 }
 
 CCNode* ModInstallListCell::createLogo(CCSize const& size) {
-    return geode::createModLogo(m_mod, size);
+    return sapphire::createModLogo(m_mod, size);
 }
 std::string ModInstallListCell::getID() const {
     return m_mod->getID();
@@ -209,7 +209,7 @@ bool IndexItemInstallListCell::init(
     m_toggle->setAnchorPoint({1.f, .5f});
     m_toggle->setPosition(m_width - 5, m_height / 2);
 
-    // recycling sprites in my Geode?? noo never
+    // recycling sprites in my Sapphire?? noo never
     auto versionSelectSpr = EditorButtonSprite::createWithSpriteFrameName(
         "filters.png"_spr, 1.0f, EditorBaseColor::Gray
     );
@@ -290,7 +290,7 @@ IndexItemInstallListCell* IndexItemInstallListCell::create(
 }
 
 CCNode* IndexItemInstallListCell::createLogo(CCSize const& size) {
-    return geode::createIndexItemLogo(m_item, size);
+    return sapphire::createIndexItemLogo(m_item, size);
 }
 std::string IndexItemInstallListCell::getID() const {
     return m_item->getMetadata().getID();
@@ -352,7 +352,7 @@ UnknownInstallListCell* UnknownInstallListCell::create(
 }
 
 CCNode* UnknownInstallListCell::createLogo(CCSize const& size) {
-    return geode::createDefaultLogo(size);
+    return sapphire::createDefaultLogo(size);
 }
 std::string UnknownInstallListCell::getID() const {
     return m_dependency.id;
@@ -399,7 +399,7 @@ SelectVersionCell* SelectVersionCell::create(IndexItemHandle item, SelectVersion
 }
 
 CCNode* SelectVersionCell::createLogo(CCSize const& size) {
-    return geode::createIndexItemLogo(m_item, size);
+    return sapphire::createIndexItemLogo(m_item, size);
 }
 std::string SelectVersionCell::getID() const {
     return m_item->getMetadata().getID();

@@ -2,7 +2,7 @@
 
 #ifdef GEODE_IS_MACOS
 
-#include <Geode/utils/string.hpp>
+#include <Sapphire/utils/string.hpp>
 #include <array>
 #include <thread>
 #include <ghc/fs_fwd.hpp>
@@ -145,8 +145,8 @@ static Mod* modFromAddress(void const* addr) {
     if (!ghc::filesystem::exists(imagePath)) {
         return nullptr;
     }
-    auto geodePath = dirs::getGameDir() / "Frameworks" / "Geode.dylib";
-    if (ghc::filesystem::equivalent(imagePath, geodePath)) {
+    auto sapphirePath = dirs::getGameDir() / "Frameworks" / "Sapphire.dylib";
+    if (ghc::filesystem::equivalent(imagePath, sapphirePath)) {
         return Mod::get();
     }
 
@@ -247,7 +247,7 @@ static std::string getStacktrace() {
         std::getline(stream, binary);
         auto cutoff = binary.find("0x");
         stream = std::stringstream(binary.substr(cutoff));
-        binary = geode::utils::string::trim(binary.substr(0, cutoff));
+        binary = sapphire::utils::string::trim(binary.substr(0, cutoff));
         stream >> std::hex >> address >> std::dec;
 
         if (!line.empty()) {
@@ -272,7 +272,7 @@ static std::string getStacktrace() {
             cutoff = function.find("+");
             stream = std::stringstream(function.substr(cutoff));
             stream >> offset;
-            function = geode::utils::string::trim(function.substr(0, cutoff));
+            function = sapphire::utils::string::trim(function.substr(0, cutoff));
 
             {
                 int status;
@@ -344,7 +344,7 @@ static void handlerThread() {
 
     auto text = crashlog::writeCrashlog(faultyMod, getInfo(signalAddress, faultyMod), getStacktrace(), getRegisters());
 
-    log::error("Geode crashed!\n{}", text);
+    log::error("Sapphire crashed!\n{}", text);
     
     s_signal = 0;
     s_cv.notify_all();
@@ -387,7 +387,7 @@ bool crashlog::didLastLaunchCrash() {
 }
 
 ghc::filesystem::path crashlog::getCrashLogDirectory() {
-    return dirs::getGeodeDir() / "crashlogs";
+    return dirs::getSapphireDir() / "crashlogs";
 }
 
 

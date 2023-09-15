@@ -1,11 +1,11 @@
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_WINDOWS
 
-#include <Geode/loader/Mod.hpp>
+#include <Sapphire/loader/Mod.hpp>
 #include <loader/ModImpl.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 template <typename T>
 T findSymbolOrMangled(HMODULE load, char const* name, char const* mangled) {

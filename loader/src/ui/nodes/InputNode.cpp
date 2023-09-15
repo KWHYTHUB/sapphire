@@ -1,7 +1,7 @@
-#include <Geode/binding/CCTextInputNode.hpp>
-#include <Geode/ui/InputNode.hpp>
+#include <Sapphire/binding/CCTextInputNode.hpp>
+#include <Sapphire/ui/InputNode.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 char const* InputNode::getString() {
     return m_input->getString();

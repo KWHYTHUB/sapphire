@@ -2,11 +2,11 @@
     #define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES 1
 #endif
 
-#include <Geode/utils/VersionInfo.hpp>
-#include <Geode/utils/general.hpp>
+#include <Sapphire/utils/VersionInfo.hpp>
+#include <Sapphire/utils/general.hpp>
 #include <json.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 // VersionTag
 
@@ -124,7 +124,7 @@ std::string VersionInfo::toString(bool includeTag) const {
     return fmt::format("v{}.{}.{}", m_major, m_minor, m_patch);
 }
 
-std::ostream& geode::operator<<(std::ostream& stream, VersionInfo const& version) {
+std::ostream& sapphire::operator<<(std::ostream& stream, VersionInfo const& version) {
     return stream << version.toString();
 }
 
@@ -179,6 +179,6 @@ std::string ComparableVersionInfo::toString() const {
     return prefix + m_version.toString();
 }
 
-std::ostream& geode::operator<<(std::ostream& stream, ComparableVersionInfo const& version) {
+std::ostream& sapphire::operator<<(std::ostream& stream, ComparableVersionInfo const& version) {
     return stream << version.toString();
 }

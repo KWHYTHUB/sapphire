@@ -1,8 +1,8 @@
-#include <Geode/ui/Colors.hpp>
-#include <Geode/utils/ranges.hpp>
-#include <Geode/modify/LevelInfoLayer.hpp>
+#include <Sapphire/ui/Colors.hpp>
+#include <Sapphire/utils/ranges.hpp>
+#include <Sapphire/modify/LevelInfoLayer.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 ColorManager::ColorManager() : m_colors({
     { GDColor::NormalModeProgressBar,   {{ ccColor3B { 0,   255, 0   }, Mod::get() }} },

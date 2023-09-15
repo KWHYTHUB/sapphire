@@ -1,13 +1,13 @@
-#include <Geode/loader/Loader.hpp>
-#include <Geode/utils/VersionInfo.hpp>
-#include <Geode/utils/file.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/utils/VersionInfo.hpp>
+#include <Sapphire/utils/file.hpp>
 #include <json.hpp>
 
 #include "ModInfoImpl.hpp"
 
 #pragma warning(disable : 4996) // deprecation
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 ModInfo::Impl& ModInfoImpl::getImpl(ModInfo& info)  {
     return *info.m_impl;
@@ -156,12 +156,12 @@ bool const& ModInfo::isAPI() const {
     return m_impl->m_metadata.m_isAPI;
 }
 
-Result<ModInfo> ModInfo::createFromGeodeZip(utils::file::Unzip& zip) {
-    return ModMetadataImpl::createFromGeodeZip(zip);
+Result<ModInfo> ModInfo::createFromSapphireZip(utils::file::Unzip& zip) {
+    return ModMetadataImpl::createFromSapphireZip(zip);
 }
 
-Result<ModInfo> ModInfo::createFromGeodeFile(ghc::filesystem::path const& path) {
-    return ModMetadataImpl::createFromGeodeFile(path);
+Result<ModInfo> ModInfo::createFromSapphireFile(ghc::filesystem::path const& path) {
+    return ModMetadataImpl::createFromSapphireFile(path);
 }
 
 Result<ModInfo> ModInfo::createFromFile(ghc::filesystem::path const& path) {
@@ -226,7 +226,7 @@ ModJson const& ModInfo::rawJSON() const {
     return m_impl->m_metadata.m_rawJSON;
 }
 
-Result<ModInfo> ModInfo::createFromSchemaV010(geode::ModJson const& json) {
+Result<ModInfo> ModInfo::createFromSchemaV010(sapphire::ModJson const& json) {
     return ModMetadataImpl::createFromSchemaV010(json);
 }
 

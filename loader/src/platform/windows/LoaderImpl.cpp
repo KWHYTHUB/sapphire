@@ -1,11 +1,11 @@
-#include <Geode/loader/IPC.hpp>
-#include <Geode/loader/Log.hpp>
+#include <Sapphire/loader/IPC.hpp>
+#include <Sapphire/loader/Log.hpp>
 #include <loader/ModImpl.hpp>
 #include <iostream>
 #include <loader/LoaderImpl.hpp>
-#include <Geode/utils/string.hpp>
+#include <Sapphire/utils/string.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #ifdef GEODE_IS_WINDOWS
 
@@ -126,7 +126,7 @@ void Loader::Impl::setupIPC() {
             if (ConnectNamedPipe(pipe, nullptr)) {
                 // log::debug("Got connection, creating thread");
                 std::thread pipeThread(&ipcPipeThread, pipe);
-                // SetThreadDescription(pipeThread.native_handle(), L"Geode IPC Pipe");
+                // SetThreadDescription(pipeThread.native_handle(), L"Sapphire IPC Pipe");
                 pipeThread.detach();
             }
             else {
@@ -135,7 +135,7 @@ void Loader::Impl::setupIPC() {
             }
         }
     });
-    // SetThreadDescription(ipcThread.native_handle(), L"Geode Main IPC");
+    // SetThreadDescription(ipcThread.native_handle(), L"Sapphire Main IPC");
     ipcThread.detach();
 
     log::debug("IPC set up");

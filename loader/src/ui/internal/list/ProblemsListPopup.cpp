@@ -41,10 +41,10 @@ CCArray* ProblemsListPopup::createCells(Mod* scrollTo, float& scrollValue) {
 
     for (auto const& problem : Loader::get()->getProblems()) {
         switch (problem.type) {
-            case geode::LoadProblem::Type::Suggestion:
+            case sapphire::LoadProblem::Type::Suggestion:
                 bottom.push_back(ProblemsListCell::create(problem, this, this->getCellSize()));
                 break;
-            case geode::LoadProblem::Type::Recommendation:
+            case sapphire::LoadProblem::Type::Recommendation:
                 middle.push_back(ProblemsListCell::create(problem, this, this->getCellSize()));
                 break;
             default:

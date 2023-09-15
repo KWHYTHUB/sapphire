@@ -5,10 +5,10 @@
 
 /**
  * Copied from https://github.com/mlabbe/nativefiledialog
- * Modified to be modern Geode-fitting C++
+ * Modified to be modern Sapphire-fitting C++
  */
 
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_WINDOWS
 
@@ -44,7 +44,7 @@
 
 #include <stddef.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 enum class NFDMode {
     OpenFile,

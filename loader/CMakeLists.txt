@@ -1,18 +1,18 @@
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 
-project(geode-loader VERSION ${GEODE_VERSION} LANGUAGES C CXX)
-if (GEODE_VERSION_TAG_TYPE)
-	if (GEODE_VERSION_TAG_NUMBER)
-		set(PROJECT_VERSION_TAG_CONSTR "geode::VersionTag(geode::VersionTag::${GEODE_VERSION_TAG_TYPE}, ${GEODE_VERSION_TAG_NUMBER})")
+project(sapphire-loader VERSION ${SAPPHIRE_VERSION} LANGUAGES C CXX)
+if (SAPPHIRE_VERSION_TAG_TYPE)
+	if (SAPPHIRE_VERSION_TAG_NUMBER)
+		set(PROJECT_VERSION_TAG_CONSTR "sapphire::VersionTag(sapphire::VersionTag::${SAPPHIRE_VERSION_TAG_TYPE}, ${SAPPHIRE_VERSION_TAG_NUMBER})")
 	else()
-		set(PROJECT_VERSION_TAG_CONSTR "geode::VersionTag::${GEODE_VERSION_TAG_TYPE}")
+		set(PROJECT_VERSION_TAG_CONSTR "sapphire::VersionTag::${SAPPHIRE_VERSION_TAG_TYPE}")
 	endif()
 else()
 	set(PROJECT_VERSION_TAG_CONSTR "std::nullopt")
 endif()
 
-if (GEODE_VERSION_TAG)
-	set(PROJECT_VERSION_SUFFIX "-${GEODE_VERSION_TAG}")
+if (SAPPHIRE_VERSION_TAG)
+	set(PROJECT_VERSION_SUFFIX "-${SAPPHIRE_VERSION_TAG}")
 else()
 	set(PROJECT_VERSION_SUFFIX "")
 endif()
@@ -21,7 +21,7 @@ endif()
 execute_process(
 	COMMAND git rev-parse --short HEAD
 	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-	OUTPUT_VARIABLE GEODE_COMMIT_HASH
+	OUTPUT_VARIABLE SAPPHIRE_COMMIT_HASH
 	OUTPUT_STRIP_TRAILING_WHITESPACE
 	ERROR_QUIET
 )
@@ -29,8 +29,8 @@ execute_process(
 # Package info file for internal representation
 configure_file(resources/mod.json.in ${CMAKE_CURRENT_SOURCE_DIR}/resources/mod.json)
 file(READ resources/mod.json LOADER_MOD_JSON)
-configure_file(${GEODE_ROOT_PATH}/VERSION ${CMAKE_CURRENT_SOURCE_DIR}/resources/version COPYONLY)
-configure_file(${GEODE_ROOT_PATH}/CHANGELOG.md ${CMAKE_CURRENT_SOURCE_DIR}/resources/changelog.md COPYONLY)
+configure_file(${SAPPHIRE_ROOT_PATH}/VERSION ${CMAKE_CURRENT_SOURCE_DIR}/resources/version COPYONLY)
+configure_file(${SAPPHIRE_ROOT_PATH}/CHANGELOG.md ${CMAKE_CURRENT_SOURCE_DIR}/resources/changelog.md COPYONLY)
 configure_file(src/internal/about.hpp.in ${CMAKE_CURRENT_SOURCE_DIR}/src/internal/about.hpp)
 
 # Source files
@@ -108,42 +108,42 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
-make_directory("${GEODE_BIN_PATH}/nightly")
+make_directory("${SAPPHIRE_BIN_PATH}/nightly")
 
 # Prevent SDK from activating a loader build
 set_target_properties(${PROJECT_NAME} PROPERTIES
 	PREFIX ""
-	OUTPUT_NAME "Geode"
+	OUTPUT_NAME "Sapphire"
 	# i'm going to say a slur that not a single soul has uttered in the last 200 years
-	LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${GEODE_BIN_PATH}/nightly"
-	RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${GEODE_BIN_PATH}/nightly"
-	ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${GEODE_BIN_PATH}/nightly"
-	LIBRARY_OUTPUT_DIRECTORY_RELEASE "${GEODE_BIN_PATH}/nightly"
-	RUNTIME_OUTPUT_DIRECTORY_RELEASE "${GEODE_BIN_PATH}/nightly"
-	ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${GEODE_BIN_PATH}/nightly"
-	LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${GEODE_BIN_PATH}/nightly"
-	RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${GEODE_BIN_PATH}/nightly"
-	ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${GEODE_BIN_PATH}/nightly"
-	LIBRARY_OUTPUT_DIRECTORY "${GEODE_BIN_PATH}/nightly"
-	RUNTIME_OUTPUT_DIRECTORY "${GEODE_BIN_PATH}/nightly"
-	ARCHIVE_OUTPUT_DIRECTORY "${GEODE_BIN_PATH}/nightly"
+	LIBRARY_OUTPUT_DIRECTORY_RELWITHDEBINFO "${SAPPHIRE_BIN_PATH}/nightly"
+	RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${SAPPHIRE_BIN_PATH}/nightly"
+	ARCHIVE_OUTPUT_DIRECTORY_RELWITHDEBINFO "${SAPPHIRE_BIN_PATH}/nightly"
+	LIBRARY_OUTPUT_DIRECTORY_RELEASE "${SAPPHIRE_BIN_PATH}/nightly"
+	RUNTIME_OUTPUT_DIRECTORY_RELEASE "${SAPPHIRE_BIN_PATH}/nightly"
+	ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${SAPPHIRE_BIN_PATH}/nightly"
+	LIBRARY_OUTPUT_DIRECTORY_MINSIZEREL "${SAPPHIRE_BIN_PATH}/nightly"
+	RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${SAPPHIRE_BIN_PATH}/nightly"
+	ARCHIVE_OUTPUT_DIRECTORY_MINSIZEREL "${SAPPHIRE_BIN_PATH}/nightly"
+	LIBRARY_OUTPUT_DIRECTORY "${SAPPHIRE_BIN_PATH}/nightly"
+	RUNTIME_OUTPUT_DIRECTORY "${SAPPHIRE_BIN_PATH}/nightly"
+	ARCHIVE_OUTPUT_DIRECTORY "${SAPPHIRE_BIN_PATH}/nightly"
 )
 
-if (GEODE_NO_UNDEFINED_VIRTUALS)
-	target_compile_definitions(${PROJECT_NAME} PUBLIC GEODE_NO_UNDEFINED_VIRTUALS)
+if (SAPPHIRE_NO_UNDEFINED_VIRTUALS)
+	target_compile_definitions(${PROJECT_NAME} PUBLIC SAPPHIRE_NO_UNDEFINED_VIRTUALS)
 endif()
 
 # Package resources for UI
-package_geode_resources_now(
+package_sapphire_resources_now(
 	${PROJECT_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/resources
-	${GEODE_BIN_PATH}/nightly/resources
+	${SAPPHIRE_BIN_PATH}/nightly/resources
 	${CMAKE_CURRENT_SOURCE_DIR}/src/internal/resources.hpp
 )
 
 if (APPLE) 
 	# I don't care a single bit where to put this
-	file(COPY ${GEODE_LOADER_PATH}/include/link/libfmod.dylib DESTINATION ${GEODE_BIN_PATH}/nightly)
+	file(COPY ${SAPPHIRE_LOADER_PATH}/include/link/libfmod.dylib DESTINATION ${SAPPHIRE_BIN_PATH}/nightly)
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -163,15 +163,15 @@ if (APPLE)
 	#set_property(TARGET ${PROJECT_NAME} PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 endif()
 
-target_compile_definitions(${PROJECT_NAME} PUBLIC GEODE_EXPORTING MAT_JSON_EXPORTING)
+target_compile_definitions(${PROJECT_NAME} PUBLIC SAPPHIRE_EXPORTING MAT_JSON_EXPORTING)
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
-	GEODE_EXPOSE_SECRET_INTERNALS_IN_HEADERS_DO_NOT_DEFINE_PLEASE
+	SAPPHIRE_EXPOSE_SECRET_INTERNALS_IN_HEADERS_DO_NOT_DEFINE_PLEASE
 	_CRT_SECURE_NO_WARNINGS
 )
 
 # These are only needed for building source :-)
-if (NOT GEODE_BUILDING_DOCS)
+if (NOT SAPPHIRE_BUILDING_DOCS)
 	# Markdown support
 	CPMAddPackage("gh:mity/md4c#e9ff661")
 
@@ -211,7 +211,7 @@ if (NOT GEODE_BUILDING_DOCS)
 	target_link_libraries(${PROJECT_NAME} md4c re2 minizip)
 endif()
 
-target_link_libraries(${PROJECT_NAME} z TulipHook geode-sdk mat-json)
+target_link_libraries(${PROJECT_NAME} z TulipHook KWHYTHUB mat-json)
 
 if (MSVC)
 	# Disable outputting .exp file
@@ -222,27 +222,27 @@ if (MSVC)
 	endif()
 
 	# Disable incremental link in CI builds
-	if (DEFINED ENV{GEODE_CI})
+	if (DEFINED ENV{SAPPHIRE_CI})
 		target_link_options(${PROJECT_NAME} PRIVATE /INCREMENTAL:NO)
 	endif()
 endif()
 
 # Use precompiled headers for faster builds
-if (NOT GEODE_DISABLE_PRECOMPILED_HEADERS)
+if (NOT SAPPHIRE_DISABLE_PRECOMPILED_HEADERS)
 	target_precompile_headers(${PROJECT_NAME} PRIVATE
-		"${CMAKE_CURRENT_SOURCE_DIR}/include/Geode/Geode.hpp"
-		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Geode/Utils.hpp"
-		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Geode/Loader.hpp"
-		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Geode/UI.hpp"
-		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Geode/Bindings.hpp"
-		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Geode/cocos/include/cocos2d.h"
-		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Geode/cocos/extensions/cocos-ext.h"
+		"${CMAKE_CURRENT_SOURCE_DIR}/include/Sapphire/Sapphire.hpp"
+		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Sapphire/Utils.hpp"
+		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Sapphire/Loader.hpp"
+		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Sapphire/UI.hpp"
+		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Sapphire/Bindings.hpp"
+		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Sapphire/cocos/include/cocos2d.h"
+		# "${CMAKE_CURRENT_SOURCE_DIR}/include/Sapphire/cocos/extensions/cocos-ext.h"
 	)
 endif()
 
 # Create launcher
 if (APPLE)
-	set_target_properties(geode-loader PROPERTIES 
+	set_target_properties(sapphire-loader PROPERTIES 
 		SYSTEM_NAME MacOS
 		OSX_DEPLOYMENT_TARGET 10.9
 		APPLE_SILICON_PROCESSOR x86_64
@@ -250,11 +250,11 @@ if (APPLE)
 
 	add_subdirectory(launcher/mac)
 
-	if(GEODE_TARGET_PLATFORM STREQUAL "iOS")
-		add_custom_command(TARGET geode-loader
+	if(SAPPHIRE_TARGET_PLATFORM STREQUAL "iOS")
+		add_custom_command(TARGET sapphire-loader
 			POST_BUILD COMMAND
-			${CMAKE_INSTALL_NAME_TOOL} -id \"/Library/MobileSubstrate/DynamicLibraries/Geode.dylib\"
-			$<TARGET_FILE:geode-loader>)
+			${CMAKE_INSTALL_NAME_TOOL} -id \"/Library/MobileSubstrate/DynamicLibraries/Sapphire.dylib\"
+			$<TARGET_FILE:sapphire-loader>)
 	endif()
 elseif (WIN32)
 	add_subdirectory(launcher/windows)
@@ -268,7 +268,7 @@ elseif (WIN32)
 endif()
 
 # Build test mods if needed
-if(NOT GEODE_DONT_BUILD_TEST_MODS)
+if(NOT SAPPHIRE_DONT_BUILD_TEST_MODS)
 	add_subdirectory(test)
 endif()
 

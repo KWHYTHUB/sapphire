@@ -1,4 +1,4 @@
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #if defined(GEODE_IS_ANDROID)
 
@@ -6,7 +6,7 @@
 #include <jni.h>
 
 extern "C" [[gnu::visibility("default")]] jint JNI_OnLoad(JavaVM* vm, void* reserved) {
-    geodeEntry(nullptr);
+    sapphireEntry(nullptr);
     return JNI_VERSION_1_1;
 }
 

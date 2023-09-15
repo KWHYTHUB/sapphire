@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Geode/Loader.hpp>
+#include <Sapphire/Loader.hpp>
 #include <ghc/fs_fwd.hpp>
 #include <string>
 
@@ -25,5 +25,5 @@ namespace crashlog {
      */
     ghc::filesystem::path GEODE_DLL getCrashLogDirectory();
 
-    std::string GEODE_DLL writeCrashlog(geode::Mod* faultyMod, std::string const& info, std::string const& stacktrace, std::string const& registers);
+    std::string GEODE_DLL writeCrashlog(sapphire::Mod* faultyMod, std::string const& info, std::string const& stacktrace, std::string const& registers);
 }

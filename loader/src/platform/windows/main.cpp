@@ -1,4 +1,4 @@
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #if defined(GEODE_IS_WINDOWS)
 
@@ -6,43 +6,43 @@
 #include <Windows.h>
 
 #include "loader/LoaderImpl.hpp"
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-void updateGeode() {
+void updateSapphire() {
     const auto workingDir = dirs::getGameDir();
-    const auto geodeDir = dirs::getGeodeDir();
-    const auto updatesDir = geodeDir / "update";
+    const auto sapphireDir = dirs::getSapphireDir();
+    const auto updatesDir = sapphireDir / "update";
 
-    bool bootstrapperExists = ghc::filesystem::exists(workingDir / "GeodeBootstrapper.dll");
-    bool updatesDirExists = ghc::filesystem::exists(geodeDir) && ghc::filesystem::exists(updatesDir);
+    bool bootstrapperExists = ghc::filesystem::exists(workingDir / "SapphireBootstrapper.dll");
+    bool updatesDirExists = ghc::filesystem::exists(sapphireDir) && ghc::filesystem::exists(updatesDir);
 
     if (!bootstrapperExists && !updatesDirExists)
         return;
 
     // update updater
     if (ghc::filesystem::exists(updatesDir) &&
-        ghc::filesystem::exists(updatesDir / "GeodeUpdater.exe"))
-        ghc::filesystem::rename(updatesDir / "GeodeUpdater.exe", workingDir / "GeodeUpdater.exe");
+        ghc::filesystem::exists(updatesDir / "SapphireUpdater.exe"))
+        ghc::filesystem::rename(updatesDir / "SapphireUpdater.exe", workingDir / "SapphireUpdater.exe");
 
     utils::game::restart();
 }
 
 int WINAPI gdMainHook(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
-    updateGeode();
+    updateSapphire();
 
-    int exitCode = geodeEntry(hInstance);
+    int exitCode = sapphireEntry(hInstance);
     if (exitCode != 0)
         return exitCode;
 
-    return reinterpret_cast<decltype(&wWinMain)>(geode::base::get() + 0x260ff8)(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+    return reinterpret_cast<decltype(&wWinMain)>(sapphire::base::get() + 0x260ff8)(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
 }
 
-bool loadGeode() {
+bool loadSapphire() {
     auto process = GetCurrentProcess();
 
-    auto patchAddr = reinterpret_cast<void*>(geode::base::get() + 0x260ff8);
+    auto patchAddr = reinterpret_cast<void*>(sapphire::base::get() + 0x260ff8);
     constexpr size_t patchLength = 13;
-    auto detourAddr = reinterpret_cast<uintptr_t>(&gdMainHook) - geode::base::get() - 0x261005;
+    auto detourAddr = reinterpret_cast<uintptr_t>(&gdMainHook) - sapphire::base::get() - 0x261005;
     auto detourAddrPtr = reinterpret_cast<uint8_t*>(&detourAddr);
 
     uint8_t patchBytes[patchLength] = {
@@ -62,17 +62,17 @@ bool loadGeode() {
 }
 
 DWORD WINAPI upgradeThread(void*) {
-    updateGeode();
+    updateSapphire();
     return 0;
 }
 
 void earlyError(std::string message) {
     // try to write a file and display a message box
     // wine might not display the message box but *should* write a file
-    std::ofstream fout("_geode_early_error.txt");
+    std::ofstream fout("_sapphire_early_error.txt");
     fout << message;
     fout.close();
-    LoaderImpl::get()->platformMessageBox("Unable to Load Geode!", message);
+    LoaderImpl::get()->platformMessageBox("Unable to Load Sapphire!", message);
 }
 
 DWORD WINAPI sus(void*) {
@@ -115,17 +115,17 @@ BOOL WINAPI DllMain(HINSTANCE module, DWORD reason, LPVOID) {
     DisableThreadLibraryCalls(module);
 
     try {
-        // if we find the old bootstrapper dll, don't load geode, copy new updater and let it do the rest
+        // if we find the old bootstrapper dll, don't load sapphire, copy new updater and let it do the rest
         auto workingDir = dirs::getGameDir();
         std::error_code error;
-        bool oldBootstrapperExists = ghc::filesystem::exists(workingDir / "GeodeBootstrapper.dll", error);
+        bool oldBootstrapperExists = ghc::filesystem::exists(workingDir / "SapphireBootstrapper.dll", error);
         if (error) {
-            earlyError("There was an error checking whether the old GeodeBootstrapper.dll exists: " + error.message());
+            earlyError("There was an error checking whether the old SapphireBootstrapper.dll exists: " + error.message());
             return FALSE;
         }
         else if (oldBootstrapperExists)
             CreateThread(nullptr, 0, upgradeThread, nullptr, 0, nullptr);
-        else if (!loadGeode()) {
+        else if (!loadSapphire()) {
             earlyError("There was an unknown error hooking the GD main function.");
             return FALSE;
         }

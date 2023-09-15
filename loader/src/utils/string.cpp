@@ -1,7 +1,7 @@
-#include <Geode/utils/string.hpp>
+#include <Sapphire/utils/string.hpp>
 #include <algorithm>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #ifdef GEODE_IS_WINDOWS
 

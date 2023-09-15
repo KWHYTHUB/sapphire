@@ -1,11 +1,11 @@
-#include <Geode/binding/ButtonSprite.hpp>
-#include <Geode/binding/CCTextInputNode.hpp>
-#include <Geode/binding/Slider.hpp>
-#include <Geode/binding/SliderThumb.hpp>
-#include <Geode/ui/ColorPickPopup.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/binding/ButtonSprite.hpp>
+#include <Sapphire/binding/CCTextInputNode.hpp>
+#include <Sapphire/binding/Slider.hpp>
+#include <Sapphire/binding/SliderThumb.hpp>
+#include <Sapphire/ui/ColorPickPopup.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 static GLubyte parseInt(char const* str) {
     try {

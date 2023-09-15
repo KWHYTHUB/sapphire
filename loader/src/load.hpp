@@ -1,2 +1,2 @@
 #pragma once
-int geodeEntry(void* platformData);
+int sapphireEntry(void* platformData);

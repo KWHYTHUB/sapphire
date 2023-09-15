@@ -3,19 +3,19 @@
 #include "ModMetadataImpl.hpp"
 #include "about.hpp"
 
-#include <Geode/loader/Dirs.hpp>
-#include <Geode/loader/Hook.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Log.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/loader/ModEvent.hpp>
-#include <Geode/utils/file.hpp>
-#include <Geode/utils/JsonValidation.hpp>
+#include <Sapphire/loader/Dirs.hpp>
+#include <Sapphire/loader/Hook.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Log.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/loader/ModEvent.hpp>
+#include <Sapphire/utils/file.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
 #include <optional>
 #include <string>
 #include <vector>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 Mod::Impl* ModImpl::get() {
     return Mod::get()->m_impl.get();
@@ -114,7 +114,7 @@ bool Mod::Impl::isEnabled() const {
 }
 
 bool Mod::Impl::supportsDisabling() const {
-    return m_metadata.getID() != "geode.loader";
+    return m_metadata.getID() != "sapphire.loader";
 }
 
 bool Mod::Impl::needsEarlyLoad() const {
@@ -388,7 +388,7 @@ Result<> Mod::Impl::uninstall() {
     ghc::filesystem::remove(m_metadata.getPath(), ec);
     if (ec) {
         return Err(
-            "Unable to delete mod's .geode file: " + ec.message()
+            "Unable to delete mod's .sapphire file: " + ec.message()
         );
     }
 
@@ -536,19 +536,19 @@ Result<> Mod::Impl::createTempDir() {
         return Ok();
     }
 
-    // Create geode/temp
+    // Create sapphire/temp
     auto tempDir = dirs::getModRuntimeDir();
     if (!file::createDirectoryAll(tempDir)) {
         return Err("Unable to create mods' runtime directory");
     }
 
-    // Create geode/temp/mod.id
+    // Create sapphire/temp/mod.id
     auto tempPath = tempDir / m_metadata.getID();
     if (!file::createDirectoryAll(tempPath)) {
         return Err("Unable to create mod runtime directory");
     }
 
-    // Unzip .geode file into temp dir
+    // Unzip .sapphire file into temp dir
     GEODE_UNWRAP_INTO(auto unzip, file::Unzip::create(m_metadata.getPath()));
     if (!unzip.hasEntry(m_metadata.getBinaryName())) {
         return Err(
@@ -629,9 +629,9 @@ Mod* Loader::Impl::createInternalMod() {
             "Unable to create internal mod info: \"" + infoRes.unwrapErr() +
                 "\"\n"
                 "This is a fatal internal error in the loader, please "
-                "contact Geode developers immediately!"
+                "contact Sapphire developers immediately!"
         );
-        mod = new Mod(ModMetadata("geode.loader"));
+        mod = new Mod(ModMetadata("sapphire.loader"));
     }
     else {
         mod = new Mod(infoRes.unwrap());

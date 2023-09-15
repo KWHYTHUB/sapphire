@@ -1,9 +1,9 @@
-#include <Geode/loader/IPC.hpp>
+#include <Sapphire/loader/IPC.hpp>
 #include <json.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-std::monostate geode::listenForIPC(std::string const& messageID, json::Value(*callback)(IPCEvent*)) {
+std::monostate sapphire::listenForIPC(std::string const& messageID, json::Value(*callback)(IPCEvent*)) {
     (void) new EventListener(
         callback, IPCFilter(getMod()->getID(), messageID)
     );

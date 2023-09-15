@@ -1,11 +1,11 @@
-#include <Geode/DefaultInclude.hpp>
+#include <Sapphire/DefaultInclude.hpp>
 
 #ifdef GEODE_IS_ANDROID
 
-#include <Geode/loader/Mod.hpp>
+#include <Sapphire/loader/Mod.hpp>
 #include <loader/ModImpl.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 Result<> Mod::Impl::loadPlatformBinary() {
     auto so = dlopen((m_tempDirName / m_info.binaryName()).string().c_str(), RTLD_LAZY);

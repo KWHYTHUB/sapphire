@@ -3,22 +3,22 @@
 #include "../dev/HookListLayer.hpp"
 #include "../list/ModListLayer.hpp"
 #include "../settings/ModSettingsPopup.hpp"
-#include <Geode/loader/Dirs.hpp>
+#include <Sapphire/loader/Dirs.hpp>
 
-#include <Geode/binding/ButtonSprite.hpp>
-#include <Geode/binding/CCTextInputNode.hpp>
-#include <Geode/binding/GJListLayer.hpp>
-#include <Geode/binding/Slider.hpp>
-#include <Geode/binding/SliderThumb.hpp>
-#include <Geode/binding/SliderTouchLogic.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/ui/BasedButton.hpp>
-#include <Geode/ui/GeodeUI.hpp>
-#include <Geode/ui/IconButtonSprite.hpp>
-#include <Geode/ui/MDPopup.hpp>
-#include <Geode/utils/casts.hpp>
-#include <Geode/utils/ranges.hpp>
-#include <Geode/utils/web.hpp>
+#include <Sapphire/binding/ButtonSprite.hpp>
+#include <Sapphire/binding/CCTextInputNode.hpp>
+#include <Sapphire/binding/GJListLayer.hpp>
+#include <Sapphire/binding/Slider.hpp>
+#include <Sapphire/binding/SliderThumb.hpp>
+#include <Sapphire/binding/SliderTouchLogic.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/ui/BasedButton.hpp>
+#include <Sapphire/ui/SapphireUI.hpp>
+#include <Sapphire/ui/IconButtonSprite.hpp>
+#include <Sapphire/ui/MDPopup.hpp>
+#include <Sapphire/utils/casts.hpp>
+#include <Sapphire/utils/ranges.hpp>
+#include <Sapphire/utils/web.hpp>
 #include <loader/LoaderImpl.hpp>
 #include <ui/internal/list/InstallListPopup.hpp>
 
@@ -532,7 +532,7 @@ bool LocalModInfoPopup::init(Mod* mod, ModListLayer* list) {
 }
 
 CCNode* LocalModInfoPopup::createLogo(CCSize const& size) {
-    return geode::createModLogo(m_mod, size);
+    return sapphire::createModLogo(m_mod, size);
 }
 
 ModMetadata LocalModInfoPopup::getMetadata() const {
@@ -540,7 +540,7 @@ ModMetadata LocalModInfoPopup::getMetadata() const {
 }
 
 void LocalModInfoPopup::onIssues(CCObject*) {
-    geode::openIssueReportPopup(m_mod);
+    sapphire::openIssueReportPopup(m_mod);
 }
 
 void LocalModInfoPopup::onUpdateProgress(ModInstallEvent* event) {
@@ -784,7 +784,7 @@ void IndexItemInfoPopup::onInstall(CCObject*) {
 }
 
 CCNode* IndexItemInfoPopup::createLogo(CCSize const& size) {
-    return geode::createIndexItemLogo(m_item, size);
+    return sapphire::createIndexItemLogo(m_item, size);
 }
 
 ModMetadata IndexItemInfoPopup::getMetadata() const {

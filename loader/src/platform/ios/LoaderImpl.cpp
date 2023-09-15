@@ -2,9 +2,9 @@
 
 #ifdef GEODE_IS_IOS
 
-    #include <Geode/loader/Dirs.hpp>
-    #include <Geode/loader/Loader.hpp>
-    #include <Geode/loader/Log.hpp>
+    #include <Sapphire/loader/Dirs.hpp>
+    #include <Sapphire/loader/Loader.hpp>
+    #include <Sapphire/loader/Log.hpp>
     #include <loader/ModImpl.hpp>
     #include <iostream>
     #include <pwd.h>
@@ -23,7 +23,7 @@ void Loader::Impl::logConsoleMessageWithSeverity(std::string const& msg, Severit
 
 void Loader::Impl::openPlatformConsole() {
     ghc::filesystem::path(getpwuid(getuid())->pw_dir);
-    freopen(ghc::filesystem::path(dirs::getGeodeDir() / "geode_log.txt").string().c_str(), "w", stdout);
+    freopen(ghc::filesystem::path(dirs::getSapphireDir() / "sapphire_log.txt").string().c_str(), "w", stdout);
     m_platformConsoleOpen = true;
 }
 

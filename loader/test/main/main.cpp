@@ -1,10 +1,10 @@
-#include <Geode/Loader.hpp>
-#include <Geode/loader/ModJsonTest.hpp>
-#include <Geode/loader/ModEvent.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/Loader.hpp>
+#include <Sapphire/loader/ModJsonTest.hpp>
+#include <Sapphire/loader/ModEvent.hpp>
+#include <Sapphire/utils/cocos.hpp>
 #include "../dependency/main.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 auto test = []() {
     log::info("Static logged");
@@ -32,7 +32,7 @@ $execute {
     });
 }
 
-#include <Geode/modify/MenuLayer.hpp>
+#include <Sapphire/modify/MenuLayer.hpp>
 struct $modify(MenuLayer) {
     bool init() {
         if (!MenuLayer::init())
@@ -49,7 +49,7 @@ struct $modify(MenuLayer) {
 };
 
 // Modify
-#include <Geode/modify/GJGarageLayer.hpp>
+#include <Sapphire/modify/GJGarageLayer.hpp>
 
 struct GJGarageLayerTest : Modify<GJGarageLayerTest, GJGarageLayer> {
     GJGarageLayerTest() : myValue(1907) {}

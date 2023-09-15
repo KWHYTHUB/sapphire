@@ -11,4 +11,4 @@ set(GEODE_LINK_SOURCE ON)
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 target_link_libraries(TestMod TestDependency)
 
-setup_geode_mod(${PROJECT_NAME} DONT_INSTALL)
+setup_sapphire_mod(${PROJECT_NAME} DONT_INSTALL)

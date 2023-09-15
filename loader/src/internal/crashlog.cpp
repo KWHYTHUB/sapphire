@@ -1,7 +1,7 @@
 #include "crashlog.hpp"
 #include <fmt/core.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 static std::string getDateString(bool filesafe) {
     auto const now = std::time(nullptr);
@@ -16,7 +16,7 @@ static std::string getDateString(bool filesafe) {
     return oss.str();
 }
 
-static void printGeodeInfo(std::stringstream& stream) {
+static void printSapphireInfo(std::stringstream& stream) {
     stream << "Loader Version: " << Loader::get()->getVersion().toString() << "\n"
            << "Installed mods: " << Loader::get()->getAllMods().size() << "\n"
            << "Problems: " << Loader::get()->getProblems().size() << "\n";
@@ -36,18 +36,18 @@ static void printMods(std::stringstream& stream) {
     }
 }
 
-std::string crashlog::writeCrashlog(geode::Mod* faultyMod, std::string const& info, std::string const& stacktrace, std::string const& registers) {
+std::string crashlog::writeCrashlog(sapphire::Mod* faultyMod, std::string const& info, std::string const& stacktrace, std::string const& registers) {
     // make sure crashlog directory exists
     (void)utils::file::createDirectoryAll(crashlog::getCrashLogDirectory());
 
-    // add a file to let Geode know on next launch that it crashed previously
+    // add a file to let Sapphire know on next launch that it crashed previously
     // this could also be done by saving a loader setting or smth but eh.
     (void)utils::file::writeBinary(crashlog::getCrashLogDirectory() / "last-crashed", {});
     
     std::stringstream file;
 
     file << getDateString(false) << "\n"
-         << std::showbase << "Whoopsies! An exception has occurred while running Geode.\n";
+         << std::showbase << "Whoopsies! An exception has occurred while running Sapphire.\n";
 
     if (faultyMod) {
         file << "It appears that the crash occurred while executing code from "
@@ -56,9 +56,9 @@ std::string crashlog::writeCrashlog(geode::Mod* faultyMod, std::string const& in
              << ") for assistance.\n";
     }
 
-    // geode info
-    file << "\n== Geode Information ==\n";
-    printGeodeInfo(file);
+    // sapphire info
+    file << "\n== Sapphire Information ==\n";
+    printSapphireInfo(file);
 
     // exception info
     file << "\n== Exception Information ==\n";

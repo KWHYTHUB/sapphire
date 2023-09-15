@@ -1,7 +1,7 @@
-#include <Geode/ui/Scrollbar.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/ui/Scrollbar.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 bool Scrollbar::ccTouchBegan(CCTouch* touch, CCEvent* event) {
     // hitbox

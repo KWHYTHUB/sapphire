@@ -1,11 +1,11 @@
-#include <Geode/binding/StatsCell.hpp>
-#include <Geode/binding/TableView.hpp>
-#include <Geode/binding/CCContentLayer.hpp>
-#include <Geode/ui/ListView.hpp>
-#include <Geode/utils/casts.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/binding/StatsCell.hpp>
+#include <Sapphire/binding/TableView.hpp>
+#include <Sapphire/binding/CCContentLayer.hpp>
+#include <Sapphire/ui/ListView.hpp>
+#include <Sapphire/utils/casts.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 GenericListCell::GenericListCell(char const* name, CCSize size) :
     TableViewCell(name, size.width, size.height) {}

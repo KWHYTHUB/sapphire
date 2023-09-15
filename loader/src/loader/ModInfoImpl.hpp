@@ -2,16 +2,16 @@
 
 #include "ModMetadataImpl.hpp"
 
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/utils/JsonValidation.hpp>
-#include <Geode/utils/VersionInfo.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
+#include <Sapphire/utils/VersionInfo.hpp>
 
 #pragma warning(disable : 4996) // deprecation
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-namespace geode {
+namespace sapphire {
     class [[deprecated]] ModInfo::Impl {
     public:
         ModMetadataImpl m_metadata;

@@ -2,19 +2,19 @@
 #include "../ids/AddIDs.hpp"
 #include "../ui/internal/list/ModListLayer.hpp"
 
-#include <Geode/loader/Index.hpp>
-#include <Geode/modify/MenuLayer.hpp>
-#include <Geode/modify/Modify.hpp>
-#include <Geode/ui/BasedButtonSprite.hpp>
-#include <Geode/ui/GeodeUI.hpp>
-#include <Geode/ui/Notification.hpp>
-#include <Geode/ui/Popup.hpp>
-#include <Geode/ui/MDPopup.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/loader/Index.hpp>
+#include <Sapphire/modify/MenuLayer.hpp>
+#include <Sapphire/modify/Modify.hpp>
+#include <Sapphire/ui/BasedButtonSprite.hpp>
+#include <Sapphire/ui/SapphireUI.hpp>
+#include <Sapphire/ui/Notification.hpp>
+#include <Sapphire/ui/Popup.hpp>
+#include <Sapphire/ui/MDPopup.hpp>
+#include <Sapphire/utils/cocos.hpp>
 #include <loader/ModImpl.hpp>
 #include <loader/LoaderImpl.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #pragma warning(disable : 4217)
 
@@ -50,38 +50,38 @@ struct CustomMenuLayer : Modify<CustomMenuLayer, MenuLayer> {
         }
     }
 
-    CCSprite* m_geodeButton;
+    CCSprite* m_sapphireButton;
 
     bool init() {
         if (!MenuLayer::init()) return false;
 
-        // make sure to add the string IDs for nodes (Geode has no manual
+        // make sure to add the string IDs for nodes (Sapphire has no manual
         // hook order support yet so gotta do this to ensure)
         NodeIDs::provideFor(this);
 
         auto winSize = CCDirector::sharedDirector()->getWinSize();
 
-        // add geode button
+        // add sapphire button
         
-        m_fields->m_geodeButton = CircleButtonSprite::createWithSpriteFrameName(
-            "geode-logo-outline-gold.png"_spr,
+        m_fields->m_sapphireButton = CircleButtonSprite::createWithSpriteFrameName(
+            "sapphire-logo-outline-gold.png"_spr,
             1.0f,
             CircleBaseColor::Green,
             CircleBaseSize::MediumAlt
         );
-        auto geodeBtnSelector = &CustomMenuLayer::onGeode;
-        if (!m_fields->m_geodeButton) {
-            geodeBtnSelector = &CustomMenuLayer::onMissingTextures;
-            m_fields->m_geodeButton = ButtonSprite::create("!!");
+        auto sapphireBtnSelector = &CustomMenuLayer::onSapphire;
+        if (!m_fields->m_sapphireButton) {
+            sapphireBtnSelector = &CustomMenuLayer::onMissingTextures;
+            m_fields->m_sapphireButton = ButtonSprite::create("!!");
         }
 
         auto bottomMenu = static_cast<CCMenu*>(this->getChildByID("bottom-menu"));
 
         auto btn = CCMenuItemSpriteExtra::create(
-            m_fields->m_geodeButton, this,
-            static_cast<SEL_MenuHandler>(geodeBtnSelector)
+            m_fields->m_sapphireButton, this,
+            static_cast<SEL_MenuHandler>(sapphireBtnSelector)
         );
-        btn->setID("geode-button"_spr);
+        btn->setID("sapphire-button"_spr);
         bottomMenu->addChild(btn);
 
         bottomMenu->updateLayout();
@@ -111,9 +111,9 @@ struct CustomMenuLayer : Modify<CustomMenuLayer, MenuLayer> {
             if (Loader::get()->userTriedToLoadDLLs()) {
                 auto popup = FLAlertLayer::create(
                     "Hold up!",
-                    "It appears that you have tried to <cr>load DLLs</c> with Geode. "
-                    "Please note that <cy>Geode is incompatible with ALL DLLs</c>, "
-                    "as they can cause Geode mods to <cr>error</c>, or even "
+                    "It appears that you have tried to <cr>load DLLs</c> with Sapphire. "
+                    "Please note that <cy>Sapphire is incompatible with ALL DLLs</c>, "
+                    "as they can cause Sapphire mods to <cr>error</c>, or even "
                     "<cr>crash</c>.\n\n"
                     "Remove the DLLs / other mod loaders you have, or <cr>proceed at "
                     "your own risk.</c>",
@@ -131,7 +131,7 @@ struct CustomMenuLayer : Modify<CustomMenuLayer, MenuLayer> {
             shownUpdateInfo = true;
             auto popup = FLAlertLayer::create(
                 "Update downloaded",
-                "A new <cy>update</c> for Geode has been installed! "
+                "A new <cy>update</c> for Sapphire has been installed! "
                 "Please <cy>restart the game</c> to apply.",
                 "OK"
             );
@@ -156,7 +156,7 @@ struct CustomMenuLayer : Modify<CustomMenuLayer, MenuLayer> {
                 "Send",
                 [](auto, bool btn2) {
                     if (btn2) {
-                        geode::openIssueReportPopup(Mod::get());
+                        sapphire::openIssueReportPopup(Mod::get());
                     }
                 },
                 false
@@ -196,11 +196,11 @@ struct CustomMenuLayer : Modify<CustomMenuLayer, MenuLayer> {
         if (Index::get()->areUpdatesAvailable()) {
             auto icon = CCSprite::createWithSpriteFrameName("updates-available.png"_spr);
             icon->setPosition(
-                m_fields->m_geodeButton->getContentSize() - CCSize { 10.f, 10.f }
+                m_fields->m_sapphireButton->getContentSize() - CCSize { 10.f, 10.f }
             );
             icon->setZOrder(99);
             icon->setScale(.5f);
-            m_fields->m_geodeButton->addChild(icon);
+            m_fields->m_sapphireButton->addChild(icon);
         }
     }
 
@@ -208,22 +208,22 @@ struct CustomMenuLayer : Modify<CustomMenuLayer, MenuLayer> {
         
     #ifdef GEODE_IS_DESKTOP
 
-        (void) utils::file::createDirectoryAll(dirs::getGeodeDir() / "update" / "resources" / "geode.loader");
+        (void) utils::file::createDirectoryAll(dirs::getSapphireDir() / "update" / "resources" / "sapphire.loader");
 
         createQuickPopup(
             "Missing Textures",
             "You appear to be missing textures, and the automatic texture fixer "
             "hasn't fixed the issue.\n"
             "Download <cy>resources.zip</c> from the latest release on GitHub, "
-            "and <cy>unzip its contents</c> into <cb>geode/update/resources/geode.loader</c>.\n"
+            "and <cy>unzip its contents</c> into <cb>sapphire/update/resources/sapphire.loader</c>.\n"
             "Afterwards, <cg>restart the game</c>.\n"
             "You may also continue without installing resources, but be aware that "
-            "you won't be able to open <cr>the Geode menu</c>.",
+            "you won't be able to open <cr>the Sapphire menu</c>.",
             "Dismiss", "Open Github",
             [](auto, bool btn2) {
                 if (btn2) {
-                    web::openLinkInBrowser("https://github.com/geode-sdk/geode/releases/latest");
-                    file::openFolder(dirs::getGeodeDir() / "update" / "resources");
+                    web::openLinkInBrowser("https://github.com/KWHYTHUB/sapphire/releases/latest");
+                    file::openFolder(dirs::getSapphireDir() / "update" / "resources");
                     FLAlertLayer::create(
                         "Info",
                         "Opened GitHub in your browser and the destination in "
@@ -247,7 +247,7 @@ struct CustomMenuLayer : Modify<CustomMenuLayer, MenuLayer> {
             "Missing Textures",
             "You appear to be missing textures, and the automatic texture fixer "
             "hasn't fixed the issue.\n"
-            "**<cy>Report this bug to the Geode developers</c>**. It is very likely "
+            "**<cy>Report this bug to the Sapphire developers</c>**. It is very likely "
             "that your game <cr>will crash</c> until the issue is resolved.",
             "OK"
         )->show();
@@ -255,7 +255,7 @@ struct CustomMenuLayer : Modify<CustomMenuLayer, MenuLayer> {
     #endif
     }
 
-    void onGeode(CCObject*) {
+    void onSapphire(CCObject*) {
         ModListLayer::scene();
     }
 };

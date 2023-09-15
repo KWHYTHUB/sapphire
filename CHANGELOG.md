@@ -1,4 +1,4 @@
-# Geode Changelog
+# Sapphire Changelog
 
 ## v1.3.1
  * Fix TulipHook not relocating RIP relative operands on MacOS (6cad19d)
@@ -73,8 +73,8 @@
  * Add link attribute to codegen for functions linked from elsewhere (a552160)
 
 ## v1.0.3
- * Fix mod changelogs only showing Geode's own changelog (2945422)
- * Fix some filesystem functions for Geode running under wine (7a83354)
+ * Fix mod changelogs only showing Sapphire's own changelog (2945422)
+ * Fix some filesystem functions for Sapphire running under wine (7a83354)
  * Lazy load the real XInput9 dll, removing the need for an XInput 1.3 (041d44c)
  * Fix MacOS requiring openssl@3 directly from homebrew (e489681)
  * Default to Steam installation on MacOS installer (072a18c)
@@ -89,7 +89,7 @@
  * Fix MacOS installer (ea5a5f0)
  * Add mod ids to deprecated keys logs of ModInfo (fc72c24)
  * Rename platform labels: (MacOS -> macOS, iOS -> IOS) (cf3ed32)
- * Fix Geode not loading when GeodeBootsrapper.dll exists (c2aacd9)
+ * Fix Sapphire not loading when SapphireBootsrapper.dll exists (c2aacd9)
  * Hide tag from version in cmake when it doesnt exist (fc8a8e1)
  * Change MacOS installer fmod original name for compatibility with the old installer (44d5aff)
 
@@ -124,8 +124,8 @@
  * Add logging for gd::string (e7ab46c)
  * Fix `ComparableVersionInfo` comparison being inverted (e7ab46c)
  * Add `FileWatchEvent` for file watching (50ff15c)
- * Fix `geode::utils::file::pickFile` on MacOS (8842e8f)
- * Fix `geode::utils::file::writeToJson` (1c699c3)
+ * Fix `sapphire::utils::file::pickFile` on MacOS (8842e8f)
+ * Fix `sapphire::utils::file::writeToJson` (1c699c3)
  * Fix notifications not being at the top (4754994)
  * Fix filter copy constructors (4cec5d7)
  * Update json library
@@ -155,17 +155,17 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  * Fix crash when installing mods 
  * FMOD is now linked on MacOS 
  * `GEODE_DEBUG` on longer needs to be defined for `log::debug` to work 
- * Make Geode changelog visible in-game
+ * Make Sapphire changelog visible in-game
  * Make the changelog only be loaded once the changelog button is pressed in ModInfoPopup
  * Fix the scrollbar not working for the changelog in ModInfoPopup
  * Fix visual issues with scrollbars
 
 ## v1.0.0-beta.11
- * New `geode::prelude` namespace to replace the old `USE_GEODE_NAMESPACE()` macro 
+ * New `sapphire::prelude` namespace to replace the old `USE_GEODE_NAMESPACE()` macro 
  * Add `CCNode::removeChildByID` 
  * Add `CCNode::hasAncestor` 
  * Add `CCScene::get` and `CCScheduler::get` 
- * Add `geode::cocos::getMousePos` 
+ * Add `sapphire::cocos::getMousePos` 
  * Add `GEODE_DONT_INSTALL_MODS` option to CMake 
  * Add logging `std::vector` with `log::` functions 
  * Add `EventListener::getFilter` 
@@ -179,13 +179,13 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  * `Layout` now inherits from `CCObject`, allowing you to share layouts across multiple nodes 
  * Update TulipHook version 
  * Make sure mod load/enable/etc. events are only ever posted in the GD thread 
- * `Mod::getResourcesDir` now returns `geode/unzipped/{mod.id}/resources/{mod.id}` in conjunction with [CLI v2.1.0](https://github.com/geode-sdk/cli/releases/tag/v2.1.1) 
+ * `Mod::getResourcesDir` now returns `sapphire/unzipped/{mod.id}/resources/{mod.id}` in conjunction with [CLI v2.1.0](https://github.com/KWHYTHUB/cli/releases/tag/v2.1.1) 
  * Give a name to `ccTouchType` 
  * Fix `Scrollbar` being funky sometimes 
  * Fix mod resources not being loaded if the mod is enabled at runtime 
  * Fix `EditLevelLayer` description update button ID & layout 
  * Fix hooking functions with unpredictable calling conventions 
- * Fix `setup_geode_mod` not linking to Geode if CLI calls are disabled 
+ * Fix `setup_sapphire_mod` not linking to Sapphire if CLI calls are disabled 
  * Fix code editors showing a ton of warnings with `$modify` 
  * Fix top sprite sizes of `CircleButtonSprite` and `EditorButtonSprite` 
  * Fix `Mod::enableHook` error message 
@@ -194,7 +194,7 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
 ## v1.0.0-beta.10
  * Fix loader minimum mod version preventing the loader itself from loading 
  * Fix recursive comparison in VersionTag 
- * `geode/unzipped` is now deleted on startup if it exists 
+ * `sapphire/unzipped` is now deleted on startup if it exists 
 
 ## v1.0.0-beta.9
  * Fix multiple modifiers not being able to have fields on same class due to having same field index 
@@ -203,7 +203,7 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
 ## v1.0.0-beta.8
  * Unload the mod even when first time warning pops up 
  * Error when address of a function returns nullptr when hooking 
- * Add support for Geode CLI v2.0.0 (which has not been released yet) 
+ * Add support for Sapphire CLI v2.0.0 (which has not been released yet) 
  * Logging no longer causes a crash on invalid formats, but instead just warns 
  * `file::pickFile` now uses the last item in the default path as the default filename to save/open 
  * Fix `EditorPauseLayer` crashing constantly due to some members being accidentally set to `nullptr` 
@@ -216,7 +216,7 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  * Fix `typeinfo_cast` causing a crash if passed a `nullptr` on MacOS 
  * Fix settings not getting broadcasted 
  * Make `Loader::getLoadedMod` and `Loader::isModLoaded` also check if mod is enabled 
- * Display Geode commit hash in the bottom right of the mod info layer 
+ * Display Sapphire commit hash in the bottom right of the mod info layer 
  * Fix `EditorPauseLayer` info labels on the top left being too big 
 
 ## v1.0.0-beta.6
@@ -231,7 +231,7 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  * Move `GEODE_DLL` to the structs themselves in `JsonValidation` 
  * Versions now support tag numbers & version tags are now used in comparisons. This change does not affect old betas, which still internally report their version as just `v1.0.0-beta`, but starting with this beta the version is correctly reported as `v1.0.0-beta.6` and correctly compared against other versions 
  * `Loader::getLoadedMod` and `Loader::isModLoaded` now only return if the mod is also enabled 
- * Geode's internal mod representation is now included in the loader's loaded mods list 
+ * Sapphire's internal mod representation is now included in the loader's loaded mods list 
  * Fix settings value changes not being broadcast. This causes an API break relating to custom settings; `SettingValue` now requires the owner mod ID in its constructor 
  * Fix some warnings 
  * Fix `CCNode::swapChildIndices` 
@@ -252,8 +252,8 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
 - Fix macOS libzstd crash
 
 ## v1.0.0-beta.3
- - Better support for dependencies with [Geode CLI v1.4.x](https://github.com/geode-sdk/cli/releases/latest): mod dependencies are now automatically installed from the mods index by simply declaring them in your `mod.json`. See [the tutorial page in docs](https://docs.geode-sdk.org/mods/dependencies/) for more 
- - The `create_geode_file` CMake function has been replaced by `setup_geode_mod`. The old `create_geode_file` function is still available, but will be deprecated in the future 
+ - Better support for dependencies with [Sapphire CLI v1.4.x](https://github.com/KWHYTHUB/cli/releases/latest): mod dependencies are now automatically installed from the mods index by simply declaring them in your `mod.json`. See [the tutorial page in docs](https://docs.geode-sdk.org/mods/dependencies/) for more 
+ - The `create_sapphire_file` CMake function has been replaced by `setup_sapphire_mod`. The old `create_sapphire_file` function is still available, but will be deprecated in the future 
  - `Result::except` now works with non-copyable types 
  - `Zip` and `Unzip` now support in-memory ZIP extraction and creation 
  - `ComparableVersionInfo::compare` now always returns false if the major versions are different 
@@ -269,7 +269,7 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  * Fixed bug where loading would crash if one of the mods' binaries failed to load 
 
 ## v1.0.0-beta.1
- * Switched to [a new custom-built JSON library](https://github.com/geode-sdk/json) to replace `nlohmann::json` for compile-time improvements; if you were using the old JSON library, you can add & link to `nlohmann::json` in your own project, or update to use the new API. 
+ * Switched to [a new custom-built JSON library](https://github.com/KWHYTHUB/json) to replace `nlohmann::json` for compile-time improvements; if you were using the old JSON library, you can add & link to `nlohmann::json` in your own project, or update to use the new API. 
  * Fix resources not being downloaded automatically by using a fallback to latest release 
  * Add a new clear instruction popup in case downloading still fails 
  * String ID hooks now have higher priority, so they should always be applied regardless of if you call `NodeIDs::provideFor` or not (though it can still be called to absolutely ensure the IDs are there!) 
@@ -283,9 +283,9 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  - Jesus H. Christmas Kallen there's like 300 new commits since v0.6.1 I don't think there's a point in listing them all, we basically redesigned the whole framework
 
 ## v0.6.1
- - Add `geode::cocos::switchToScene` utility for easily switching to a layer with the default fade transition
+ - Add `sapphire::cocos::switchToScene` utility for easily switching to a layer with the default fade transition
  - Add `Mod::getPackagePath` as a replacement for `Mod::getPath`
- - Add `geode/config` directory as a standardized place for mods to add their config files
+ - Add `sapphire/config` directory as a standardized place for mods to add their config files
  - Add `Mod::getConfigDir` for getting a mods' config directory
  - Add open config directory button to mods with a config directory
  - Add open save directory button to mods' settings popup
@@ -297,11 +297,11 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  - Mod resource loading has been reworked again, with the intent of adding support for texture pack loaders
  - Added `Loader::addTexturePath` and `Loader::removeTexturePath` to work with additional resource paths
  - Mods that work with Cocos2d search paths directly should convert to using the above functions
- - New header `Geode/ui/LayerBG.hpp` with `createLayerBG` function for creating the blue gradient background GD layers have
+ - New header `Sapphire/ui/LayerBG.hpp` with `createLayerBG` function for creating the blue gradient background GD layers have
  - All Cocos2d include paths have been changed to be relative
- - `cocos2dx` folder has been removed, cocos2d is now directly inside `Geode/cocos`
+ - `cocos2dx` folder has been removed, cocos2d is now directly inside `Sapphire/cocos`
  - Loader resources updating will no longer check for plist file differences due to problems with CLI on Mac
- - More codegen optimizations, Geode mods should now compile faster
+ - More codegen optimizations, Sapphire mods should now compile faster
  - Added `NewResult` class, which will eventually replace the old `Result`
  - Add `deprecate` and `nodiscard` attributes to the old `Result` class
  - Cocos2d selectors (like `SEL_MenuHandler`) no longer require `using namespace cocos2d`
@@ -313,8 +313,8 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  - Fix crashes related to setting IDs in `MenuLayer`
  - Remove `Loader::updateModResourcePaths` and `Loader::updateResourcePaths`. The minimum mod target version is still v0.4.0 however, as you should never have been using these functions.
  - Rework how mod resources are added
- - Deprecate `geode::utils::vector` and `geode::utils::container` namespaces and replace them with `geode::utils::ranges`
- - Finally added a license to Geode! The framework is now licensed under BSL v1.0.
+ - Deprecate `sapphire::utils::vector` and `sapphire::utils::container` namespaces and replace them with `sapphire::utils::ranges`
+ - Finally added a license to Sapphire! The framework is now licensed under BSL v1.0.
 
 ## v0.4.8
  - CLI issues fixed in v1.0.6 so loader again verifies if loader resources are missing / corrupt on startup
@@ -326,16 +326,16 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
 
 ## v0.4.6
  - Automatically checks & downloads loader resources if they are missing / corrupt on startup
- - CMake rework; `GeodeFile.cmake` now checks and verifies CLI version
- - Add optional `DONT_INSTALL` parameter to `create_geode_file`
+ - CMake rework; `SapphireFile.cmake` now checks and verifies CLI version
+ - Add optional `DONT_INSTALL` parameter to `create_sapphire_file`
  - Test mods are now no longer automatically installed
- - Add `package_geode_resources_now` command for packaging resources at configure time and creating a header with their calculated hashes
+ - Add `package_sapphire_resources_now` command for packaging resources at configure time and creating a header with their calculated hashes
  - Fix `getSceneDelegate`
  - Change `CCArrayExt` to use `Ref`
 
 ## v0.4.5
- - Rework bindings and codegen to improve compile times, now individual bindings can be included with `<Geode/binding/{ClassName}.hpp>`
- - Modify has also been separated, you can now include individual modifiers with `<Geode/modify/{ClassName}.hpp>`
+ - Rework bindings and codegen to improve compile times, now individual bindings can be included with `<Sapphire/binding/{ClassName}.hpp>`
+ - Modify has also been separated, you can now include individual modifiers with `<Sapphire/modify/{ClassName}.hpp>`
  - Various other fixes to improve compile times
  - Fix mod resources not being loaded when installed from Index
  - Fix crashes related to downloading mods
@@ -350,10 +350,10 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  - Add `GEODE_DEBUG` macro for enabling `log::debug` to actually print stuff
  - Show crashlog on crash when `GEODE_DEBUG` is enabled
  - Add `JsonChecker::at` and `JsonChecker::array` for dealing with arrays
- - Add `geode::utils::web::fetchBytes` for fetching a byte array synchronously
- - Add `geode::utils::web::AsyncWebRequest` for creating thread-safe asynchronous web requests
+ - Add `sapphire::utils::web::fetchBytes` for fetching a byte array synchronously
+ - Add `sapphire::utils::web::AsyncWebRequest` for creating thread-safe asynchronous web requests
  - Add `Loader::updateModResourcePaths` for adding a mods' resources to search paths. Not recommended to be called manually
- - Add an overload to `geode::createQuickPopup` for specifying popup width
+ - Add an overload to `sapphire::createQuickPopup` for specifying popup width
  - `ModInfo::createFromFile` now checks for `about.md` and other special files in the same directory
  - Remove automatic mod updating for now, however automatic update checking for mods is still there
 
@@ -364,7 +364,7 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
 
 ## v0.4.3
  - Simplified the minimum and maximum loader versions, loader will now load any mod whose target version major and minor match. In practice, this means that for example mods whose target version is v0.4.8 can be loaded by loader of version v0.4.6.
- - Add `Geode/ui/GeodeUI.hpp` header for exposing some access to internal Geode UI like opening a mod's settings popup
+ - Add `Sapphire/ui/SapphireUI.hpp` header for exposing some access to internal Sapphire UI like opening a mod's settings popup
  - Fix crash with settings that could have a slider control
 
 ## v0.4.2
@@ -373,14 +373,14 @@ Thank you to [Fleeym](https://github.com/Fleeym/Fleeym) for contributing to this
  - Fix log filenames
 
 ## v0.4.1
- - Initial dev release of Geode.
+ - Initial dev release of Sapphire.
 
 ---
 
 Note that from here on, changes to the framework were not tracked by versions as the framework was still considered to be in heavy development and not released. Instead, major changes are listed by dates.
 
 ## 2022/10/10
- - Geode released for developers
+ - Sapphire released for developers
 
 ## 2022/10/08
  - `ui` branch merged to `main`
@@ -393,10 +393,10 @@ Note that from here on, changes to the framework were not tracked by versions as
  - CLI redesign started
 
 ## 2022/07/30
- - `sdk`, `loader` and `api` repos all merged into one `geode` repo
+ - `sdk`, `loader` and `api` repos all merged into one `sapphire` repo
 
 ## 2022/05/24
- - Geode announced to be merging with Hyperdash, later on it turned out we were all pathological liars
+ - Sapphire announced to be merging with Hyperdash, later on it turned out we were all pathological liars
 
 ## 2022/05/02
  - Installer on Windows
@@ -408,7 +408,7 @@ Note that from here on, changes to the framework were not tracked by versions as
  - CLI started
 
 ## 2022/01/19
- - Lilac and Cacao merged and renamed to Geode
+ - Lilac and Cacao merged and renamed to Sapphire
 
 ## 2021/07/30
  - Lilac started by Mat, HJfod and Pie

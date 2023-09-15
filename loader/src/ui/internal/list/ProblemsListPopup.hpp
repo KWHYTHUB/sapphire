@@ -1,9 +1,9 @@
 ﻿#pragma once
 
-#include <Geode/ui/Popup.hpp>
-#include <Geode/loader/Loader.hpp>
+#include <Sapphire/ui/Popup.hpp>
+#include <Sapphire/loader/Loader.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class ProblemsListPopup : public Popup<Mod*> {
 protected:

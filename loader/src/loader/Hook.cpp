@@ -1,13 +1,13 @@
-#include <Geode/loader/Hook.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/utils/casts.hpp>
-#include <Geode/utils/ranges.hpp>
+#include <Sapphire/loader/Hook.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/utils/casts.hpp>
+#include <Sapphire/utils/ranges.hpp>
 #include <vector>
 #include "ModImpl.hpp"
 #include "HookImpl.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 Hook::Hook(std::shared_ptr<Impl>&& impl) : m_impl(std::move(impl)) {}
 Hook::~Hook() {}

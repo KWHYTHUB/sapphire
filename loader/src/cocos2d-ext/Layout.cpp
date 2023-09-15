@@ -1,11 +1,11 @@
 #include <cocos2d.h>
-#include <Geode/utils/cocos.hpp>
-#include <Geode/utils/ranges.hpp>
-#include <Geode/loader/Log.hpp>
-#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
-#include <Geode/binding/CCMenuItemToggler.hpp>
+#include <Sapphire/utils/cocos.hpp>
+#include <Sapphire/utils/ranges.hpp>
+#include <Sapphire/loader/Log.hpp>
+#include <Sapphire/binding/CCMenuItemSpriteExtra.hpp>
+#include <Sapphire/binding/CCMenuItemToggler.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #pragma warning(disable: 4273)
 

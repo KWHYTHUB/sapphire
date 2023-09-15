@@ -4,8 +4,8 @@
     !include WinMessages.nsh
 
 ; settings
-    Name "Geode"
-    OutFile "geode-installer-win.exe"
+    Name "Sapphire"
+    OutFile "sapphire-installer-win.exe"
     Unicode true
     InstallDir "$PROGRAMFILES32\Steam\steamapps\common\Geometry Dash\" ; set default path to the most common one
     XPStyle on
@@ -323,7 +323,7 @@
 
 ; installer
 
-Var geode.DirectoryPage.ErrorText
+Var sapphire.DirectoryPage.ErrorText
 
 Var GamePath
 Function FindGamePath
@@ -378,13 +378,13 @@ FunctionEnd
 
 Function DirectoryPageShow
     System::Call 'USER32::CreateWindowEx(i${__NSD_Label_EXSTYLE}, t"${__NSD_Label_CLASS}", t"", i${__NSD_Label_STYLE}, i0, i70, i400, i40, p$mui.DirectoryPage, p0, p0, p0)p.s'
-    Pop $geode.DirectoryPage.ErrorText
-    ShowWindow $geode.DirectoryPage.ErrorText 0
+    Pop $sapphire.DirectoryPage.ErrorText
+    ShowWindow $sapphire.DirectoryPage.ErrorText 0
     SendMessage $mui.DirectoryPage ${WM_GETFONT} 0 0 $0
-    SendMessage $geode.DirectoryPage.ErrorText ${WM_SETFONT} $0 1
-    SetCtlColors $geode.DirectoryPage.ErrorText ff0000 transparent
+    SendMessage $sapphire.DirectoryPage.ErrorText ${WM_SETFONT} $0 1
+    SetCtlColors $sapphire.DirectoryPage.ErrorText ff0000 transparent
     ; place the label at the top
-    System::Call 'USER32::SetWindowPos(p$geode.DirectoryPage.ErrorText, p0, i0, i0, i0, i0, i3)i'
+    System::Call 'USER32::SetWindowPos(p$sapphire.DirectoryPage.ErrorText, p0, i0, i0, i0, i0, i3)i'
     Pop $0
 FunctionEnd
 
@@ -395,8 +395,8 @@ Function .onVerifyInstDir
     IfFileExists $INSTDIR\*.exe 0 noGameNoLife
     IfFileExists $INSTDIR\libcocos2d.dll 0 noGameNoLife
 
-    ; check if geode is already installed
-    IfFileExists $INSTDIR\Geode.dll valid
+    ; check if sapphire is already installed
+    IfFileExists $INSTDIR\Sapphire.dll valid
 
     ; check mod loaders/mod menus
     IfFileExists $INSTDIR\hackpro.dll megahack
@@ -406,42 +406,42 @@ Function .onVerifyInstDir
 
     ; all checks passed
     valid:
-        ShowWindow $geode.DirectoryPage.ErrorText 0
+        ShowWindow $sapphire.DirectoryPage.ErrorText 0
         LockWindow off
         Return
 
     noGameNoLife:
-        SendMessage $geode.DirectoryPage.ErrorText ${WM_SETTEXT} "" "STR:$(GEODE_TEXT_GD_MISSING)"
+        SendMessage $sapphire.DirectoryPage.ErrorText ${WM_SETTEXT} "" "STR:$(GEODE_TEXT_GD_MISSING)"
         Goto error
     megahack:
-        SendMessage $geode.DirectoryPage.ErrorText ${WM_SETTEXT} "" "STR:$(GEODE_TEXT_MH_ALREADY_INSTALLED)"
+        SendMessage $sapphire.DirectoryPage.ErrorText ${WM_SETTEXT} "" "STR:$(GEODE_TEXT_MH_ALREADY_INSTALLED)"
         Goto error
     other:
-        SendMessage $geode.DirectoryPage.ErrorText ${WM_SETTEXT} "" "STR:$(GEODE_TEXT_MOD_LOADER_ALREADY_INSTALLED)"
+        SendMessage $sapphire.DirectoryPage.ErrorText ${WM_SETTEXT} "" "STR:$(GEODE_TEXT_MOD_LOADER_ALREADY_INSTALLED)"
         Goto error
 
     error:
-        ShowWindow $geode.DirectoryPage.ErrorText 1
+        ShowWindow $sapphire.DirectoryPage.ErrorText 1
         LockWindow off
         Abort
         Return
 FunctionEnd
 
-SectionGroup "Geode"
+SectionGroup "Sapphire"
     Section "Loader" LOADER_SECTION
         SetOutPath $INSTDIR
 
-        File ${BINDIR}\Geode.dll
-        File ${BINDIR}\Geode.pdb
-        File ${BINDIR}\GeodeUpdater.exe
+        File ${BINDIR}\Sapphire.dll
+        File ${BINDIR}\Sapphire.pdb
+        File ${BINDIR}\SapphireUpdater.exe
         File ${BINDIR}\XInput9_1_0.dll
 
-        WriteUninstaller "GeodeUninstaller.exe"
+        WriteUninstaller "SapphireUninstaller.exe"
     SectionEnd
 
     Section "Resources"
-        CreateDirectory $INSTDIR\geode\resources\geode.loader
-        SetOutPath $INSTDIR\geode\resources\geode.loader
+        CreateDirectory $INSTDIR\sapphire\resources\sapphire.loader
+        SetOutPath $INSTDIR\sapphire\resources\sapphire.loader
         File /r ${BINDIR}\resources\*
     SectionEnd
 SectionGroupEnd
@@ -479,9 +479,9 @@ Function un.onInit
     IfFileExists $INSTDIR\*.exe 0 invalid
     IfFileExists $INSTDIR\libcocos2d.dll 0 invalid
 
-    ; check if xinput and geode exist
+    ; check if xinput and sapphire exist
     IfFileExists $INSTDIR\XInput9_1_0.dll 0 invalid
-    IfFileExists $INSTDIR\Geode.dll 0 invalid
+    IfFileExists $INSTDIR\Sapphire.dll 0 invalid
         Return
 
     invalid:
@@ -489,16 +489,16 @@ Function un.onInit
         Abort
 FunctionEnd
 Section "Uninstall"
-    DeleteRegKey /ifempty HKCU "Software\Geode"
-    Delete $INSTDIR\Geode.dll
-    Delete $INSTDIR\Geode.pdb
-    Delete $INSTDIR\GeodeUpdater.exe
+    DeleteRegKey /ifempty HKCU "Software\Sapphire"
+    Delete $INSTDIR\Sapphire.dll
+    Delete $INSTDIR\Sapphire.pdb
+    Delete $INSTDIR\SapphireUpdater.exe
     Delete $INSTDIR\XInput9_1_0.dll
 
     # default value of DATA is an empty string
     # if DATA is empty, keep user data
-    # otherwise, delete the entire geode and DATA\geode\mods dirs
-    # the reason we're deleting DATA\geode\mods instead of just passing
+    # otherwise, delete the entire sapphire and DATA\sapphire\mods dirs
+    # the reason we're deleting DATA\sapphire\mods instead of just passing
     # that dir directly to DATA is so that in case someone (either accidentally or maliciously)
     # passes the wrong directory, the uninstaller doesn't just blindly clear it
     # it will also check for the presence of CCGameManager.dat and CCLocalLevels.dat in DATA
@@ -511,24 +511,24 @@ Section "Uninstall"
 
     keep_data:
         # keep configs, mods, logs and crash logs
-        RMdir /r $INSTDIR\geode\index
-        RMdir /r $INSTDIR\geode\resources
-        RMdir /r $INSTDIR\geode\temp
-        RMdir /r $INSTDIR\geode\unzipped
-        RMdir /r $INSTDIR\geode\update
+        RMdir /r $INSTDIR\sapphire\index
+        RMdir /r $INSTDIR\sapphire\resources
+        RMdir /r $INSTDIR\sapphire\temp
+        RMdir /r $INSTDIR\sapphire\unzipped
+        RMdir /r $INSTDIR\sapphire\update
         Return
 
     remove_data:
-        RMdir /r $INSTDIR\geode
+        RMdir /r $INSTDIR\sapphire
         IfFileExists $0\CCGameManager.dat 0 invalid
         IfFileExists $0\CCLocalLevels.dat 0 invalid
-        RMdir /r $0\geode\mods ; delete DATA\geode\mods
-        RMdir $0\geode ; then delete DATA\geode non-recursively, assuming mods is the only directory in DATA\geode
+        RMdir /r $0\sapphire\mods ; delete DATA\sapphire\mods
+        RMdir $0\sapphire ; then delete DATA\sapphire non-recursively, assuming mods is the only directory in DATA\sapphire
         Return
 
     invalid:
         # this message doesnt rly need translatable as
-        # its only supposed to be used internally by geode itself
+        # its only supposed to be used internally by sapphire itself
         MessageBox MB_ICONSTOP|MB_OK "The path passed to DATA is not a valid Geometry Dash data folder!"
         Abort
 

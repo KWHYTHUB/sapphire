@@ -1,7 +1,7 @@
 #include "AddIDs.hpp"
 
-#include <Geode/binding/LevelInfoLayer.hpp>
-#include <Geode/modify/LevelInfoLayer.hpp>
+#include <Sapphire/binding/LevelInfoLayer.hpp>
+#include <Sapphire/modify/LevelInfoLayer.hpp>
 
 $register_ids(LevelInfoLayer) {
     auto winSize = CCDirector::get()->getWinSize();

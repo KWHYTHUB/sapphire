@@ -1,12 +1,12 @@
 #include "ModSettingsPopup.hpp"
 
-#include <Geode/binding/ButtonSprite.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/loader/Setting.hpp>
-#include <Geode/ui/ScrollLayer.hpp>
-#include <Geode/utils/cocos.hpp>
-#include <Geode/ui/General.hpp>
-#include "GeodeSettingNode.hpp"
+#include <Sapphire/binding/ButtonSprite.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/loader/Setting.hpp>
+#include <Sapphire/ui/ScrollLayer.hpp>
+#include <Sapphire/utils/cocos.hpp>
+#include <Sapphire/ui/General.hpp>
+#include "SapphireSettingNode.hpp"
 
 bool ModSettingsPopup::setup(Mod* mod) {
     m_noElasticity = true;

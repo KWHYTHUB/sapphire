@@ -1,14 +1,14 @@
-#include <Geode/cocos/platform/IncludeCurl.h>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/utils/casts.hpp>
-#include <Geode/utils/web.hpp>
+#include <Sapphire/cocos/platform/IncludeCurl.h>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/utils/casts.hpp>
+#include <Sapphire/utils/web.hpp>
 #include <json.hpp>
 #include <thread>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 using namespace web;
 
-namespace geode::utils::fetch {
+namespace sapphire::utils::fetch {
     static size_t writeBytes(char* data, size_t size, size_t nmemb, void* str) {
         as<ByteVector*>(str)->insert(as<ByteVector*>(str)->end(), data, data + size * nmemb);
         return size * nmemb;

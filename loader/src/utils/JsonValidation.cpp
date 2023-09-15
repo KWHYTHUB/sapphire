@@ -1,6 +1,6 @@
-#include <Geode/utils/JsonValidation.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 
 json::Value& JsonMaybeSomething::json() {

@@ -1,23 +1,23 @@
 #include "ModListLayer.hpp"
 #include "ModListCell.hpp"
 #include "SearchFilterPopup.hpp"
-#include <Geode/binding/ButtonSprite.hpp>
-#include <Geode/binding/CCTextInputNode.hpp>
-#include <Geode/binding/GJListLayer.hpp>
-#include <Geode/binding/LoadingCircle.hpp>
-#include <Geode/binding/MenuLayer.hpp>
-#include <Geode/binding/TableView.hpp>
-#include <Geode/ui/BasedButton.hpp>
-#include <Geode/ui/Notification.hpp>
-#include <Geode/utils/casts.hpp>
-#include <Geode/loader/Dirs.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/ui/ListView.hpp>
-#include <Geode/utils/string.hpp>
-#include <Geode/utils/ranges.hpp>
+#include <Sapphire/binding/ButtonSprite.hpp>
+#include <Sapphire/binding/CCTextInputNode.hpp>
+#include <Sapphire/binding/GJListLayer.hpp>
+#include <Sapphire/binding/LoadingCircle.hpp>
+#include <Sapphire/binding/MenuLayer.hpp>
+#include <Sapphire/binding/TableView.hpp>
+#include <Sapphire/ui/BasedButton.hpp>
+#include <Sapphire/ui/Notification.hpp>
+#include <Sapphire/utils/casts.hpp>
+#include <Sapphire/loader/Dirs.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/ui/ListView.hpp>
+#include <Sapphire/utils/string.hpp>
+#include <Sapphire/utils/ranges.hpp>
 
 #define FTS_FUZZY_MATCH_IMPLEMENTATION
-#include <Geode/external/fts/fts_fuzzy_match.h>
+#include <Sapphire/external/fts/fts_fuzzy_match.h>
 
 #ifdef GEODE_IS_WINDOWS
 #include <filesystem>
@@ -131,7 +131,7 @@ static std::optional<int> queryMatch(ModListQuery const& query, IndexItemHandle 
             WEIGHTED_MATCH_ADD(ranges::join(item->getTags(), " "), 1.4);
         }
         // add extra weight to featured items to keep power consolidated in the 
-        // hands of the rich Geode bourgeoisie
+        // hands of the rich Sapphire bourgeoisie
         // the number 420 is a reference to the number one bourgeois of modern 
         // society, elon musk
         weighted += item->isFeatured() ? 420 : 0;
@@ -143,7 +143,7 @@ static std::optional<int> queryMatch(ModListQuery const& query, IndexItemHandle 
     }
 }
 
-static std::optional<int> queryMatch(ModListQuery const& query, InvalidGeodeFile const& info) {
+static std::optional<int> queryMatch(ModListQuery const& query, InvalidSapphireFile const& info) {
     // if any explicit filters were provided, no match
     if (!query.tags.empty() || query.keywords.has_value()) {
         return std::nullopt;

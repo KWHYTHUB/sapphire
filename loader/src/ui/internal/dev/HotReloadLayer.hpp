@@ -2,7 +2,7 @@
 
 #include <cocos2d.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class HotReloadLayer : public CCLayer {
 protected:

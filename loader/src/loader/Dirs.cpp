@@ -1,50 +1,50 @@
 
-#include <Geode/loader/Dirs.hpp>
+#include <Sapphire/loader/Dirs.hpp>
 #include <cocos2d.h>
 #include <crashlog.hpp>
 #include <filesystem>
 #include "LoaderImpl.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-ghc::filesystem::path dirs::getGeodeDir() {
-    return dirs::getGameDir() / "geode";
+ghc::filesystem::path dirs::getSapphireDir() {
+    return dirs::getGameDir() / "sapphire";
 }
 
-ghc::filesystem::path dirs::getGeodeSaveDir() {
-    return dirs::getSaveDir() / "geode";
+ghc::filesystem::path dirs::getSapphireSaveDir() {
+    return dirs::getSaveDir() / "sapphire";
 }
 
-ghc::filesystem::path dirs::getGeodeResourcesDir() {
-    return dirs::getGeodeDir() / "resources";
+ghc::filesystem::path dirs::getSapphireResourcesDir() {
+    return dirs::getSapphireDir() / "resources";
 }
 
-ghc::filesystem::path dirs::getGeodeLogDir() {
-    return dirs::getGeodeDir() / "logs";
+ghc::filesystem::path dirs::getSapphireLogDir() {
+    return dirs::getSapphireDir() / "logs";
 }
 
 ghc::filesystem::path dirs::getTempDir() {
-    return getGeodeDir() / "temp";
+    return getSapphireDir() / "temp";
 }
 
 ghc::filesystem::path dirs::getModsDir() {
-    return getGeodeDir() / "mods";
+    return getSapphireDir() / "mods";
 }
 
 ghc::filesystem::path dirs::getModsSaveDir() {
-    return getGeodeSaveDir() / "mods";
+    return getSapphireSaveDir() / "mods";
 }
 
 ghc::filesystem::path dirs::getModRuntimeDir() {
-    return dirs::getGeodeDir() / "unzipped";
+    return dirs::getSapphireDir() / "unzipped";
 }
 
 ghc::filesystem::path dirs::getModConfigDir() {
-    return dirs::getGeodeDir() / "config";
+    return dirs::getSapphireDir() / "config";
 }
 
 ghc::filesystem::path dirs::getIndexDir() {
-    return dirs::getGeodeDir() / "index";
+    return dirs::getSapphireDir() / "index";
 }
 
 ghc::filesystem::path dirs::getCrashlogsDir() {

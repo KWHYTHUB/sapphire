@@ -8,9 +8,9 @@ ${LangFileString} MUI_UNTEXT_WELCOME_INFO_TEXT "Saat tarvittavia ohjeita sitä m
 ; installer
 
 ${LangFileString} GEODE_TEXT_GD_MISSING "$\r$\n$\r$\nValitussa kansiossa ei ole Geometry Dash -peliä asennettuna."
-${LangFileString} GEODE_TEXT_MH_ALREADY_INSTALLED "Valitussa kansiossa on jo Mega Hack v6/v7 asennettuna.$\r$\nGeode ei ole yhteensopiva MHv6/v7 kanssa (MHv8 on ensimmäinen yhteensopiva versio Geoden kanssa).$\r$\nPoistathan Mega Hackin ennen Geoden asentamista."
-${LangFileString} GEODE_TEXT_MOD_LOADER_ALREADY_INSTALLED "Valitussa kansiossa on jo joitain modeja asennettuna.$\r$\nGeode ei ole yhteensopiva .DLL-muotoisten modien tai niiden lataajien kanssa.$\r$\nPoistathan .DLL-muotoiset modit ja niiden lataajat ennen Geoden asentamista."
+${LangFileString} GEODE_TEXT_MH_ALREADY_INSTALLED "Valitussa kansiossa on jo Mega Hack v6/v7 asennettuna.$\r$\nSapphire ei ole yhteensopiva MHv6/v7 kanssa (MHv8 on ensimmäinen yhteensopiva versio Sapphiren kanssa).$\r$\nPoistathan Mega Hackin ennen Sapphiren asentamista."
+${LangFileString} GEODE_TEXT_MOD_LOADER_ALREADY_INSTALLED "Valitussa kansiossa on jo joitain modeja asennettuna.$\r$\nSapphire ei ole yhteensopiva .DLL-muotoisten modien tai niiden lataajien kanssa.$\r$\nPoistathan .DLL-muotoiset modit ja niiden lataajat ennen Sapphiren asentamista."
 
 ; uninstaller
 
-${LangFileString} GEODE_UNTEXT_GEODE_MISSING "Valitussa kansiossa ei ole Geode -modilataajaa asennettuna."
+${LangFileString} GEODE_UNTEXT_GEODE_MISSING "Valitussa kansiossa ei ole Sapphire -modilataajaa asennettuna."

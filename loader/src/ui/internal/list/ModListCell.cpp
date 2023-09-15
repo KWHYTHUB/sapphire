@@ -1,12 +1,12 @@
 #include "ModListCell.hpp"
 #include "ModListLayer.hpp"
 #include "../info/ModInfoPopup.hpp"
-#include <Geode/binding/ButtonSprite.hpp>
-#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
-#include <Geode/binding/CCMenuItemToggler.hpp>
-#include <Geode/binding/FLAlertLayer.hpp>
-#include <Geode/binding/StatsCell.hpp>
-#include <Geode/ui/GeodeUI.hpp>
+#include <Sapphire/binding/ButtonSprite.hpp>
+#include <Sapphire/binding/CCMenuItemSpriteExtra.hpp>
+#include <Sapphire/binding/CCMenuItemToggler.hpp>
+#include <Sapphire/binding/FLAlertLayer.hpp>
+#include <Sapphire/binding/StatsCell.hpp>
+#include <Sapphire/ui/SapphireUI.hpp>
 #include <loader/LoaderImpl.hpp>
 #include "../info/TagNode.hpp"
 #include "../info/DevProfilePopup.hpp"
@@ -314,7 +314,7 @@ bool ModCell::init(
             }
         }
 
-        if (m_mod->getMetadata().getID() != "geode.loader") {
+        if (m_mod->getMetadata().getID() != "sapphire.loader") {
             m_enableToggle =
                 CCMenuItemToggler::createWithStandardSprites(this, menu_selector(ModCell::onEnable), .7f);
             m_enableToggle->setPosition(-45.f, 0.f);
@@ -341,7 +341,7 @@ std::string ModCell::getDeveloper() const {
 }
 
 CCNode* ModCell::createLogo(CCSize const& size) {
-    return geode::createModLogo(m_mod, size);
+    return sapphire::createModLogo(m_mod, size);
 }
 
 // IndexItemCell
@@ -431,12 +431,12 @@ std::string IndexItemCell::getDeveloper() const {
 }
 
 CCNode* IndexItemCell::createLogo(CCSize const& size) {
-    return geode::createIndexItemLogo(m_item, size);
+    return sapphire::createIndexItemLogo(m_item, size);
 }
 
-// InvalidGeodeFileCell
+// InvalidSapphireFileCell
 
-void InvalidGeodeFileCell::onInfo(CCObject*) {
+void InvalidSapphireFileCell::onInfo(CCObject*) {
     FLAlertLayer::create(
         this, "Error Info",
         m_info.reason,
@@ -444,7 +444,7 @@ void InvalidGeodeFileCell::onInfo(CCObject*) {
     )->show();
 }
 
-void InvalidGeodeFileCell::FLAlert_Clicked(FLAlertLayer*, bool btn2) {
+void InvalidSapphireFileCell::FLAlert_Clicked(FLAlertLayer*, bool btn2) {
     if (btn2) {
         try {
             if (ghc::filesystem::remove(m_info.path)) {
@@ -474,8 +474,8 @@ void InvalidGeodeFileCell::FLAlert_Clicked(FLAlertLayer*, bool btn2) {
     }
 }
 
-bool InvalidGeodeFileCell::init(
-    InvalidGeodeFile const& info,
+bool InvalidSapphireFileCell::init(
+    InvalidSapphireFile const& info,
     ModListLayer* list,
     ModListDisplay display,
     CCSize const& size
@@ -509,19 +509,19 @@ bool InvalidGeodeFileCell::init(
     whySpr->setScale(.65f);
 
     auto viewBtn =
-        CCMenuItemSpriteExtra::create(whySpr, this, menu_selector(InvalidGeodeFileCell::onInfo));
+        CCMenuItemSpriteExtra::create(whySpr, this, menu_selector(InvalidSapphireFileCell::onInfo));
     menu->addChild(viewBtn);
 
     return true;
 }
 
-InvalidGeodeFileCell* InvalidGeodeFileCell::create(
-    InvalidGeodeFile const& file,
+InvalidSapphireFileCell* InvalidSapphireFileCell::create(
+    InvalidSapphireFile const& file,
     ModListLayer* list,
     ModListDisplay display,
     CCSize const& size
 ) {
-    auto ret = new InvalidGeodeFileCell();
+    auto ret = new InvalidSapphireFileCell();
     if (ret && ret->init(file, list, display, size)) {
         ret->autorelease();
         return ret;
@@ -530,13 +530,13 @@ InvalidGeodeFileCell* InvalidGeodeFileCell::create(
     return nullptr;
 }
 
-void InvalidGeodeFileCell::updateState() {}
+void InvalidSapphireFileCell::updateState() {}
 
-std::string InvalidGeodeFileCell::getDeveloper() const {
+std::string InvalidSapphireFileCell::getDeveloper() const {
     return "";
 }
 
-CCNode* InvalidGeodeFileCell::createLogo(CCSize const& size) {
+CCNode* InvalidSapphireFileCell::createLogo(CCSize const& size) {
     return nullptr;
 }
 

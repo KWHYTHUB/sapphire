@@ -4,17 +4,17 @@
 #include "ModImpl.hpp"
 #include "ModMetadataImpl.hpp"
 
-#include <Geode/loader/Dirs.hpp>
-#include <Geode/loader/IPC.hpp>
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Log.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/utils/JsonValidation.hpp>
-#include <Geode/utils/file.hpp>
-#include <Geode/utils/map.hpp>
-#include <Geode/utils/ranges.hpp>
-#include <Geode/utils/string.hpp>
-#include <Geode/utils/web.hpp>
+#include <Sapphire/loader/Dirs.hpp>
+#include <Sapphire/loader/IPC.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Log.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
+#include <Sapphire/utils/file.hpp>
+#include <Sapphire/utils/map.hpp>
+#include <Sapphire/utils/ranges.hpp>
+#include <Sapphire/utils/string.hpp>
+#include <Sapphire/utils/web.hpp>
 #include <about.hpp>
 #include <crashlog.hpp>
 #include <fmt/format.h>
@@ -24,7 +24,7 @@
 #include <string>
 #include <vector>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 Loader::Impl* LoaderImpl::get() {
     return Loader::get()->m_impl.get();
@@ -41,13 +41,13 @@ void Loader::Impl::createDirectories() {
     ghc::filesystem::create_directory(dirs::getSaveDir());
 #endif
 
-    // try deleting geode/unzipped if it already exists
+    // try deleting sapphire/unzipped if it already exists
     try { ghc::filesystem::remove_all(dirs::getModRuntimeDir()); } catch(...) {}
 
-    (void) utils::file::createDirectoryAll(dirs::getGeodeResourcesDir());
+    (void) utils::file::createDirectoryAll(dirs::getSapphireResourcesDir());
     (void) utils::file::createDirectory(dirs::getModConfigDir());
     (void) utils::file::createDirectory(dirs::getModsDir());
-    (void) utils::file::createDirectory(dirs::getGeodeLogDir());
+    (void) utils::file::createDirectory(dirs::getSapphireLogDir());
     (void) utils::file::createDirectory(dirs::getTempDir());
     (void) utils::file::createDirectory(dirs::getModRuntimeDir());
 
@@ -97,7 +97,7 @@ Result<> Loader::Impl::setup() {
 }
 
 void Loader::Impl::addSearchPaths() {
-    CCFileUtils::get()->addPriorityPath(dirs::getGeodeResourcesDir().string().c_str());
+    CCFileUtils::get()->addPriorityPath(dirs::getSapphireResourcesDir().string().c_str());
     CCFileUtils::get()->addPriorityPath(dirs::getModRuntimeDir().string().c_str());
 }
 
@@ -121,8 +121,8 @@ std::vector<Mod*> Loader::Impl::getAllMods() {
     return map::values(m_mods);
 }
 
-std::vector<InvalidGeodeFile> Loader::Impl::getFailedMods() const {
-    std::vector<InvalidGeodeFile> inv;
+std::vector<InvalidSapphireFile> Loader::Impl::getFailedMods() const {
+    std::vector<InvalidSapphireFile> inv;
     for (auto const& item : this->getProblems()) {
         if (item.type != LoadProblem::Type::InvalidFile)
             continue;
@@ -216,7 +216,7 @@ Mod* Loader::Impl::getLoadedMod(std::string const& id) const {
 
 void Loader::Impl::updateModResources(Mod* mod) {
     if (mod != Mod::get()) {
-        // geode.loader resource is stored somewhere else, which is already added anyway
+        // sapphire.loader resource is stored somewhere else, which is already added anyway
         auto searchPathRoot = dirs::getModRuntimeDir() / mod->getID() / "resources";
         CCFileUtils::get()->addSearchPath(searchPathRoot.string().c_str());
     }
@@ -282,7 +282,7 @@ void Loader::Impl::queueMods(std::vector<ModMetadata>& modQueue) {
             log::debug("Found {}", entry.path().filename());
             log::pushNest();
 
-            auto res = ModMetadata::createFromGeodeFile(entry.path());
+            auto res = ModMetadata::createFromSapphireFile(entry.path());
             if (!res) {
                 m_problems.push_back({
                     LoadProblem::Type::InvalidFile,
@@ -322,7 +322,7 @@ void Loader::Impl::queueMods(std::vector<ModMetadata>& modQueue) {
 void Loader::Impl::populateModList(std::vector<ModMetadata>& modQueue) {
     std::vector<std::string> toRemove;
     for (auto& [id, mod] : m_mods) {
-        if (id == "geode.loader")
+        if (id == "sapphire.loader")
             continue;
         delete mod;
         toRemove.push_back(id);
@@ -701,7 +701,7 @@ void Loader::Impl::fetchLatestGithubRelease(
     web::AsyncWebRequest()
         .join("loader-auto-update-check")
         .userAgent("github_api/1.0")
-        .fetch("https://api.github.com/repos/geode-sdk/geode/releases/latest")
+        .fetch("https://api.github.com/repos/KWHYTHUB/sapphire/releases/latest")
         .json()
         .then([this, then](json::Value const& json) {
             m_latestGithubRelease = json;
@@ -715,7 +715,7 @@ void Loader::Impl::tryDownloadLoaderResources(
     bool tryLatestOnError
 ) {
     auto tempResourcesZip = dirs::getTempDir() / "new.zip";
-    auto resourcesDir = dirs::getGeodeResourcesDir() / Mod::get()->getID();
+    auto resourcesDir = dirs::getSapphireResourcesDir() / Mod::get()->getID();
 
     web::AsyncWebRequest()
         // use the url as a join handle
@@ -758,7 +758,7 @@ void Loader::Impl::tryDownloadLoaderResources(
 }
 
 void Loader::Impl::updateSpecialFiles() {
-    auto resourcesDir = dirs::getGeodeResourcesDir() / Mod::get()->getID();
+    auto resourcesDir = dirs::getSapphireResourcesDir() / Mod::get()->getID();
     auto res = ModMetadataImpl::getImpl(ModImpl::get()->m_metadata).addSpecialFiles(resourcesDir);
     if (res.isErr()) {
         log::warn("Unable to add special files: {}", res.unwrapErr());
@@ -771,13 +771,13 @@ void Loader::Impl::downloadLoaderResources(bool useLatestRelease) {
             .join("loader-tag-exists-check")
             .userAgent("github_api/1.0")
             .fetch(fmt::format(
-                "https://api.github.com/repos/geode-sdk/geode/git/ref/tags/{}",
+                "https://api.github.com/repos/KWHYTHUB/sapphire/git/ref/tags/{}",
                 this->getVersion().toString()
             ))
             .json()
             .then([this](json::Value const& json) {
                 this->tryDownloadLoaderResources(fmt::format(
-                    "https://github.com/geode-sdk/geode/releases/download/{}/resources-" GEODE_PLATFORM_SHORT_IDENTIFIER ".zip",
+                    "https://github.com/KWHYTHUB/sapphire/releases/download/{}/resources-" GEODE_PLATFORM_SHORT_IDENTIFIER ".zip",
                     this->getVersion().toString()
                 ), true);  
             })
@@ -833,8 +833,8 @@ bool Loader::Impl::verifyLoaderResources() {
         return CACHED.value();
     }
 
-    // geode/resources/geode.loader
-    auto resourcesDir = dirs::getGeodeResourcesDir() / Mod::get()->getID();
+    // sapphire/resources/sapphire.loader
+    auto resourcesDir = dirs::getSapphireResourcesDir() / Mod::get()->getID();
 
     // if the resources dir doesn't exist, then it's probably incorrect
     if (!(
@@ -888,7 +888,7 @@ bool Loader::Impl::verifyLoaderResources() {
 
 void Loader::Impl::downloadLoaderUpdate(std::string const& url) {
     auto updateZip = dirs::getTempDir() / "loader-update.zip";
-    auto targetDir = dirs::getGeodeDir() / "update";
+    auto targetDir = dirs::getSapphireDir() / "update";
 
     web::AsyncWebRequest()
         .join("loader-update-download")

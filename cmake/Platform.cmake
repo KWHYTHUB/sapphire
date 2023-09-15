@@ -25,7 +25,7 @@ if (GEODE_TARGET_PLATFORM STREQUAL "iOS")
 		OSX_ARCHITECTURES arm64
 	)
 
-	set(GEODE_PLATFORM_BINARY "GeodeIOS.dylib")
+	set(GEODE_PLATFORM_BINARY "SapphireIOS.dylib")
 elseif (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 	set_target_properties(${PROJECT_NAME} PROPERTIES 
 		SYSTEM_NAME MacOS
@@ -51,7 +51,7 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 		${GEODE_LOADER_PATH}/include/link/libfmod.dylib
 	)
 
-	set(GEODE_PLATFORM_BINARY "Geode.dylib")
+	set(GEODE_PLATFORM_BINARY "Sapphire.dylib")
 
 elseif (GEODE_TARGET_PLATFORM STREQUAL "Win32")
 	set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -71,7 +71,7 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "Win32")
 	)
 
 	# Windows links against .lib and not .dll
-	set(GEODE_PLATFORM_BINARY "Geode.lib")
+	set(GEODE_PLATFORM_BINARY "Sapphire.lib")
 elseif (GEODE_TARGET_PLATFORM STREQUAL "Android")
 	set_target_properties(${PROJECT_NAME} PROPERTIES
 		SYSTEM_NAME Android
@@ -85,5 +85,5 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "Android")
 		log
 	)
 
-	set(GEODE_PLATFORM_BINARY "Geode.so")
+	set(GEODE_PLATFORM_BINARY "Sapphire.so")
 endif()

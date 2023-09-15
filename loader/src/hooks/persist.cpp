@@ -1,8 +1,8 @@
-#include <Geode/ui/SceneManager.hpp>
+#include <Sapphire/ui/SceneManager.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-#include <Geode/modify/AchievementNotifier.hpp>
+#include <Sapphire/modify/AchievementNotifier.hpp>
 
 struct SceneSwitch : Modify<SceneSwitch, AchievementNotifier> {
     void willSwitchToScene(CCScene* scene) {

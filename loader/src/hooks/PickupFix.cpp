@@ -1,6 +1,6 @@
-#include <Geode/modify/GJBaseGameLayer.hpp>
+#include <Sapphire/modify/GJBaseGameLayer.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 struct PickupTriggerFix : Modify<PickupTriggerFix, GJBaseGameLayer> {
     void collectItem(int item, int count) {

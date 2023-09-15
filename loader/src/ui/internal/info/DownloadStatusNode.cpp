@@ -1,7 +1,7 @@
 #include "ModInfoPopup.hpp"
-#include <Geode/binding/Slider.hpp>
-#include <Geode/binding/SliderTouchLogic.hpp>
-#include <Geode/binding/SliderThumb.hpp>
+#include <Sapphire/binding/Slider.hpp>
+#include <Sapphire/binding/SliderTouchLogic.hpp>
+#include <Sapphire/binding/SliderThumb.hpp>
 
 bool DownloadStatusNode::init() {
     if (!CCNode::init()) return false;

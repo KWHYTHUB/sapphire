@@ -1,8 +1,8 @@
-#include <Geode/loader/Loader.hpp>
-#include <Geode/utils/JsonValidation.hpp>
-#include <Geode/utils/VersionInfo.hpp>
-#include <Geode/utils/file.hpp>
-#include <Geode/utils/string.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/utils/JsonValidation.hpp>
+#include <Sapphire/utils/VersionInfo.hpp>
+#include <Sapphire/utils/file.hpp>
+#include <Sapphire/utils/string.hpp>
 #include <about.hpp>
 #include <json.hpp>
 #include <utility>
@@ -10,7 +10,7 @@
 #include "ModMetadataImpl.hpp"
 #include "ModInfoImpl.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 ModMetadata::Impl& ModMetadataImpl::getImpl(ModMetadata& info)  {
     return *info.m_impl;
@@ -26,20 +26,20 @@ bool ModMetadata::Incompatibility::isResolved() const {
         (!this->mod || !this->version.compare(this->mod->getVersion()));
 }
 
-ModMetadata::Dependency::operator geode::Dependency() {
+ModMetadata::Dependency::operator sapphire::Dependency() {
     return {id, version, importance == Importance::Required, mod};
 }
-ModMetadata::Dependency::operator geode::Dependency() const {
+ModMetadata::Dependency::operator sapphire::Dependency() const {
     return {id, version, importance == Importance::Required, mod};
 }
-ModMetadata::IssuesInfo::operator geode::IssuesInfo() {
+ModMetadata::IssuesInfo::operator sapphire::IssuesInfo() {
     return {info, url};
 }
-ModMetadata::IssuesInfo::operator geode::IssuesInfo() const {
+ModMetadata::IssuesInfo::operator sapphire::IssuesInfo() const {
     return {info, url};
 }
 
-ModMetadata::Dependency ModMetadata::Dependency::fromDeprecated(geode::Dependency const& value) {
+ModMetadata::Dependency ModMetadata::Dependency::fromDeprecated(sapphire::Dependency const& value) {
     return {
         value.id,
         value.version,
@@ -49,7 +49,7 @@ ModMetadata::Dependency ModMetadata::Dependency::fromDeprecated(geode::Dependenc
         value.mod
     };
 }
-ModMetadata::IssuesInfo ModMetadata::IssuesInfo::fromDeprecated(geode::IssuesInfo const& value) {
+ModMetadata::IssuesInfo ModMetadata::IssuesInfo::fromDeprecated(sapphire::IssuesInfo const& value) {
     return {value.info, value.url};
 }
 
@@ -79,7 +79,7 @@ Result<ModMetadata> ModMetadata::Impl::createFromSchemaV010(ModJson const& rawJs
     JsonChecker checker(impl->m_rawJSON);
     auto root = checker.root("[mod.json]").obj();
 
-    root.addKnownKey("geode");
+    root.addKnownKey("sapphire");
 
     // don't think its used locally yet
     root.addKnownKey("tags"); 
@@ -104,9 +104,9 @@ Result<ModMetadata> ModMetadata::Impl::createFromSchemaV010(ModJson const& rawJs
         log::warn("{}: [mod.json].unloadable is deprecated and will be removed in a future update.", impl->m_id);
 
     // TODO for 2.0.0: specify this in mod.json manually
-    if (info.getID() != "geode.loader") {
+    if (info.getID() != "sapphire.loader") {
         impl->m_dependencies.push_back({
-            "geode.loader",
+            "sapphire.loader",
             {LOADER_VERSION, VersionCompare::Exact},
             Dependency::Importance::Required,
             Mod::get()
@@ -188,10 +188,10 @@ Result<ModMetadata> ModMetadata::Impl::createFromSchemaV010(ModJson const& rawJs
 Result<ModMetadata> ModMetadata::Impl::create(ModJson const& json) {
     // Check mod.json target version
     auto schema = LOADER_VERSION;
-    if (json.contains("geode") && json["geode"].is_string()) {
+    if (json.contains("sapphire") && json["sapphire"].is_string()) {
         GEODE_UNWRAP_INTO(
             schema,
-            VersionInfo::parse(json["geode"].as_string())
+            VersionInfo::parse(json["sapphire"].as_string())
                 .expect("[mod.json] has invalid target loader version: {error}")
         );
     }
@@ -204,7 +204,7 @@ Result<ModMetadata> ModMetadata::Impl::create(ModJson const& json) {
     if (schema < Loader::get()->minModVersion()) {
         return Err(
             "[mod.json] is built for an older version (" + schema.toString() +
-            ") of Geode (current: " + Loader::get()->getVersion().toString() +
+            ") of Sapphire (current: " + Loader::get()->getVersion().toString() +
             "). Please update the mod to the latest version, "
             "and if the problem persists, contact the developer "
             "to update it."
@@ -213,8 +213,8 @@ Result<ModMetadata> ModMetadata::Impl::create(ModJson const& json) {
     if (schema > Loader::get()->maxModVersion()) {
         return Err(
             "[mod.json] is built for a newer version (" + schema.toString() +
-            ") of Geode (current: " + Loader::get()->getVersion().toString() +
-            "). You need to update Geode in order to use "
+            ") of Sapphire (current: " + Loader::get()->getVersion().toString() +
+            "). You need to update Sapphire in order to use "
             "this mod."
         );
     }
@@ -225,8 +225,8 @@ Result<ModMetadata> ModMetadata::Impl::create(ModJson const& json) {
             "[mod.json] targets a version (" + schema.toString() +
             ") that isn't supported by this version (v" +
             LOADER_VERSION_STR +
-            ") of geode. This is probably a bug; report it to "
-            "the Geode Development Team."
+            ") of sapphire. This is probably a bug; report it to "
+            "the Sapphire Development Team."
         );
     }
 
@@ -252,12 +252,12 @@ Result<ModMetadata> ModMetadata::Impl::createFromFile(ghc::filesystem::path cons
     }
 }
 
-Result<ModMetadata> ModMetadata::Impl::createFromGeodeFile(ghc::filesystem::path const& path) {
+Result<ModMetadata> ModMetadata::Impl::createFromSapphireFile(ghc::filesystem::path const& path) {
     GEODE_UNWRAP_INTO(auto unzip, file::Unzip::create(path));
-    return ModMetadata::createFromGeodeZip(unzip);
+    return ModMetadata::createFromSapphireZip(unzip);
 }
 
-Result<ModMetadata> ModMetadata::Impl::createFromGeodeZip(file::Unzip& unzip) {
+Result<ModMetadata> ModMetadata::Impl::createFromSapphireZip(file::Unzip& unzip) {
     // Check if mod.json exists in zip
     if (!unzip.hasEntry("mod.json")) {
         return Err("\"" + unzip.getPath().string() + "\" is missing mod.json");
@@ -484,12 +484,12 @@ void ModMetadata::setIsAPI(bool const& value) {
 }
 #endif
 
-Result<ModMetadata> ModMetadata::createFromGeodeZip(utils::file::Unzip& zip) {
-    return Impl::createFromGeodeZip(zip);
+Result<ModMetadata> ModMetadata::createFromSapphireZip(utils::file::Unzip& zip) {
+    return Impl::createFromSapphireZip(zip);
 }
 
-Result<ModMetadata> ModMetadata::createFromGeodeFile(ghc::filesystem::path const& path) {
-    return Impl::createFromGeodeFile(path);
+Result<ModMetadata> ModMetadata::createFromSapphireFile(ghc::filesystem::path const& path) {
+    return Impl::createFromSapphireFile(path);
 }
 
 Result<ModMetadata> ModMetadata::createFromFile(ghc::filesystem::path const& path) {
@@ -568,42 +568,42 @@ ModMetadata::operator ModInfo() const {
 ModMetadata::~ModMetadata() = default;
 
 template <>
-struct json::Serialize<geode::ModMetadata::Dependency::Importance> {
-    static json::Value GEODE_DLL to_json(geode::ModMetadata::Dependency::Importance const& importance) {
+struct json::Serialize<sapphire::ModMetadata::Dependency::Importance> {
+    static json::Value GEODE_DLL to_json(sapphire::ModMetadata::Dependency::Importance const& importance) {
         switch (importance) {
-            case geode::ModMetadata::Dependency::Importance::Required: return {"required"};
-            case geode::ModMetadata::Dependency::Importance::Recommended: return {"recommended"};
-            case geode::ModMetadata::Dependency::Importance::Suggested: return {"suggested"};
+            case sapphire::ModMetadata::Dependency::Importance::Required: return {"required"};
+            case sapphire::ModMetadata::Dependency::Importance::Recommended: return {"recommended"};
+            case sapphire::ModMetadata::Dependency::Importance::Suggested: return {"suggested"};
             default: return {"unknown"};
         }
     }
-    static geode::ModMetadata::Dependency::Importance GEODE_DLL from_json(json::Value const& importance) {
+    static sapphire::ModMetadata::Dependency::Importance GEODE_DLL from_json(json::Value const& importance) {
         auto impStr = importance.as_string();
         if (impStr == "required")
-            return geode::ModMetadata::Dependency::Importance::Required;
+            return sapphire::ModMetadata::Dependency::Importance::Required;
         if (impStr == "recommended")
-            return geode::ModMetadata::Dependency::Importance::Recommended;
+            return sapphire::ModMetadata::Dependency::Importance::Recommended;
         if (impStr == "suggested")
-            return geode::ModMetadata::Dependency::Importance::Suggested;
+            return sapphire::ModMetadata::Dependency::Importance::Suggested;
         throw json::JsonException(R"(Expected importance to be "required", "recommended" or "suggested")");
     }
 };
 
 template <>
-struct json::Serialize<geode::ModMetadata::Incompatibility::Importance> {
-    static json::Value GEODE_DLL to_json(geode::ModMetadata::Incompatibility::Importance const& importance) {
+struct json::Serialize<sapphire::ModMetadata::Incompatibility::Importance> {
+    static json::Value GEODE_DLL to_json(sapphire::ModMetadata::Incompatibility::Importance const& importance) {
         switch (importance) {
-            case geode::ModMetadata::Incompatibility::Importance::Breaking: return {"breaking"};
-            case geode::ModMetadata::Incompatibility::Importance::Conflicting: return {"conflicting"};
+            case sapphire::ModMetadata::Incompatibility::Importance::Breaking: return {"breaking"};
+            case sapphire::ModMetadata::Incompatibility::Importance::Conflicting: return {"conflicting"};
             default: return {"unknown"};
         }
     }
-    static geode::ModMetadata::Incompatibility::Importance GEODE_DLL from_json(json::Value const& importance) {
+    static sapphire::ModMetadata::Incompatibility::Importance GEODE_DLL from_json(json::Value const& importance) {
         auto impStr = importance.as_string();
         if (impStr == "breaking")
-            return geode::ModMetadata::Incompatibility::Importance::Breaking;
+            return sapphire::ModMetadata::Incompatibility::Importance::Breaking;
         if (impStr == "conflicting")
-            return geode::ModMetadata::Incompatibility::Importance::Conflicting;
+            return sapphire::ModMetadata::Incompatibility::Importance::Conflicting;
         throw json::JsonException(R"(Expected importance to be "breaking" or "conflicting")");
     }
 };

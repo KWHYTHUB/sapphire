@@ -1,11 +1,11 @@
-#include <Geode/loader/IPC.hpp>
-#include <Geode/loader/Log.hpp>
+#include <Sapphire/loader/IPC.hpp>
+#include <Sapphire/loader/Log.hpp>
 #include <loader/ModImpl.hpp>
 #include <iostream>
 #include <loader/LoaderImpl.hpp>
-#include <Geode/utils/string.hpp>
+#include <Sapphire/utils/string.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #ifdef GEODE_IS_ANDROID
 
@@ -30,7 +30,7 @@ void Loader::Impl::platformMessageBox(char const* title, std::string const& info
 void Loader::Impl::logConsoleMessageWithSeverity(std::string const& msg, Severity severity) {
     __android_log_print(
         getLogSeverityForSeverity(severity),
-        "Geode",
+        "Sapphire",
         "%s",
         msg.c_str()
     );

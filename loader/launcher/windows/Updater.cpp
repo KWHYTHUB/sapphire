@@ -4,12 +4,12 @@
 #include <filesystem>
 
 std::filesystem::path workingDir;
-std::filesystem::path geodeDir;
+std::filesystem::path sapphireDir;
 std::filesystem::path updatesDir;
 std::filesystem::path resourcesDir;
 
 void showError(std::string const& error) {
-    MessageBoxA(nullptr, error.c_str(), "Error Loading Geode", MB_ICONERROR);
+    MessageBoxA(nullptr, error.c_str(), "Error Loading Sapphire", MB_ICONERROR);
 }
 
 bool waitForFile(std::filesystem::path const& path) {
@@ -31,7 +31,7 @@ bool waitForFile(std::filesystem::path const& path) {
     if (hFile)
         CloseHandle(hFile);
     else {
-        showError("Unable to update Geode: " + path.filename().string() + " is open by another process.");
+        showError("Unable to update Sapphire: " + path.filename().string() + " is open by another process.");
         return false;
     }
     return true;
@@ -46,7 +46,7 @@ void updateFile(std::string const& name) {
 
     std::filesystem::rename(updatesDir / name, workingDir / name, error);
     if (error) {
-        showError("Unable to update Geode: Unable to move " + name + " - " + error.message());
+        showError("Unable to update Sapphire: Unable to move " + name + " - " + error.message());
         return;
     }
 }
@@ -63,9 +63,9 @@ void removePath(std::filesystem::path const& path) {
     std::filesystem::remove(path, error);
     if (error) {
         if (path.has_filename())
-            showError("Unable to update Geode: Unable to remove " + path.filename().string() + " - " + error.message());
+            showError("Unable to update Sapphire: Unable to remove " + path.filename().string() + " - " + error.message());
         else
-            showError("Unable to update Geode: Unable to remove " + path.string() + " - " + error.message());
+            showError("Unable to update Sapphire: Unable to remove " + path.string() + " - " + error.message());
         return;
     }
 }
@@ -75,31 +75,31 @@ void updateResources() {
     if (!std::filesystem::exists(updatesDir / "resources", error) || error)
         return;
 
-    std::filesystem::remove_all(resourcesDir / "geode.loader", error);
+    std::filesystem::remove_all(resourcesDir / "sapphire.loader", error);
     if (error) {
-        showError("Unable to update Geode resources:" + error.message());
+        showError("Unable to update Sapphire resources:" + error.message());
         return;
     }
 
-    std::filesystem::rename(updatesDir / "resources", resourcesDir / "geode.loader", error);
+    std::filesystem::rename(updatesDir / "resources", resourcesDir / "sapphire.loader", error);
     if (error) {
-        showError("Unable to update Geode resources: " + error.message());
+        showError("Unable to update Sapphire resources: " + error.message());
         return;
     }
 }
 
 int main(int argc, char* argv[]) {
     workingDir = std::filesystem::current_path();
-    geodeDir = workingDir / "geode";
-    updatesDir = geodeDir / "update";
-    resourcesDir = geodeDir / "resources";
+    sapphireDir = workingDir / "sapphire";
+    updatesDir = sapphireDir / "update";
+    resourcesDir = sapphireDir / "resources";
 
-    if (std::filesystem::exists(workingDir / "GeodeBootstrapper.dll"))
-        removePath(workingDir / "GeodeBootstrapper.dll");
+    if (std::filesystem::exists(workingDir / "SapphireBootstrapper.dll"))
+        removePath(workingDir / "SapphireBootstrapper.dll");
 
-    if (std::filesystem::exists(geodeDir) && std::filesystem::exists(updatesDir)) {
+    if (std::filesystem::exists(sapphireDir) && std::filesystem::exists(updatesDir)) {
         updateFile("XInput9_1_0.dll");
-        updateFile("Geode.dll");
+        updateFile("Sapphire.dll");
         updateResources();
         removePath(updatesDir);
     }

@@ -4,24 +4,24 @@ namespace {
     namespace format_strings {
 
         char const* address_begin = R"GEN(
-#include <Geode/Bindings.hpp>
-#include <Geode/modify/Addresses.hpp>
-#include <Geode/modify/Traits.hpp>
-#include <Geode/loader/Tulip.hpp>
+#include <Sapphire/Bindings.hpp>
+#include <Sapphire/modify/Addresses.hpp>
+#include <Sapphire/modify/Traits.hpp>
+#include <Sapphire/loader/Tulip.hpp>
 
-using namespace geode;
+using namespace sapphire;
 )GEN";
 
         char const* declare_address = R"GEN(
 template <>
-uintptr_t geode::modifier::address<{index}>() {{
+uintptr_t sapphire::modifier::address<{index}>() {{
 	static uintptr_t ret = {address};
 	return ret;
 }}
 )GEN";
 
         char const* declare_metadata_begin = R"GEN(
-Result<tulip::hook::HandlerMetadata> geode::modifier::handlerMetadataForAddress(uintptr_t address) {
+Result<tulip::hook::HandlerMetadata> sapphire::modifier::handlerMetadataForAddress(uintptr_t address) {
 	static auto s_value = []() {
 		std::map<uintptr_t, tulip::hook::HandlerMetadata(*)()> ret;
 )GEN";
@@ -31,7 +31,7 @@ Result<tulip::hook::HandlerMetadata> geode::modifier::handlerMetadataForAddress(
         	using FunctionType = {return}(*)({class_name}{const}*{parameter_comma}{parameter_types});
 			ret[modifier::address<{index}>()] = +[](){{
 				return tulip::hook::HandlerMetadata{{
-					.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
+					.m_convention = sapphire::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 					.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 				}}; 
 			}};
@@ -43,7 +43,7 @@ Result<tulip::hook::HandlerMetadata> geode::modifier::handlerMetadataForAddress(
         	using FunctionType = {return}(*)({parameter_types});
 			ret[modifier::address<{index}>()] = +[](){{
 				return tulip::hook::HandlerMetadata{{
-					.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
+					.m_convention = sapphire::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 					.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 				}};
 			}};
@@ -55,7 +55,7 @@ Result<tulip::hook::HandlerMetadata> geode::modifier::handlerMetadataForAddress(
         	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
 			ret[modifier::address<{index}>()] = +[](){{
 				return tulip::hook::HandlerMetadata{{
-					.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
+					.m_convention = sapphire::hook::createConvention(tulip::hook::TulipConvention::{convention}),
 					.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
 				}};
 			}};
@@ -65,8 +65,8 @@ Result<tulip::hook::HandlerMetadata> geode::modifier::handlerMetadataForAddress(
         char const* declare_metadata_end = R"GEN(
         return ret;
     }();
-    if (s_value.count(address) > 0) return geode::Ok(std::move(s_value[address]()));
-    return geode::Err("Address is not registered for wrapper");
+    if (s_value.count(address) > 0) return sapphire::Ok(std::move(s_value[address]()));
+    return sapphire::Err("Address is not registered for wrapper");
 }
 )GEN";
 

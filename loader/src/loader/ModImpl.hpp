@@ -2,7 +2,7 @@
 
 #include <json.hpp>
 
-namespace geode {
+namespace sapphire {
     class Mod::Impl {
     public:
         Mod* m_self;

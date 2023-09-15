@@ -8,9 +8,9 @@ ${LangFileString} MUI_UNTEXT_WELCOME_INFO_TEXT "Denna guide tar dig igenom avins
 ; installer
 
 ${LangFileString} GEODE_TEXT_GD_MISSING "$\r$\n$\r$\nDen valda mappen innehåller ingen installation av Geometry Dash."
-${LangFileString} GEODE_TEXT_MH_ALREADY_INSTALLED "Den valda mappen innehåller redan Mega Hack v6/v7.$\r$\nGeode är inte kompatibel med MHv6/v7 (MHv8 är den första versionen som är kompatibel med Geode).$\r$\nSe till att avinstallera Mega Hack innan du startar installationen av Geode."
-${LangFileString} GEODE_TEXT_MOD_LOADER_ALREADY_INSTALLED "Den valda mappen innehåller redan några andra mod.$\r$\nGeode är inte kompatibel med .DLL-slag mod eller sin mod loader.$\r$\nSe till att avinstallera .DLL-slag mod och sin mod loader innan du startar installationen av Geode."
+${LangFileString} GEODE_TEXT_MH_ALREADY_INSTALLED "Den valda mappen innehåller redan Mega Hack v6/v7.$\r$\nSapphire är inte kompatibel med MHv6/v7 (MHv8 är den första versionen som är kompatibel med Sapphire).$\r$\nSe till att avinstallera Mega Hack innan du startar installationen av Sapphire."
+${LangFileString} GEODE_TEXT_MOD_LOADER_ALREADY_INSTALLED "Den valda mappen innehåller redan några andra mod.$\r$\nSapphire är inte kompatibel med .DLL-slag mod eller sin mod loader.$\r$\nSe till att avinstallera .DLL-slag mod och sin mod loader innan du startar installationen av Sapphire."
 
 ; uninstaller
 
-${LangFileString} GEODE_UNTEXT_GEODE_MISSING "Den valda mappen innehåller ingen installation av Geode."
+${LangFileString} GEODE_UNTEXT_GEODE_MISSING "Den valda mappen innehåller ingen installation av Sapphire."

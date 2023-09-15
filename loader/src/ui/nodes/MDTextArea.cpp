@@ -1,15 +1,15 @@
-#include <Geode/binding/ProfilePage.hpp>
-#include <Geode/binding/CCContentLayer.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/ui/MDTextArea.hpp>
-#include <Geode/utils/casts.hpp>
-#include <Geode/utils/cocos.hpp>
-#include <Geode/utils/web.hpp>
-#include <Geode/utils/ranges.hpp>
-#include <Geode/utils/string.hpp>
+#include <Sapphire/binding/ProfilePage.hpp>
+#include <Sapphire/binding/CCContentLayer.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/ui/MDTextArea.hpp>
+#include <Sapphire/utils/casts.hpp>
+#include <Sapphire/utils/cocos.hpp>
+#include <Sapphire/utils/web.hpp>
+#include <Sapphire/utils/ranges.hpp>
+#include <Sapphire/utils/string.hpp>
 #include <md4c.h>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 static constexpr float g_fontScale = .5f;
 static constexpr float g_paragraphPadding = 7.f;

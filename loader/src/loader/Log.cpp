@@ -1,16 +1,16 @@
 #include "LoaderImpl.hpp"
 
-#include <Geode/loader/Dirs.hpp>
-#include <Geode/loader/Log.hpp>
-#include <Geode/loader/Mod.hpp>
-#include <Geode/utils/casts.hpp>
-#include <Geode/utils/general.hpp>
+#include <Sapphire/loader/Dirs.hpp>
+#include <Sapphire/loader/Log.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/utils/casts.hpp>
+#include <Sapphire/utils/general.hpp>
 #include <fmt/chrono.h>
 #include <fmt/format.h>
 #include <iomanip>
 
-using namespace geode::prelude;
-using namespace geode::log;
+using namespace sapphire::prelude;
+using namespace sapphire::log;
 using namespace cocos2d;
 
 // Parse overloads
@@ -113,7 +113,7 @@ std::string Log::toString(bool logTime, uint32_t nestLevel) const {
         res += fmt::format("{:%H:%M:%S}", m_time);
     }
 
-    res += fmt::format(" [{}]: ", m_sender ? m_sender->getName() : "Geode?");
+    res += fmt::format(" [{}]: ", m_sender ? m_sender->getName() : "Sapphire?");
 
     for (uint32_t i = 0; i < nestLevel; i++) {
         res += "  ";
@@ -218,7 +218,7 @@ uint32_t& Logger::nestLevel() {
 }
 
 void Logger::setup() {
-    logStream() = std::ofstream(dirs::getGeodeLogDir() / log::generateLogName());
+    logStream() = std::ofstream(dirs::getSapphireLogDir() / log::generateLogName());
 }
 
 void Logger::push(Log&& log) {
@@ -231,7 +231,7 @@ void Logger::push(Log&& log) {
 }
 
 void Logger::pop(Log* log) {
-    geode::utils::ranges::remove(Logger::logs(), *log);
+    sapphire::utils::ranges::remove(Logger::logs(), *log);
 }
 
 void Logger::pushNest() {
@@ -260,6 +260,6 @@ void Logger::clear() {
 
 // Misc
 
-std::string geode::log::generateLogName() {
-    return fmt::format("Geode {:%d %b %H.%M.%S}.log", log_clock::now());
+std::string sapphire::log::generateLogName() {
+    return fmt::format("Sapphire {:%d %b %H.%M.%S}.log", log_clock::now());
 }

@@ -1,11 +1,11 @@
 ﻿#pragma once
 
-#include <Geode/ui/Popup.hpp>
-#include <Geode/loader/Index.hpp>
+#include <Sapphire/ui/Popup.hpp>
+#include <Sapphire/loader/Index.hpp>
 
 #include "InstallListCell.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class InstallListPopup : public Popup<IndexItemHandle, MiniFunction<void(IndexInstallList const&)>> {
 protected:

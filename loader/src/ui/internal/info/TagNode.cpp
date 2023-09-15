@@ -1,7 +1,7 @@
 #include "TagNode.hpp"
-#include <Geode/utils/general.hpp>
+#include <Sapphire/utils/general.hpp>
 #include <cocos-ext.h>
-#include <Geode/loader/Mod.hpp>
+#include <Sapphire/loader/Mod.hpp>
 
 static std::array<ccColor3B, 6> TAG_COLORS {{
     { 114, 255, 138, }, // green

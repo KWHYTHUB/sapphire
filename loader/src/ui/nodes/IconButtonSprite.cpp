@@ -1,7 +1,7 @@
-#include <Geode/ui/IconButtonSprite.hpp>
-#include <Geode/utils/cocos.hpp>
+#include <Sapphire/ui/IconButtonSprite.hpp>
+#include <Sapphire/utils/cocos.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 bool IconButtonSprite::init(
     char const* bg, bool bgIsFrame, cocos2d::CCNode* icon, char const* text, char const* font

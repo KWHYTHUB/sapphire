@@ -1,8 +1,8 @@
 
-#include <Geode/loader/Loader.hpp>
-#include <Geode/loader/Mod.hpp>
+#include <Sapphire/loader/Loader.hpp>
+#include <Sapphire/loader/Mod.hpp>
 
-namespace geode {
+namespace sapphire {
     /**
      * To bypass the need for cyclic dependencies,
      * this function does the exact same as Mod::get()
@@ -16,5 +16,5 @@ namespace geode {
 
 namespace {
     // to make sure the instance is set into the sharedMod<> in load time
-    static auto mod = geode::getMod(); 
+    static auto mod = sapphire::getMod(); 
 }

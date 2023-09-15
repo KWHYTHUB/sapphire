@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Geode/ui/Popup.hpp>
+#include <Sapphire/ui/Popup.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 class ModListLayer;
 enum class ModListType;

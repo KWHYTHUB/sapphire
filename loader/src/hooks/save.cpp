@@ -1,8 +1,8 @@
-#include <Geode/loader/Loader.hpp>
+#include <Sapphire/loader/Loader.hpp>
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
-#include <Geode/modify/AppDelegate.hpp>
+#include <Sapphire/modify/AppDelegate.hpp>
 
 struct SaveLoader : Modify<SaveLoader, AppDelegate> {
     void trySaveGame() {

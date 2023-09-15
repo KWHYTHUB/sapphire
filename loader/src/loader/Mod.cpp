@@ -1,8 +1,8 @@
-#include <Geode/loader/Mod.hpp>
-#include <Geode/loader/Dirs.hpp>
+#include <Sapphire/loader/Mod.hpp>
+#include <Sapphire/loader/Dirs.hpp>
 #include "ModImpl.hpp"
 
-using namespace geode::prelude;
+using namespace sapphire::prelude;
 
 #pragma warning(suppress : 4996)
 Mod::Mod(ModInfo const& info) : m_impl(std::make_unique<Impl>(this, info)) {}

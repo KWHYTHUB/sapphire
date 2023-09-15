@@ -3,36 +3,36 @@
 # https://github.com/hjfod/flash
 
 [project]
-name = "Geode"
+name = "Sapphire"
 version = "v1.0.0"
-repository = "https://github.com/geode-sdk/geode"
-tree = "https://github.com/geode-sdk/geode/tree/main"
-icon = "loader/resources/logos/geode-circle.png"
+repository = "https://github.com/KWHYTHUB/sapphire"
+tree = "https://github.com/KWHYTHUB/sapphire/tree/main"
+icon = "loader/resources/logos/sapphire-circle.png"
 
 [tutorials]
 dir = "docs"
 assets = ["docs/assets/*.png"]
 
 [[sources]]
-name = "Geode"
+name = "Sapphire"
 dir = "loader/include"
 include = [
-    "Geode/**/*.hpp",
-    "Geode/**/*.h",
+    "Sapphire/**/*.hpp",
+    "Sapphire/**/*.h",
 ]
 exclude = [
-    "Geode/modify/Comparer.hpp",
-    "Geode/platform/*.hpp",
-    "Geode/c++stl/*.hpp",
-    # All of the relevant cocos headers are included through Geode headers
-    "Geode/cocos/**/*.h"
+    "Sapphire/modify/Comparer.hpp",
+    "Sapphire/platform/*.hpp",
+    "Sapphire/c++stl/*.hpp",
+    # All of the relevant cocos headers are included through Sapphire headers
+    "Sapphire/cocos/**/*.h"
 ]
 
 [[sources]]
 name = "Bindings"
 dir = "build-docs/codegenned"
 include = [
-    "Geode/binding/*.hpp"
+    "Sapphire/binding/*.hpp"
 ]
 # Bindings are generated at compile time
 exists-online = false

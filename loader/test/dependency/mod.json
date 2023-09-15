@@ -1,10 +1,10 @@
 {
-    "geode":        "1.0.0",
+    "sapphire":        "1.0.0",
 	"version":      "1.0.0",
-	"id":           "geode.testdep",
-    "name":         "Geode Test Dependency",
-    "developer":    "Geode Team",
-    "description":  "Unit test dependency for Geode",
+	"id":           "sapphire.testdep",
+    "name":         "Sapphire Test Dependency",
+    "developer":    "Sapphire Team",
+    "description":  "Unit test dependency for Sapphire",
     "api": {
         "include": []
     },
